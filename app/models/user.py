@@ -10,6 +10,10 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    avatar_url = db.Column(db.String(255))
+    online = db.Column(db.Boolean, nullable=False, default=False)
+    shipping_address = db.Column(db.String(255), nullable=False)
+
 
     @property
     def password(self):

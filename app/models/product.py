@@ -1,0 +1,38 @@
+from .db import db
+import datetime
+from app.models.order_products import order_products
+from app.models.product_categories import products_categories
+
+
+class Product(db.Model):
+    __tablename__ = 'products'
+
+    id = db.Column(db.Integer, primary_key=True)
+    product_name = db.Column(db.String(30), nullable=False)
+    description = db.Column(db.String(355))
+    price = db.Column(db.Float,nullable=False )
+    product_image_url = db.Column(db.String(50))
+    timestamp = db.Column(db.DateTime, default=datetime.datetime.now())
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+
+    # relationships
+    # one to many between product and reviews
+    reviews = db.relationship("Review", back_populates="products_reviews")
+    # one to many between product and categories
+    categories = db.relationship("Category", secondary=products_categories, back_populates="products")
+    # many to many between orders and product
+    orders = db.relationship("Order", secondary=order_products, back_populates="orders")
+
+
+    def to_dict(self):
+
+        return {
+            "id" : self.id,
+            "product_name" : self.product_name,
+            "description" : self.description,
+            "price" : self.price,
+            "product_image_url" : self.product_image_url,
+            "timestamp" : self.timestamp,
+            "user_id" : self.user_id,
+            "orders" : self.orders
+        }
