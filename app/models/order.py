@@ -7,6 +7,7 @@ class Order(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     total_price = db.Column(db.Float,nullable=False )
+    shipping_address = db.Column(db.String(255), nullable=False )
     timestamp = db.Column(db.DateTime, default=datetime.datetime.now())
     delivered = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
@@ -23,5 +24,6 @@ class Order(db.Model):
             "timestamp" : self.timestamp,
             "delivered" : self.delivered,
             "user_id" : self.user_id,
-            "products" : self.products
+            "products" : self.products,
+            "shipping_address" : self.shipping_address
         }

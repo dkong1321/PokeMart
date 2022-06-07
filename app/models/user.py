@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     avatar_url = db.Column(db.String(255))
     online = db.Column(db.Boolean, nullable=False, default=False)
-    shipping_address = db.Column(db.String(255), nullable=False)
+    # shipping_address = db.Column(db.String(255), nullable=False)
 
 
     @property
@@ -30,5 +30,8 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'hashed_password' : self.hashed_password,
+            'avatar_url' : self.avatar_url,
+            'online' : self.online,
         }
