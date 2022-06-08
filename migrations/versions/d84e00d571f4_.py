@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: e7f2ef3eb126
-Revises: bfbe8f35c358
-Create Date: 2022-06-07 11:27:46.735388
+Revision ID: d84e00d571f4
+Revises: 
+Create Date: 2022-06-08 14:11:01.338247
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e7f2ef3eb126'
-down_revision = 'bfbe8f35c358'
+revision = 'd84e00d571f4'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -23,9 +23,21 @@ def upgrade():
     sa.Column('category_name', sa.String(length=255), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('users',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('username', sa.String(length=40), nullable=False),
+    sa.Column('email', sa.String(length=255), nullable=False),
+    sa.Column('hashed_password', sa.String(length=255), nullable=False),
+    sa.Column('avatar_url', sa.String(length=255), nullable=True),
+    sa.Column('online', sa.Boolean(), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email'),
+    sa.UniqueConstraint('username')
+    )
     op.create_table('orders',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('total_price', sa.Float(), nullable=False),
+    sa.Column('shipping_address', sa.String(length=255), nullable=False),
     sa.Column('timestamp', sa.DateTime(), nullable=True),
     sa.Column('delivered', sa.Boolean(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -37,7 +49,7 @@ def upgrade():
     sa.Column('product_name', sa.String(length=30), nullable=False),
     sa.Column('description', sa.String(length=355), nullable=True),
     sa.Column('price', sa.Float(), nullable=False),
-    sa.Column('product_image_url', sa.String(length=50), nullable=True),
+    sa.Column('product_image_url', sa.String(length=255), nullable=False),
     sa.Column('timestamp', sa.DateTime(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
@@ -46,6 +58,7 @@ def upgrade():
     op.create_table('order_products',
     sa.Column('order_id', sa.Integer(), nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
+    sa.Column('quantity', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['order_id'], ['orders.id'], ),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.PrimaryKeyConstraint('order_id', 'product_id')
@@ -78,5 +91,6 @@ def downgrade():
     op.drop_table('order_products')
     op.drop_table('products')
     op.drop_table('orders')
+    op.drop_table('users')
     op.drop_table('categories')
     # ### end Alembic commands ###
