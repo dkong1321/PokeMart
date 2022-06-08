@@ -24,6 +24,6 @@ class Order(db.Model):
             "timestamp" : self.timestamp,
             "delivered" : self.delivered,
             "user_id" : self.user_id,
-            "products" : self.products,
+            "products" : [product.to_dict() for product in self.products],
             "shipping_address" : self.shipping_address
         }

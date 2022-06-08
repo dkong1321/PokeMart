@@ -11,7 +11,7 @@ class Product(db.Model):
     product_name = db.Column(db.String(30), nullable=False)
     description = db.Column(db.String(355))
     price = db.Column(db.Float,nullable=False )
-    product_image_url = db.Column(db.String(50), nullable=False)
+    product_image_url = db.Column(db.String(255), nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.datetime.now())
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
@@ -34,6 +34,6 @@ class Product(db.Model):
             "product_image_url" : self.product_image_url,
             "timestamp" : self.timestamp,
             "user_id" : self.user_id,
-            "orders" : self.orders,
-            "reviews" : self.reviews
+            # "orders" : [order.to_dict() for order in self.orders],
+            # "reviews" : self.reviews
         }
