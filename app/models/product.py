@@ -17,11 +17,11 @@ class Product(db.Model):
 
     # relationships
     # one to many between product and reviews
-    reviews = db.relationship("Review", back_populates="products_reviews")
-    # one to many between product and categories
+    reviews = db.relationship("Review", back_populates="products")
+    # many to many between product and categories
     categories = db.relationship("Category", secondary=products_categories, back_populates="products")
     # many to many between orders and product
-    orders = db.relationship("Order", secondary=order_products, back_populates="orders")
+    orders = db.relationship("Order", secondary=order_products, back_populates="products")
 
 
     def to_dict(self):
@@ -34,5 +34,6 @@ class Product(db.Model):
             "product_image_url" : self.product_image_url,
             "timestamp" : self.timestamp,
             "user_id" : self.user_id,
-            "orders" : self.orders
+            "orders" : self.orders,
+            "reviews" : self.reviews
         }

@@ -14,7 +14,7 @@ class Order(db.Model):
 
     # relationships
     # many to many between orders and product
-    products = db.relationship("Product", secondary=order_products, back_populates="products")
+    products = db.relationship("Product", secondary=order_products, back_populates="orders")
 
     def to_def(self):
 

@@ -1,4 +1,4 @@
-from app.models import db, User
+from app.models import db, User, Product
 
 
 # Adds a demo user, you can add other users here if you want
@@ -9,6 +9,10 @@ def seed_users():
         username='marnie', email='marnie@aa.io', password='password')
     demo_user3 = User(
         username='bobbie', email='bobbie@aa.io', password='password')
+
+
+    # demo_product1 = Product(
+    #     product_name = '', price=00.00, product_image_url="", user_id=1)
     userArr =[demo_user1, demo_user2, demo_user3 ]
 
     for user in userArr:

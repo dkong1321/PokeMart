@@ -8,7 +8,7 @@ class Category(db.Model):
 
     # relationships
     # one to many between product and categories
-    categories = db.relationship("Category", secondary=products_categories, back_populates="categories")
+    products = db.relationship("Product", secondary=products_categories, back_populates="categories")
 
 
     def to_def(self):
