@@ -13,5 +13,5 @@ class ProductEditForm(FlaskForm):
     product_name = StringField("Product Name", validators=[DataRequired()])
     description = StringField("Description", validators=[DataRequired()])
     price = FloatField("Price", validators=[DataRequired()])
-    # product_image_url = StringField("Image", validators=[DataRequired()])
+    product_image_url = StringField("Image", validators=[DataRequired()])
     user_id = IntegerField("User Id", validators=[DataRequired()])

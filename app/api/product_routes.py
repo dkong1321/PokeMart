@@ -83,16 +83,16 @@ def edit_product(id):
     form = ProductEditForm()
     product = Product.query.get(id)
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
+    # if form.validate_on_submit():
 
-        product.product_name = form.product_name.data
-        product.description = form.description.data
-        product.price = form.price.data
-        product.product_image_url = form.product_image_url.data
+    product.product_name = form.product_name.data
+    product.description = form.description.data
+    product.price = form.price.data
+    product.product_image_url = form.product_image_url.data
 
-        db.session.add(product)
-        db.session.commit()
-        return product.to_dict()
+    db.session.add(product)
+    db.session.commit()
+    return product.to_dict()
 
 @product_routes.route('/<int:id>', methods=["DELETE"])
 def delete_product(id):
