@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "rfdc": "^1.3.0"
+  }
+}
