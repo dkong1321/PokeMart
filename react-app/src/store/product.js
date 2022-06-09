@@ -39,7 +39,6 @@ export const getAllProducts = () => async (dispatch) => {
     const response = await fetch("/api/products/");
     if(response.ok) {
         const products = await response.json()
-        console.log(products)
         dispatch(loadAllProducts(products))
     }
     // console.log(response)
@@ -54,7 +53,6 @@ export const createProduct = (data) => async (dispatch) => {
     formData.append("price", data.price);
     formData.append("user_id", data.user_id);
     formData.append("description", data.description);
-    console.log(formData)
     const response = await fetch("/api/products/", {
         method: "POST",
         body: formData,
@@ -67,7 +65,7 @@ export const createProduct = (data) => async (dispatch) => {
 }
 
 export const updateProduct = (data) => async (dispatch) => {
-    console.log(data)
+
     const formData = new FormData()
     formData.append("image", data.image);
     formData.append("product_name", data.editName);
@@ -83,7 +81,6 @@ export const updateProduct = (data) => async (dispatch) => {
     if (response.ok) {
         const editedProduct = await response.json()
         dispatch(editProduct(editedProduct))
-        console.log(editedProduct)
     }
 }
 
@@ -94,10 +91,8 @@ export const deleteProduct = (data) => async (dispatch) => {
 
     if(response.ok) {
         const product = await response.json()
-        console.log(product)
         dispatch(removeProduct(product))
     }
-
 
 }
 const initialState = {}

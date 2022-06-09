@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllProducts, createProduct, updateProduct, deleteProduct } from "../store/product";
+import { getAllProducts, createProduct, updateProduct, deleteProduct } from "../../store/product";
+import {Link} from "react-router-dom"
+import "./product_display.css"
 
-const Products = () => {
+const ProductsDisplay = () => {
     const dispatch = useDispatch()
     const [ isLoaded, setIsLoaded ] = useState(false)
     const [productName, setProductName] = useState("");
@@ -17,10 +19,8 @@ const Products = () => {
     // refactor maybe
     const products =Object.values(useSelector((state)=> state.products))
     const user =useSelector((state)=> state.session.user)
-    console.log(user)
-    console.log(products)
+
     useEffect(()=>{
-        console.log("use effect runs here")
         dispatch(getAllProducts()).then(()=>setIsLoaded(true))
     }, [dispatch]);
 
@@ -54,6 +54,7 @@ const Products = () => {
         const product_id = product.id
         dispatch(deleteProduct(product_id))
     }
+
     const updateImage = (e) => {
         const file = e.target.files[0];
         setImage(file);
@@ -62,17 +63,22 @@ const Products = () => {
     return(
         isLoaded && (
             <div>
-                <div>Hello my products will go here</div>
-                {Object.values(products[0]).map((product)=>{
-                    return (
-                        <div key={product.id}>
-                            <div>{product.product_name}</div>
-                            <img src={product.product_image_url}></img>
-                            <div>${product.price}</div>
-                            <button onClick={() => eraseProduct(product)}>delete</button>
-                        </div>
-                    )
-                })}
+                <div>Hello in ProductDisplay</div>
+                <div className="products__display__container">
+                    {Object.values(products[0]).map((product)=>{
+                        return (
+                            <div>
+                                <Link to={`/products/${product.id}`} key={product.id} className="product__card">
+                                    <div className="product__name">{product.product_name}</div>
+                                    <img className="product__image" src={product.product_image_url}></img>
+                                    {/* <div className="product__price">${product.price}</div> */}
+                                </Link>
+                                    <div className="product__price">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
+                                    <button onClick={() => eraseProduct(product)}>delete</button>
+                            </div>
+                        )
+                    })}
+                </div>
                 <div>New product form</div>
                 <form onSubmit={makeNewProduct}>
                     <input value={productName} onChange={e => setProductName(e.target.value)} placeholder="enter product name"/>
@@ -91,9 +97,8 @@ const Products = () => {
                     <button type="submit">Submit</button>
                 </form>
             </div>
-
         )
     )
 }
 
-export default Products
+export default ProductsDisplay

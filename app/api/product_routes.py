@@ -37,9 +37,11 @@ def all_products():
 @product_routes.route('/<int:id>/')
 def single_product(id):
     print("                         ")
+    print("=========================")
     print(id)
     product = Product.query.filter(Product.id == id).first()
     print(product)
+    print("=========================")
     print("                         ")
     return product.to_dict()
 

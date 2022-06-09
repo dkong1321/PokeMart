@@ -9,6 +9,9 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Products from './components/test_product';
+import ProductsDisplay from './components/ProductDisplay/ProductDisplay';
+import SingleProductDisplay from './components/SingleProductDisplay/SingleProductDisplay';
+
 import Reviews from './components/test_review';
 
 function App() {
@@ -37,9 +40,15 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/products' exact={true}>
+          <ProductsDisplay />
+        </Route>
+        <Route path='/products/:productId' exact={true}>
+          <SingleProductDisplay />
+        </Route>
+        <Route path='/products_test' exact={true}>
           <Products />
         </Route>
-        <Route path='/products/:productId'>
+        <Route path='/products_test/:productId'>
           <Reviews />
         </Route>
         <ProtectedRoute path='/users' exact={true} >

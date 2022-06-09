@@ -39,6 +39,7 @@ export const getReviews = (data) => async (dispatch) =>{
     const response = await fetch(`/api/products/${data}/`);
     if(response.ok) {
         const product = await response.json()
+
         dispatch(loadProduct(product))
     }
 }
