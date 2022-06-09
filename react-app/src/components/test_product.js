@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllProducts, createProduct, updateProduct, deleteProduct } from "../store/product";
+import productReducer, { getAllProducts, createProduct, updateProduct, deleteProduct } from "../store/product";
 
 const Products = () => {
     const dispatch = useDispatch()
@@ -44,7 +44,8 @@ const Products = () => {
             editPrice,
             editDescription,
             image,
-            product_id
+            product_id,
+            user_id:user.id,
         }
         dispatch(updateProduct(data))
     }
@@ -66,7 +67,8 @@ const Products = () => {
                     return (
                         <div key={product.id}>
                             <div>{product.product_name}</div>
-                            <div>${product.price}.00</div>
+                            <img src={product.product_image_url}></img>
+                            <div>${product.price}</div>
                             <button onClick={() => eraseProduct(product)}>delete</button>
                         </div>
                     )
