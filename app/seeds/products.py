@@ -2,19 +2,29 @@ from app.models import db, User, Product, Order, Category
 
 def seed_products():
     demo_product1 = Product(
-        product_name = 'Salamence Card 109/203 ', price=5.00, product_image_url="", user_id=1)
+        product_name = 'Vaporeon Vmax (SWSH182)', price=5.00, user_id=1,
+        description = "Full art Vaporeon card",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/da4a15d831414318a48514ce1fca94b6.jpg")
 
     demo_product2 = Product(
-        product_name = 'Jumpluff Card 004/203', price=12.00, product_image_url="", user_id=1)
+        product_name = 'Charizard Celebrations (4/102)', price=12.00, user_id=1,
+        description = "Near mint Charizard from then 25th Celebrations pack",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/e81d87b9a97c47f5a41b263b413f9b0a.jpg",)
 
     demo_product3 = Product(
-        product_name = 'Flying Pikachu V 006/025', price=8.00, product_image_url="", user_id=1)
+        product_name = 'Venusaur Celebrations (15/102)', price=8.00,  user_id=1,
+        description = "Venusaur ungraded from then 25th Celebrations pack",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/e81eebaba0f04841b966a6fbf33814fe.jpg",)
 
     demo_product4 = Product(
-        product_name = 'Lugia 022/025', price=5.00, product_image_url="", user_id=1)
+        product_name = 'Blastoise Celebrations (2/102)', price=5.00,  user_id=1,
+        description = "Blastoise from then 25th Celebrations pack",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/55c9361d5d02408591305c6f16b1bafb.jpg",)
 
     demo_product5 = Product(
-        product_name = 'Ho-Oh 001/025', price=12.00, product_image_url="", user_id=1)
+        product_name = 'Pikachu Vmax (SWSH062)', price=12.00,  user_id=1,
+        description = "Near min Charizard from then 25th Celebrations pack",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/eaddac14a0eb401eb196ecf40a12a3a4.jpg",)
 
     productArr =[demo_product1, demo_product2, demo_product3, demo_product4, demo_product5]
 
