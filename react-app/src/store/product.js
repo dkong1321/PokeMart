@@ -122,12 +122,7 @@ const productReducer = (state = initialState, action) => {
             return newState
         case REMOVE_PRODUCT:
             const deletedProduct = action.product
-            console.log(deletedProduct)
-            console.log(deletedProduct.id)
-            console.log(newState.products)
-            console.log(newState.products[deletedProduct.id])
-
-            delete newState.products.[deletedProduct.id]
+            delete newState.products[deletedProduct.id]
             return newState
         default:
             return newState

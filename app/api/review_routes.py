@@ -13,10 +13,15 @@ def all_reviews():
     return [ review.to_dict() for review in reviews]
 
 # get all reviews of a user
-@review_routes.route('/<int:user_id>')
-def user_reviews(user_id):
-    reviews = Review.query.filter(Review.user_id == user_id)
-    return [review.to_dict() for review in reviews]
+@review_routes.route('/<int:userId>')
+def user_reviews(userId):
+    reviews = Review.query.filter(Review.user_id == userId)
+    print("======================")
+    print("                      ")
+    print(reviews)
+    print("======================")
+    print("                      ")
+    return {"reviews":[review.to_dict() for review in reviews]}
 
 # post a review
 @review_routes.route('/')

@@ -19,14 +19,18 @@ def all_products():
     return {"products" : [ product.to_dict() for product in products]}
 
 # get all products from a user
-@product_routes.route('/<int:user_id>')
-def user_products(user_id):
-    user_products = Product.query.filter(Product.user_id == user_id )
+# @product_routes.route('/<int:user_id>')
+# def user_products(user_id):
+#     user_products = Product.query.filter(Product.user_id == user_id )
 
 #  get a single product
-@product_routes.route('/<int:id>')
+@product_routes.route('/<int:id>/')
 def single_product(id):
+    print("                         ")
+    print(id)
     product = Product.query.filter(Product.id == id).first()
+    print(product)
+    print("                         ")
     return product.to_dict()
 
 #  post route
