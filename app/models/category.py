@@ -11,7 +11,7 @@ class Category(db.Model):
     products = db.relationship("Product", secondary=products_categories, back_populates="categories")
 
 
-    def to_def(self):
+    def to_dict(self):
         return {
             "id" : self.id,
             "category_name" : self.category_name

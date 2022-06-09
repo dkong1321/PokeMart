@@ -15,12 +15,12 @@ class Review(db.Model):
     # one to many between orders and product
     products = db.relationship("Product", back_populates="reviews")
 
-def to_def(self):
-    return {
-        "id" : self.id,
-        "rating" : self.rating,
-        "description" : self.description,
-        "timestamp" : self.timestamp,
-        "product_id" : self.product_id,
-        "user_id" : self.user_id
-    }
+    def to_dict(self):
+        return {
+            "id" : self.id,
+            "rating" : self.rating,
+            "description" : self.description,
+            "timestamp" : self.timestamp,
+            "product_id" : self.product_id,
+            "user_id" : self.user_id
+        }

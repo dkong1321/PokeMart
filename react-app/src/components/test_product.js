@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllProducts, addProduct } from "../store/product";
+import { getAllProducts, createProduct, updateProduct, deleteProduct } from "../store/product";
 
 const Products = () => {
     const dispatch = useDispatch()
@@ -10,6 +10,10 @@ const Products = () => {
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
 
+    const [editName, setEditName] = useState("");
+    const [editPrice, setEditPrice] = useState("");
+    const [editDescription, setEditDescription] = useState("");
+    // const [editImage, setEditImage] = useState(null);
     // refactor maybe
     const products =Object.values(useSelector((state)=> state.products))
     const user =useSelector((state)=> state.session.user)
@@ -29,9 +33,26 @@ const Products = () => {
             description,
             image
         }
-        dispatch(addProduct(data))
+        dispatch(createProduct(data))
     }
 
+    const editProduct = async(e) => {
+        e.preventDefault()
+        const product_id = 5
+        const data = {
+            editName,
+            editPrice,
+            editDescription,
+            image,
+            product_id
+        }
+        dispatch(updateProduct(data))
+    }
+
+    const eraseProduct = async (product) => {
+        const product_id = product.id
+        dispatch(deleteProduct(product_id))
+    }
     const updateImage = (e) => {
         const file = e.target.files[0];
         setImage(file);
@@ -46,6 +67,7 @@ const Products = () => {
                         <div key={product.id}>
                             <div>{product.product_name}</div>
                             <div>${product.price}.00</div>
+                            <button onClick={() => eraseProduct(product)}>delete</button>
                         </div>
                     )
                 })}
@@ -54,6 +76,15 @@ const Products = () => {
                     <input value={productName} onChange={e => setProductName(e.target.value)} placeholder="enter product name"/>
                     <input value={description} onChange={e => setDescription(e.target.value)} placeholder="enter product name"/>
                     <input type='number' value={price} onChange={e => setPrice(e.target.value)} pattern='[0-9]+(\\.[0-9][0-9]?)?' placeholder="0.00" min="0.00" step="0.01"/>
+                    <input type ="file" accept="image/*" onChange={updateImage}/>
+                    <button type="submit">Submit</button>
+                </form>
+
+                <div>Edit product form</div>
+                <form onSubmit={editProduct}>
+                    <input value={editName} onChange={e => setEditName(e.target.value)} placeholder="enter product name"/>
+                    <input value={editDescription} onChange={e => setEditDescription(e.target.value)} placeholder="enter product name"/>
+                    <input type='number' value={editPrice} onChange={e => setEditPrice(e.target.value)} pattern='[0-9]+(\\.[0-9][0-9]?)?' placeholder="0.00" min="0.00" step="0.01"/>
                     <input type ="file" accept="image/*" onChange={updateImage}/>
                     <button type="submit">Submit</button>
                 </form>

@@ -34,6 +34,6 @@ class Product(db.Model):
             "product_image_url" : self.product_image_url,
             "timestamp" : self.timestamp,
             "user_id" : self.user_id,
-            # "orders" : [order.to_dict() for order in self.orders],
-            # "reviews" : self.reviews
+            "reviews" : [review.to_dict() for review in self.reviews]
+            # "orders" : [order.to_dict() for order in self.orders]
         }

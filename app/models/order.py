@@ -16,7 +16,7 @@ class Order(db.Model):
     # many to many between orders and product
     products = db.relationship("Product", secondary=order_products, back_populates="orders")
 
-    def to_def(self):
+    def to_dict(self):
 
         return {
             "id" : self.id,
