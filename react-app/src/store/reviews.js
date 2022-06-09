@@ -10,7 +10,12 @@ const loadProduct = (product) => {
     }
 }
 
-// const
+const addProduct = (product) => {
+    return {
+        type:ADD_PRODUCT,
+        product
+    }
+}
 
 export const getReviews = (data) => async (dispatch) =>{
     console.log(data)
@@ -21,6 +26,7 @@ export const getReviews = (data) => async (dispatch) =>{
     }
 }
 
+export const createReview = (data)
 const initialState = {}
 
 const reviewReducer = (state = initialState, action) => {
