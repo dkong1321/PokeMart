@@ -33,8 +33,8 @@ const SingleProductDisplay = () => {
         dispatch(createReview(data))
     }
 
-    const ratingChanged = (newRating) => {
-        console.log(newRating)
+    const ratingChanged = (rating) => {
+        setRating(rating)
     }
 
     const editMyReview = async(e) => {
@@ -73,11 +73,10 @@ const SingleProductDisplay = () => {
                     )
                 })}
                 <div>Post Form for Review</div>
-                <ReactStars count={5} onChange={ratingChanged} size={24} color2={'#ffd700'} />
                 <form onSubmit={addNewReview}>
+                    <ReactStars value={rating} count={5} onChange={ratingChanged} size={24} color2={"#e0730d"} color1={'#abb1d8'} half={false} />
                     <input value={description} onChange={e => setDescription(e.target.value)} placeholder="enter description" />
-
-                    <input type='number' value={rating} onChange={e=>setRating(e.target.value)} min="1" max="5" step="1" />
+                    {/* <input type='number' value={rating} onChange={e=>setRating(e.target.value)} min="1" max="5" step="1" /> */}
                     <button type="submit">Submit</button>
                 </form>
 
