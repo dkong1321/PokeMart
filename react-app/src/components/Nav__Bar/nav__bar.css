@@ -1,0 +1,27 @@
+.nav__bar__container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 50px;
+    /* justify-content: flex-end; */
+    /* border: 3px red solid; */
+    background-color: rgb(69, 96, 175);
+}
+
+.nav__link__container__right {
+    display: flex;
+    text-decoration: none;
+    /* border: 3px rgb(36, 145, 94) solid; */
+}
+
+.nav__link__container__left {
+    display: flex;
+    text-decoration: none;
+    /* border: 3px rgb(36, 145, 94) solid; */
+}
+
+.nav__link {
+    color: white;
+    /* border: 3px rgb(214, 29, 29) solid; */
+    margin-left: 10px;
+}
