@@ -1,0 +1,37 @@
+.products__display__container {
+    display: flex;
+    flex-wrap: wrap;
+    border: red solid 3px;
+    text-decoration: none;
+    width: 1600px;
+}
+
+.product__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid green;
+    margin: 20px;
+
+    text-decoration: none;
+}
+
+.product__image {
+    border-radius: 25px;
+    border: 5px solid pink;
+    width: 200px;
+    height: auto;
+}
+
+.product__name {
+    color: brown;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.product__price {
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 400;
+    color: rgb(53, 45, 45);
+}
