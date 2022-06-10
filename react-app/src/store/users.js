@@ -23,14 +23,14 @@ export const getUsers = () => async(dispatch) => {
 const initialState = {}
 
 const userReducer = (state = initialState, action) => {
-    const newState = clone(state);
+    let newState = clone(state);
     switch (action.type){
         case LOAD_USERS:
             const newObj = {}
             action.users.users.forEach((user)=>{
                 newObj[user.id]=user
             })
-            newState.users=newObj
+            newState=newObj
             return newState
         default:
             return newState

@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import {getReviews, createReview, editReview, deleteReview} from "../../store/reviews"
 import {getUsers} from "../../store/users"
+
 import ReactStars from 'react-stars'
+import moment from "moment";
 import "./single_product.css"
 
 const SingleProductDisplay = () => {
@@ -18,6 +20,7 @@ const SingleProductDisplay = () => {
     const productId = useParams().productId
     const product = (useSelector((state)=> state.currProduct))
     const user = useSelector((state)=>state.session.user)
+    const users = (useSelector((state)=>state.users))
 
     useEffect(()=>{
         dispatch(getReviews(productId)).then(()=>dispatch(getUsers())).then(()=> setIsLoaded(true))
@@ -55,6 +58,11 @@ const SingleProductDisplay = () => {
         dispatch(deleteReview(review_id))
     }
 
+    const formatDate = (date) => {
+        const newDate = moment(date).format("DD/MM/YY hh:mm a");
+        return newDate;
+    };
+
     return(
         isLoaded && (
             <div>
@@ -68,8 +76,8 @@ const SingleProductDisplay = () => {
                 {Object.values(product.reviews).map((review)=>{
                     return (
                         <div key={review.id} className="product__review__card">
-                            <div>Id: {review.id}</div>
-                            <div>User: {review.user_id}</div>
+                            <div>{users[review.user_id].username}</div>
+                            <div>Posted: {formatDate(review.timestamp)}</div>
                             <div>Description: {review.description}</div>
                             <span className="stars" style={{ "--ratingValue": `${review.rating}` }}></span>
                             <button onClick={() => eraseReview(review)}>delete</button>
@@ -80,8 +88,7 @@ const SingleProductDisplay = () => {
                 <div>Post Form for Review</div>
                 <form onSubmit={addNewReview}>
                     <ReactStars value={rating} count={5} onChange={ratingChanged} size={24} color2={"#e0730d"} color1={'#abb1d8'} half={false} />
-                    <input value={description} onChange={e => setDescription(e.target.value)} placeholder="enter description" />
-                    {/* <input type='number' value={rating} onChange={e=>setRating(e.target.value)} min="1" max="5" step="1" /> */}
+                    <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="enter description" rows="5" cols="30" />
                     <button type="submit">Submit</button>
                 </form>
 
