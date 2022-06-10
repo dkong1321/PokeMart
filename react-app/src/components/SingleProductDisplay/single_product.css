@@ -22,14 +22,36 @@
 
 }
 
-.product__review__container{
-    border: #e0730d 4px solid;
-}
 
 .product__detail__container{
-    border: pink solid 4px;
+    border: pink solid 10px;
+    display: flex;
+    justify-content: center;
+
 }
 
+.product__review__container{
+    border: #e0730d 4px solid;
+    width: 700px;
+    height: 600px;
+    overflow-y: scroll;
+    background-color: #abb1d8;
+}
+
+
 .product__review__card {
-    border: red 2px solid;
+    border: red 4px solid;
+    /* background-color: rgb(55, 134, 252); */
+}
+
+.single__product__image {
+    width: 400px;
+    height: 500px;
+    border: #e0730d 4px solid;
+    margin-right: 80px;
+}
+
+.single__product__title {
+    font-size: 30px;
+    font-weight: 600;
 }

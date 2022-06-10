@@ -67,23 +67,14 @@ const SingleProductDisplay = () => {
         isLoaded && (
             <div>
                 <div className="product__detail__container">
-                    <div className="single__product__title">{product.product_name}</div>
-                    <img src={product.product_image_url}></img>
-                    <div>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
-                    <div>{product.description}</div>
-                </div>
-                <div className="product__review__container">
-                {Object.values(product.reviews).map((review)=>{
-                    return (
-                        <div key={review.id} className="product__review__card">
-                            <div>{users[review.user_id].username}</div>
-                            <div>Posted: {formatDate(review.timestamp)}</div>
-                            <div>Description: {review.description}</div>
-                            <span className="stars" style={{ "--ratingValue": `${review.rating}` }}></span>
-                            <button onClick={() => eraseReview(review)}>delete</button>
-                        </div>
-                    )
-                })}
+                    <div className="product__detail__image">
+                        <img className="single__product__image" src={product.product_image_url}></img>
+                    </div>
+                    <div className="product__detail__info">
+                        <div className="single__product__title"> {product.product_name} </div>
+                        <div>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
+                        <div>{product.description}</div>
+                    </div>
                 </div>
                 <div>Post Form for Review</div>
                 <form onSubmit={addNewReview}>
@@ -98,6 +89,20 @@ const SingleProductDisplay = () => {
                     <input type='number' value={editRating} onChange={e=>setEditRating(e.target.value)} min="1" max="5" step="1" />
                     <button type="submit">Submit</button>
                 </form>
+                <div className="product__review__container">
+                {Object.values(product.reviews).reverse().map((review)=>{
+                    return (
+                        <div key={review.id} className="product__review__card">
+                            <div>
+                                <div>{users[review.user_id].username} - {formatDate(review.timestamp)}</div>
+                            </div>
+                            <span className="stars" style={{ "--ratingValue": `${review.rating}` }}></span>
+                            <div>Description: {review.description}</div>
+                            <button onClick={() => eraseReview(review)}>delete</button>
+                        </div>
+                    )
+                })}
+                </div>
             </div>
         )
     )
