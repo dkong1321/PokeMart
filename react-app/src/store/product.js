@@ -41,11 +41,11 @@ export const getAllProducts = () => async (dispatch) => {
         const products = await response.json()
         dispatch(loadAllProducts(products))
     }
-    // console.log(response)
+
 }
 
 export const createProduct = (data) => async (dispatch) => {
-    console.log(data)
+
     const formData = new FormData();
 
     formData.append("image", data.image);
@@ -53,6 +53,7 @@ export const createProduct = (data) => async (dispatch) => {
     formData.append("price", data.price);
     formData.append("user_id", data.user_id);
     formData.append("description", data.description);
+
     const response = await fetch("/api/products/", {
         method: "POST",
         body: formData,

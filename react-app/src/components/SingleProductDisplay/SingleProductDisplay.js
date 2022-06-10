@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import {getReviews, createReview, editReview, deleteReview} from "../../store/reviews"
 import {getUsers} from "../../store/users"
+import { getCart } from "../../store/cart";
 
 import ReactStars from 'react-stars'
 import moment from "moment";
@@ -21,6 +22,9 @@ const SingleProductDisplay = () => {
     const product = (useSelector((state)=> state.currProduct))
     const user = useSelector((state)=>state.session.user)
     const users = (useSelector((state)=>state.users))
+    const cart = (useSelector((state)=>state.cart))
+
+
     useEffect(()=>{
         dispatch(getReviews(productId)).then(()=>dispatch(getUsers())).then(()=> setIsLoaded(true))
     }, [dispatch])
@@ -77,9 +81,14 @@ const SingleProductDisplay = () => {
         })
         console.log(totalRating)
         return Math.round(totalRating/length*2)/2
+    }
 
-
-
+    const addlocalStorage = () => {
+        console.log(Object.keys(cart))
+        console.log(product.id)
+        console.log(Object.keys(cart).includes(product.id.toString()))
+        localStorage.setItem(product.id, JSON.stringify(product))
+        dispatch(getCart())
     }
 
     return(
@@ -91,6 +100,9 @@ const SingleProductDisplay = () => {
                     </div>
                     <div className="product__detail__info">
                         <div>{users[product.user_id].username}'s Shop</div>
+                        {Object.keys(cart).includes(product.id.toString()) ? (
+                                <div>In to Cart</div>
+                            ): (<button onClick={() => addlocalStorage()}>add local storage</button>)}
                         <span className="stars" style={{ "--ratingValue": `${avgRating()}` }}></span>
                         <div>{Object.values(product.reviews).length} Reviews</div>
                         <div className="single__product__title"> {product.product_name} </div>
@@ -101,7 +113,7 @@ const SingleProductDisplay = () => {
                 <div>Post Form for Review</div>
                 <form onSubmit={addNewReview}>
                     <ReactStars value={rating} count={5} onChange={ratingChanged} size={24} color2={"#e0730d"} color1={'#abb1d8'} half={false} />
-                    <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="enter description" rows="5" cols="30" />
+                    <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="enter description" rows="5" cols="50" />
                     <button type="submit">Submit</button>
                 </form>
 
@@ -123,7 +135,6 @@ const SingleProductDisplay = () => {
                             {review.user_id==user.id ? (
                                 <button onClick={() => eraseReview(review)}>delete</button>
                             ): (<></>)}
-                            {/* <button onClick={() => eraseReview(review)}>delete</button> */}
                         </div>
                     )
                 })}
