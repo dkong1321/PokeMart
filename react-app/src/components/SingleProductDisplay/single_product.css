@@ -21,3 +21,15 @@
     color: transparent;
 
 }
+
+.product__review__container{
+    border: #e0730d 4px solid;
+}
+
+.product__detail__container{
+    border: pink solid 4px;
+}
+
+.product__review__card {
+    border: red 2px solid;
+}
