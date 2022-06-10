@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import {getReviews, createReview, editReview, deleteReview} from "../../store/reviews"
+import {getUsers} from "../../store/users"
 import ReactStars from 'react-stars'
 import "./single_product.css"
 
@@ -19,7 +20,7 @@ const SingleProductDisplay = () => {
     const user = useSelector((state)=>state.session.user)
 
     useEffect(()=>{
-        dispatch(getReviews(productId)).then(()=> setIsLoaded(true))
+        dispatch(getReviews(productId)).then(()=>dispatch(getUsers())).then(()=> setIsLoaded(true))
     }, [dispatch])
 
     const addNewReview = async(e) => {
@@ -33,8 +34,8 @@ const SingleProductDisplay = () => {
         dispatch(createReview(data))
     }
 
-    const ratingChanged = (newRating) => {
-        console.log(newRating)
+    const ratingChanged = (rating) => {
+        setRating(rating)
     }
 
     const editMyReview = async(e) => {
@@ -57,13 +58,16 @@ const SingleProductDisplay = () => {
     return(
         isLoaded && (
             <div>
-                <div className="single__product__title">{product.product_name}</div>
-                <img src={product.product_image_url}></img>
-                <div>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
-                <div>{product.description}</div>
+                <div className="product__detail__container">
+                    <div className="single__product__title">{product.product_name}</div>
+                    <img src={product.product_image_url}></img>
+                    <div>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
+                    <div>{product.description}</div>
+                </div>
+                <div className="product__review__container">
                 {Object.values(product.reviews).map((review)=>{
                     return (
-                        <div key={review.id} cla>
+                        <div key={review.id} className="product__review__card">
                             <div>Id: {review.id}</div>
                             <div>User: {review.user_id}</div>
                             <div>Description: {review.description}</div>
@@ -72,12 +76,12 @@ const SingleProductDisplay = () => {
                         </div>
                     )
                 })}
+                </div>
                 <div>Post Form for Review</div>
-                <ReactStars count={5} onChange={ratingChanged} size={24} color2={'#ffd700'} />
                 <form onSubmit={addNewReview}>
+                    <ReactStars value={rating} count={5} onChange={ratingChanged} size={24} color2={"#e0730d"} color1={'#abb1d8'} half={false} />
                     <input value={description} onChange={e => setDescription(e.target.value)} placeholder="enter description" />
-
-                    <input type='number' value={rating} onChange={e=>setRating(e.target.value)} min="1" max="5" step="1" />
+                    {/* <input type='number' value={rating} onChange={e=>setRating(e.target.value)} min="1" max="5" step="1" /> */}
                     <button type="submit">Submit</button>
                 </form>
 
