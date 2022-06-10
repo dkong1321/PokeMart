@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {getReviews, createReview, editReview, deleteReview} from "../../store/reviews"
 import {getUsers} from "../../store/users"
 
@@ -21,7 +21,6 @@ const SingleProductDisplay = () => {
     const product = (useSelector((state)=> state.currProduct))
     const user = useSelector((state)=>state.session.user)
     const users = (useSelector((state)=>state.users))
-
     useEffect(()=>{
         dispatch(getReviews(productId)).then(()=>dispatch(getUsers())).then(()=> setIsLoaded(true))
     }, [dispatch])
@@ -41,6 +40,10 @@ const SingleProductDisplay = () => {
         setRating(rating)
     }
 
+    const editRatingChanged = (editRating) => {
+        setEditRating(editRating)
+    }
+
     const editMyReview = async(e) => {
         e.preventDefault()
         const data = {
@@ -48,7 +51,7 @@ const SingleProductDisplay = () => {
             editDescription,
             user_id:user.id,
             product_id:productId,
-            review_id:3
+            review_id:5
         }
         dispatch(editReview(data))
     }
@@ -63,6 +66,22 @@ const SingleProductDisplay = () => {
         return newDate;
     };
 
+
+    const avgRating = () => {
+        const reviews = Object.values(product.reviews)
+        const length = reviews.length
+        let totalRating = 0
+        console.log(reviews)
+        reviews.forEach((review)=>{
+            totalRating+=review.rating
+        })
+        console.log(totalRating)
+        return Math.round(totalRating/length*2)/2
+
+
+
+    }
+
     return(
         isLoaded && (
             <div>
@@ -71,6 +90,9 @@ const SingleProductDisplay = () => {
                         <img className="single__product__image" src={product.product_image_url}></img>
                     </div>
                     <div className="product__detail__info">
+                        <div>{users[product.user_id].username}'s Shop</div>
+                        <span className="stars" style={{ "--ratingValue": `${avgRating()}` }}></span>
+                        <div>{Object.values(product.reviews).length} Reviews</div>
                         <div className="single__product__title"> {product.product_name} </div>
                         <div>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
                         <div>{product.description}</div>
@@ -86,7 +108,7 @@ const SingleProductDisplay = () => {
                 <div>Edit Form for Review</div>
                 <form onSubmit={editMyReview}>
                     <input value={editDescription} onChange={e => setEditDescription(e.target.value)} placeholder="enter description" />
-                    <input type='number' value={editRating} onChange={e=>setEditRating(e.target.value)} min="1" max="5" step="1" />
+                    <ReactStars value={editRating} count={5} onChange={editRatingChanged} size={24} color2={"#e0730d"} color1={'#abb1d8'} half={false} />
                     <button type="submit">Submit</button>
                 </form>
                 <div className="product__review__container">
@@ -98,7 +120,10 @@ const SingleProductDisplay = () => {
                             </div>
                             <span className="stars" style={{ "--ratingValue": `${review.rating}` }}></span>
                             <div>Description: {review.description}</div>
-                            <button onClick={() => eraseReview(review)}>delete</button>
+                            {review.user_id==user.id ? (
+                                <button onClick={() => eraseReview(review)}>delete</button>
+                            ): (<></>)}
+                            {/* <button onClick={() => eraseReview(review)}>delete</button> */}
                         </div>
                     )
                 })}
