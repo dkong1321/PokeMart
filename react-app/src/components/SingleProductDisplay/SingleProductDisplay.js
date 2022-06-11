@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import {getReviews, createReview, editReview, deleteReview} from "../../store/reviews"
 import {getUsers} from "../../store/users"
-import { getCart } from "../../store/cart";
+import { addCartItem, getCart } from "../../store/cart";
 
 import ReactStars from 'react-stars'
 import moment from "moment";
@@ -83,12 +83,11 @@ const SingleProductDisplay = () => {
         return Math.round(totalRating/length*2)/2
     }
 
-    const addlocalStorage = () => {
-        console.log(Object.keys(cart))
-        console.log(product.id)
-        console.log(Object.keys(cart).includes(product.id.toString()))
-        localStorage.setItem(product.id, JSON.stringify(product))
-        dispatch(getCart())
+    const addToCart = () => {
+        // product.quantity=1
+        // localStorage.setItem(product.id, JSON.stringify(product))
+        // dispatch(getCart())
+        dispatch(addCartItem(product))
     }
 
     return(
@@ -102,7 +101,7 @@ const SingleProductDisplay = () => {
                         <div>{users[product.user_id].username}'s Shop</div>
                         {Object.keys(cart).includes(product.id.toString()) ? (
                                 <div>In to Cart</div>
-                            ): (<button onClick={() => addlocalStorage()}>add local storage</button>)}
+                            ): (<button onClick={() => addToCart()}>add local storage</button>)}
                         <span className="stars" style={{ "--ratingValue": `${avgRating()}` }}></span>
                         <div>{Object.values(product.reviews).length} Reviews</div>
                         <div className="single__product__title"> {product.product_name} </div>

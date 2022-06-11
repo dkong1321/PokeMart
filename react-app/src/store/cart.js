@@ -1,24 +1,35 @@
 import { useDispatch } from "react-redux";
 import rfdc from "rfdc";
 const clone = rfdc()
-const LOAD_CART = "api/cart/LOAD_CART"
+const EDIT_CART_ITEM = "api/cart/EDIT_CART_ITEM"
+const ADD_CART_ITEM = 'api/cart/ADD_CART_ITEM'
 
-const loadCart = (cartProducts) => {
+const addCart = (product) =>{
     return {
-        type: LOAD_CART,
-        cartProducts
+        type: ADD_CART_ITEM,
+        product,
     }
 }
 
-export const getCart = () => async (dispatch) => {
-    const newObj ={}
-    const keys = (Object.keys(localStorage))
-    keys.forEach((key)=>{
-        const keyInt = parseInt(key)
-        let product = JSON.parse(localStorage.getItem(keyInt))
-        newObj[keyInt] = product
-    })
-    dispatch(loadCart(newObj))
+const editQuantity = (product) => {
+    return {
+        type: EDIT_CART_ITEM,
+        product
+    }
+}
+
+
+export const addCartItem = (data) => async (dispatch) => {
+    console.log(data)
+    // will need to dispatch
+    const myCartProduct = data
+    myCartProduct.quantity=1
+    console.log(myCartProduct)
+    dispatch(addCart(myCartProduct))
+}
+
+export const setItemQuantity = (data) => async (dispatch) => {
+    dispatch(editQuantity(data.product))
 }
 
 const initialState = {}
@@ -26,8 +37,15 @@ const initialState = {}
 const createReducer = (state = initialState, action) => {
     let newState = clone(state);
     switch (action.type){
-        case LOAD_CART:
-            newState = action.cartProducts
+        // case LOAD_CART:
+        //     newState = action.cartProducts
+        //     return newState
+        case ADD_CART_ITEM:
+            newState[action.product.id] = action.product
+            return newState
+        case EDIT_CART_ITEM:
+            console.log(action.product)
+            console.log(newState)
             return newState
         default:
             return newState
