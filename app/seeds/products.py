@@ -1,4 +1,4 @@
-from app.models import db, User, Product, Order, Category
+from app.models import db, User, Product, Order, Category, OrderProduct
 
 def seed_products():
     demo_product1 = Product(
@@ -34,21 +34,46 @@ def seed_products():
     # ===============================================================================================================
 
     demo_order1 = Order(
-        shipping_address="123 Zelma Corners", total_price =15.00, delivered=False, user_id=2, products=[demo_product1]
+        shipping_address="123 Zelma Corners", total_price =15.00, delivered=False, user_id=2,
     )
 
     demo_order2 = Order(
-        shipping_address="555 Kiehn Streets", total_price =15.00, delivered=False, user_id=2, products=[demo_product1]
+        shipping_address="555 Kiehn Streets", total_price =15.00, delivered=False, user_id=2,
     )
 
     demo_order3 = Order(
-        shipping_address="333 Market", total_price =25.00, delivered=False, user_id=2, products=[demo_product3]
+        shipping_address="333 Market", total_price =25.00, delivered=False, user_id=2,
     )
 
     orderArr =[demo_order1, demo_order2, demo_order3]
 
     for order in orderArr:
         db.session.add(order)
+
+    # ===============================================================================================================
+    demo_order_product1 = OrderProduct(
+        order_id=1, product_id=1, quantity=3,
+    )
+
+    demo_order_product2 = OrderProduct(
+        order_id=2, product_id=1, quantity=3,
+    )
+
+    demo_order_product3 = OrderProduct(
+        order_id=3, product_id=1, quantity=2,
+    )
+
+    demo_order_product4 = OrderProduct(
+        order_id=3, product_id=4, quantity=3,
+    )
+
+    orderProductArr = [demo_order_product1, demo_order_product2, demo_order_product3, demo_order_product4]
+
+    for orderProduct in orderProductArr:
+        db.session.add(orderProduct)
+    # demo_order_product1 = OrderProduct(
+    #     order_id=, product_id=, quantity=,
+    # )
 
     # ===============================================================================================================
 

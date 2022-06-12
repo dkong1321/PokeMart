@@ -97,6 +97,12 @@ const orderReducer = (state = initialState, action) =>{
             const newObj ={}
             action.orders.orders.forEach((order)=>{
                 newObj[order.id] = order
+                const productObj = {}
+                console.log(newObj[order.id].products)
+                newObj[order.id].products.forEach((product)=>{
+                    productObj[product.id] = product
+                })
+                newObj[order.id].products = productObj
             })
 
             newState = newObj

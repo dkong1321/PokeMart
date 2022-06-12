@@ -1,6 +1,6 @@
 from .db import db
 import datetime
-from app.models.order_products import order_products
+# from app.models.order_products import order_products
 
 class Order(db.Model):
     __tablename__ = 'orders'
@@ -12,9 +12,13 @@ class Order(db.Model):
     delivered = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
+    # orderProduct relationship
+    products = db.relationship('OrderProduct', back_populates='order')
+
+
     # relationships
     # many to many between orders and product
-    products = db.relationship("Product", secondary=order_products, back_populates="orders")
+    # products = db.relationship("Product", secondary=order_products, back_populates="orders")
 
     def to_dict(self):
 
