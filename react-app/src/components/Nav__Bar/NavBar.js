@@ -13,6 +13,9 @@ const NavBar = () => {
         </div>
 
         <div className='nav__link__container__right'>
+          <NavLink to='/mycart' exact={true} activeClassName='active' className="nav__link">
+            My Cart
+          </NavLink>
           <NavLink to='/login' exact={true} activeClassName='active' className="nav__link">
             Login
           </NavLink>
