@@ -16,6 +16,9 @@ const NavBar = () => {
           <NavLink to='/mycart' exact={true} activeClassName='active' className="nav__link">
             My Cart
           </NavLink>
+          <NavLink to='/order_test' exact={true} activeClassName='active' className="nav__link">
+            My Orders
+          </NavLink>
           <NavLink to='/login' exact={true} activeClassName='active' className="nav__link">
             Login
           </NavLink>
