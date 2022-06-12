@@ -5,12 +5,15 @@ import products from './product'
 import currProduct from './reviews'
 import users from './users'
 import cart from './cart'
+import orders from './order'
+
 const rootReducer = combineReducers({
   session,
   products,
   currProduct,
   users,
-  cart
+  cart,
+  orders
 });
 
 

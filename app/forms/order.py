@@ -5,9 +5,7 @@ from wtforms.validators import DataRequired
 class OrderCreateForm(FlaskForm):
     total_price = FloatField("Order Price", validators=[DataRequired()])
     user_id = IntegerField("UserId", validators=[DataRequired()])
-    shipping_address = StringField("Shipping Address", validator=[DataRequired()])
+    shipping_address = StringField("Shipping Address", validators=[DataRequired()])
 
 class OrderEditForm(FlaskForm):
-    # total_price = FloatField("Order Price", validators=[DataRequired()])
-    # user_id = IntegerField("UserId", validators=[DataRequired()])
-    shipping_address = StringField("Shipping Address", validator=[DataRequired()])
+    shipping_address = StringField("Shipping Address", validators=[DataRequired()])

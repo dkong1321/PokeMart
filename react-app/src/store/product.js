@@ -124,8 +124,6 @@ const productReducer = (state = initialState, action) => {
         default:
             return newState
     }
-
-
 }
 
 export default productReducer;

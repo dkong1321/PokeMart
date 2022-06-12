@@ -17,10 +17,8 @@ const Products = () => {
     // refactor maybe
     const products =Object.values(useSelector((state)=> state.products))
     const user =useSelector((state)=> state.session.user)
-    console.log(user)
-    console.log(products)
+
     useEffect(()=>{
-        console.log("use effect runs here")
         dispatch(getAllProducts()).then(()=>setIsLoaded(true))
     }, [dispatch]);
 
