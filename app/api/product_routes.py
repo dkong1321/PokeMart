@@ -36,13 +36,7 @@ def all_products():
 #  get a single product
 @product_routes.route('/<int:id>/')
 def single_product(id):
-    print("                         ")
-    print("=========================")
-    print(id)
     product = Product.query.filter(Product.id == id).first()
-    print(product)
-    print("=========================")
-    print("                         ")
     return product.to_dict()
 
 #  post route
@@ -50,17 +44,7 @@ def single_product(id):
 def post_product():
     form = ProductCreateForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("===================================")
-    print("                                   ")
-    print(form.product_name.data)
-    print(form.description.data)
-    print(form.price.data)
-    print(form.image.data)
-    print(form.user_id.data)
-    print("                                   ")
-    print("===================================")
     if form.validate_on_submit():
-        print("inside validation \n \n")
         # image upload <-------------------------->
         if request.files:
             image = request.files["image"]
@@ -85,11 +69,7 @@ def post_product():
             product_image_url = url,
             user_id = form.user_id.data
         )
-        print("===================================")
-        print("                                   ")
-        print(new_product)
-        print("                                   ")
-        print("===================================")
+
         db.session.add(new_product)
         db.session.commit()
 
@@ -101,15 +81,7 @@ def edit_product(id):
     form = ProductEditForm()
     product = Product.query.get(id)
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("===================================")
-    print("                                   ")
-    print(form.product_name.data)
-    print(form.description.data)
-    print(form.price.data)
-    print(form.image.data)
-    print(form.user_id.data)
-    print("                                   ")
-    print("===================================")
+
     if form.validate_on_submit():
         # image upload <-------------------------->
         if request.files:
