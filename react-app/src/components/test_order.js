@@ -66,14 +66,15 @@ const Orders = () => {
                         <div key={order.id}>
                             <div>{order.id}</div>
                             <div>{order.shipping_address}</div>
-                            {/* {Object.values(order.products).map((product)=>{
+                            {Object.values(order.products).map((product)=>{
                                 return (
                                     <div>
-                                        <div>{product.product_name}</div>
-                                        <img src={product.product_image_url}></img>
+                                        <h3>{product.product.product_name}</h3>
+                                        <div>qty {product.quantity}</div>
+                                        <img src={product.product.product_image_url}></img>
                                     </div>
                                 )
-                            })} */}
+                            })}
                             <div>{order.timestamp}</div>
                             <button onClick={()=> cancelOrder(order)}>cancel</button>
                         </div>
