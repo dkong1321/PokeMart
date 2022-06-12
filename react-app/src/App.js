@@ -22,7 +22,6 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      // await dispatch(getCart());
       setLoaded(true);
     })();
   }, [dispatch]);

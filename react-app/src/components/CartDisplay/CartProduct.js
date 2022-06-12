@@ -1,27 +1,33 @@
 import "./cart_product.css"
 import { useEffect, useState } from "react"
 import {useDispatch} from "react-redux"
-import { setItemQuantity} from "../../store/cart"
+import { deleteCartItem, setItemQuantity} from "../../store/cart"
 
-function CartProduct ({product}) {
-    const [quantity, setQuantity] = useState(product.quantity)
+function CartProduct ({product, count }) {
     const dispatch = useDispatch()
-    product.quantity= parseInt(quantity)
+    const [quantity, setQuantity] = useState(count)
 
+    useEffect(()=>{
+        setQuantity(count)
+    }, [count])
 
-    // useEffect(()=>{
-    //     // dispatch(getCart())
-    //     dispatch(setItemQuantity(data))
+    const incrementQty = (e) =>{
+        e.preventDefault()
+        dispatch(setItemQuantity(product, quantity+1))
+    }
 
-    // }, [dispatch])
+    const decrementQty = (e) => {
+        e.preventDefault()
+        dispatch(setItemQuantity(product, quantity-1))
+    }
 
-    const myFunc = (e) =>{
-        setQuantity(parseInt(e.target.value))
-        product.quantity = parseInt(quantity)
-        const data={
-            product
-        }
-        dispatch(setItemQuantity(data))
+    const removeFromCart = (e) => {
+        e.preventDefault()
+        dispatch(deleteCartItem(product))
+    }
+
+    const updateQty = () => {
+        dispatch(setItemQuantity(product, quantity))
     }
 
     return(
@@ -29,8 +35,14 @@ function CartProduct ({product}) {
             <div>{product.product_name}</div>
             <img className="product__cart__image" src={product.product_image_url}></img>
             <div>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
-            <input value={quantity} type="number" onChange={(e)=> myFunc(e)} min="1"></input>
-            <div>{product.quantity}</div>
+            <div>
+                <button onClick={(e)=>incrementQty(e)}>+</button>
+                <button onClick={(e)=>decrementQty(e)}>-</button>
+                <input type="number" value={quantity} onChange={(e)=>setQuantity(Number(e.target.value))}
+                     onBlur={() => updateQty()}
+                    ></input>
+                <button onClick={(e)=>removeFromCart(e)}>Remove from Cart</button>
+            </div>
         </div>
     )
 }

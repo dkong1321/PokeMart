@@ -1,45 +1,49 @@
 import { useEffect, useState } from "react"
 import { useDispatch , useSelector} from "react-redux"
 import CartProduct from "./CartProduct"
-import { setItemQuantity} from "../../store/cart"
-
+import {clearCart} from "../../store/cart"
 const CartDisplay = () => {
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(false)
-    const cart = (useSelector((state)=>state.cart))
+    const cartProducts = (useSelector((state)=>state.cart.products))
+    const cartCounts = useSelector((state=>state.cart.count))
+    const cartTotal = useSelector((state=>state.cart.cartTotal))
+
+    const getTotal = () =>{
+        const initalVal = 0
+        const myCartTotal = Object.values(cartTotal).reduce(
+            (accum,curr) => accum+curr,
+            initalVal
+        )
+        return myCartTotal
+    }
 
     useEffect(()=>{
         setIsLoaded(true)
-    }, [dispatch])
+    }, [dispatch, cartTotal])
 
-    const cartTotal = () => {
-        let total=0
-        Object.values(cart).forEach((product)=>{
-            console.log(product.price)
-            console.log(product.quantity)
-            total += product.price*product.quantity
-        })
-        return total
-    }
+    // const removeMyCart = () => {
+    //     dispatch(clearCart())
+    // }
 
     return (
         isLoaded && (
             <div>
                 <div>hello from your cart</div>
                 <form>
-                {Object.values(cart).map((product)=>{
+                {Object.values(cartProducts)?.map((product)=>{
                     return (
                         <div key={product.id}>
-                            <CartProduct product={product}></CartProduct>
+                            <div>{product.id}</div>
+                            <CartProduct product={product} count={cartCounts[product.id]}></CartProduct>
                         </div>
                     )
                 }
                 )}
-                <div></div>
+                <div>{getTotal()}</div>
                 <button>Submit Order</button>
+
                 </form>
-                <div>price{Object.keys(cart).length} </div>
-                <div>{cartTotal()}</div>
             </div>
         )
     )

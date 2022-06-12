@@ -84,9 +84,6 @@ const SingleProductDisplay = () => {
     }
 
     const addToCart = () => {
-        // product.quantity=1
-        // localStorage.setItem(product.id, JSON.stringify(product))
-        // dispatch(getCart())
         dispatch(addCartItem(product))
     }
 
