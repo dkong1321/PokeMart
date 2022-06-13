@@ -98,7 +98,7 @@ const SingleProductDisplay = () => {
                         <div>{users[product.user_id].username}'s Shop</div>
                         {Object.keys(cart).includes(product.id.toString()) ? (
                                 <div>In to Cart</div>
-                            ): (<button onClick={() => addToCart()}>add local storage</button>)}
+                            ): (<button onClick={() => addToCart()}>Add to Cart</button>)}
                         <span className="stars" style={{ "--ratingValue": `${avgRating()}` }}></span>
                         <div>{Object.values(product.reviews).length} Reviews</div>
                         <div className="single__product__title"> {product.product_name} </div>
