@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import {getReviews, createReview, editReview, deleteReview} from "../store/reviews"
-// import StarRatings from '../../react-star-ratings';
 
 const Reviews = () => {
     const dispatch = useDispatch()
@@ -18,7 +17,7 @@ const Reviews = () => {
     const user = useSelector((state)=>state.session.user)
     useEffect(()=>{
         dispatch(getReviews(productId)).then(()=> setIsLoaded(true))
-    }, [dispatch])
+    }, [dispatch, productId])
 
     const addNewReview = async(e) => {
         e.preventDefault()
@@ -53,7 +52,7 @@ const Reviews = () => {
         isLoaded && (
             <div>
                 <div>{product.product_name}</div>
-                <img src={product.product_image_url}></img>
+                <img alt="" src={product.product_image_url}></img>
                 <div>${product.price}</div>
                 <div>{product.description}</div>
                 {Object.values(product.reviews).map((review)=>{

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {getReviews, createReview, editReview, deleteReview} from "../../store/reviews"
 import {getUsers} from "../../store/users"
-import { addCartItem, getCart } from "../../store/cart";
+import { addCartItem} from "../../store/cart";
 
 import ReactStars from 'react-stars'
 import moment from "moment";
@@ -27,7 +27,7 @@ const SingleProductDisplay = () => {
 
     useEffect(()=>{
         dispatch(getReviews(productId)).then(()=>dispatch(getUsers())).then(()=> setIsLoaded(true))
-    }, [dispatch])
+    }, [dispatch, productId])
 
     const addNewReview = async(e) => {
         e.preventDefault()
@@ -92,7 +92,7 @@ const SingleProductDisplay = () => {
             <div>
                 <div className="product__detail__container">
                     <div className="product__detail__image">
-                        <img className="single__product__image" src={product.product_image_url}></img>
+                        <img className="single__product__image" src={product.product_image_url} alt=""></img>
                     </div>
                     <div className="product__detail__info">
                         <div>{users[product.user_id].username}'s Shop</div>
@@ -128,7 +128,7 @@ const SingleProductDisplay = () => {
                             </div>
                             <span className="stars" style={{ "--ratingValue": `${review.rating}` }}></span>
                             <div>Description: {review.description}</div>
-                            {review.user_id==user.id ? (
+                            {review.user_id===user.id ? (
                                 <button onClick={() => eraseReview(review)}>delete</button>
                             ): (<></>)}
                         </div>

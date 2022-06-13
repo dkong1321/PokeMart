@@ -65,7 +65,7 @@ const Products = () => {
                     return (
                         <div key={product.id}>
                             <div>{product.product_name}</div>
-                            <img src={product.product_image_url}></img>
+                            <img src={product.product_image_url} alt=""></img>
                             <div>${product.price}</div>
                             <button onClick={() => eraseProduct(product)}>delete</button>
                         </div>

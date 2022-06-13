@@ -67,10 +67,10 @@ const ProductsDisplay = () => {
                 <div className="products__display__container">
                     {Object.values(products[0]).map((product)=>{
                         return (
-                            <div>
+                            <div key={product.id} >
                                 <Link to={`/products/${product.id}`} key={product.id} className="product__card">
                                     <div className="product__name">{product.product_name}</div>
-                                    <img className="product__image" src={product.product_image_url}></img>
+                                    <img className="product__image" src={product.product_image_url} alt=""></img>
                                     {/* <div className="product__price">${product.price}</div> */}
                                 </Link>
                                     <div className="product__price">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
