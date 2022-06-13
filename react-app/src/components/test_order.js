@@ -30,14 +30,20 @@ const Orders = () => {
 
     const submitOrder = (e) => {
         e.preventDefault()
-        const cartItems = Object.keys(cart.products)
+        const cartItems = Object.values(cart.products)
+        const cartItemQty = Object.values(cart.count)
+        for (let i=0; i<cartItems.length; i++) {
+            cartItems[i].quantity=cartItemQty[i]
+        }
+        console.log(cartItems)
         const data={
             shipping_address:shipping,
             user_id :user.id,
             total_price : getTotal(),
-            order_products: cartItems
+            order_products: cartItems,
+            cartItemQty
         }
-
+        console.log(data)
         dispatch(postOrder(data))
     }
 
@@ -64,13 +70,13 @@ const Orders = () => {
                 {Object.values(orders).map((order)=>{
                     return (
                         <div key={order.id}>
-                            <div>{order.id}</div>
+                            <h3>{order.id}</h3>
                             <div>{order.shipping_address}</div>
                             {Object.values(order.products).map((product)=>{
                                 return (
                                     <div>
-                                        <h3>{product.product.product_name}</h3>
-                                        <div>qty {product.quantity}</div>
+                                        <div>{product.product.product_name}</div>
+                                        <div>qty: {product.quantity}</div>
                                         <img src={product.product.product_image_url}></img>
                                     </div>
                                 )
