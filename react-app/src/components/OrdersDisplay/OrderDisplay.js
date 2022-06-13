@@ -16,7 +16,8 @@ const OrderDisplay = () => {
 
     useEffect(()=>{
         dispatch(getOrders(user.id)).then(()=>setIsLoaded(true))
-    }, [dispatch, user.id])
+        // warning here
+    }, [dispatch])
 
     const getTotal = () =>{
         const initalVal = 0

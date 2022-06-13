@@ -15,6 +15,7 @@ const Reviews = () => {
     const productId = useParams().productId
     const product = (useSelector((state)=> state.currProduct))
     const user = useSelector((state)=>state.session.user)
+
     useEffect(()=>{
         dispatch(getReviews(productId)).then(()=> setIsLoaded(true))
     }, [dispatch, productId])
