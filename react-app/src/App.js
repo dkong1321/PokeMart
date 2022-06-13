@@ -8,13 +8,14 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-import { getCart } from './store/cart';
-import Products from './components/test_product';
-import Reviews from './components/test_review';
+// import { getCart } from './store/cart';
+// import Products from './components/test_product';
+// import Reviews from './components/test_review';
 import Orders from './components/test_order';
 import ProductsDisplay from './components/ProductDisplay/ProductDisplay';
 import SingleProductDisplay from './components/SingleProductDisplay/SingleProductDisplay';
 import CartDisplay from './components/CartDisplay/CartDisplay';
+import OrderDisplay from './components/OrdersDisplay/OrderDisplay';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,6 +50,9 @@ function App() {
         </Route>
         <Route path='/mycart' exact={true}>
           <CartDisplay />
+        </Route>
+        <Route path='/myorders' exact={true}>
+          <OrderDisplay />
         </Route>
         {/* <Route path='/products_test' exact={true}>
           <Products />

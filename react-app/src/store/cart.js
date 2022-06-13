@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import rfdc from "rfdc";
 const clone = rfdc()
 const EDIT_CART_ITEM = "api/cart/EDIT_CART_ITEM"
@@ -38,17 +37,11 @@ const emptyCart = () => {
 
 
 export const addCartItem = (data) => async (dispatch) => {
-    // console.log(data)
-    // will need to dispatch
     const myCartProduct = data
-    // myCartProduct.quantity=1
-    // console.log(myCartProduct)
     dispatch(addCart(myCartProduct))
 }
 
 export const setItemQuantity = (product, quantity) => async (dispatch) => {
-    console.log(product)
-    console.log(quantity)
     dispatch(editQuantity(product, quantity))
 }
 
@@ -57,7 +50,6 @@ export const deleteCartItem = (product) => async (dispatch) => {
 }
 
 export const clearCart = () => async(dispatch) => {
-    // will need to enter user id later
     dispatch(emptyCart())
 }
 

@@ -1,0 +1,10 @@
+.single__order__container {
+    border: 3px red solid;
+    width: 1000px;
+    background-color: rgb(182, 167, 167);
+}
+
+.order__product__image {
+    width: 80px;
+    height: 120px;
+}

@@ -26,7 +26,6 @@ def add_order():
     print(req['shipping_address'])
     print(req['user_id'])
     print(req['order_products'])
-    print(req['cartItemQty'])
     print('\n \n')
 
 

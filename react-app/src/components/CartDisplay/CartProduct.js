@@ -33,7 +33,7 @@ function CartProduct ({product, count }) {
     return(
         <div>
             <div>{product.product_name}</div>
-            <img className="product__cart__image" src={product.product_image_url}></img>
+            <img className="product__cart__image" src={product.product_image_url} alt=""></img>
             <div>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
             <div>
                 <button onClick={(e)=>incrementQty(e)}>+</button>

@@ -4,6 +4,9 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import "./nav__bar.css"
 const NavBar = () => {
+
+
+
   return (
     <nav className='nav__bar__container'>
         <div className='nav__link__container__left'>
@@ -16,7 +19,7 @@ const NavBar = () => {
           <NavLink to='/mycart' exact={true} activeClassName='active' className="nav__link">
             My Cart
           </NavLink>
-          <NavLink to='/order_test' exact={true} activeClassName='active' className="nav__link">
+          <NavLink to='/myorders' exact={true} activeClassName='active' className="nav__link">
             My Orders
           </NavLink>
           <NavLink to='/login' exact={true} activeClassName='active' className="nav__link">

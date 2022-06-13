@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch , useSelector} from "react-redux"
 import CartProduct from "./CartProduct"
-import {clearCart} from "../../store/cart"
+// import {clearCart} from "../../store/cart"
 const CartDisplay = () => {
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(false)
