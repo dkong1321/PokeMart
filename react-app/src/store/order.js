@@ -43,24 +43,40 @@ export const getOrders = (data) => async (dispatch) => {
     }
 }
 
-
 export const postOrder = (data) => async (dispatch) => {
     console.log(data)
-    const formData = new FormData();
-    formData.append("shipping_address", data.shipping_address)
-    formData.append("user_id", data.user_id)
-    formData.append("total_price", data.total_price)
+
     // formData.append("order_products", data.order_products)
     const response = await fetch(`/api/orders/`, {
         method:"POST",
-        body: formData
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data })
     })
 
     if (response.ok) {
         const order = await response.json()
+        console.log(order)
         dispatch(addOrder(order))
     }
 }
+
+// export const postOrder = (data) => async (dispatch) => {
+//     console.log(data)
+//     const formData = new FormData();
+//     formData.append("shipping_address", data.shipping_address)
+//     formData.append("user_id", data.user_id)
+//     formData.append("total_price", data.total_price)
+//     // formData.append("order_products", data.order_products)
+//     const response = await fetch(`/api/orders/`, {
+//         method:"POST",
+//         body: formData
+//     })
+
+//     if (response.ok) {
+//         const order = await response.json()
+//         dispatch(addOrder(order))
+//     }
+// }
 
 export const editOrder = (data) => async (dispatch) => {
     const {shipping_address, order_id} = data;
