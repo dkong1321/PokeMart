@@ -9,6 +9,8 @@ const CartDisplay = () => {
     const cartCounts = useSelector((state=>state.cart.count))
     const cartTotal = useSelector((state=>state.cart.cartTotal))
 
+    console.log(cartProducts)
+    console.log(cartTotal)
     const getTotal = () =>{
         const initalVal = 0
         const myCartTotal = Object.values(cartTotal).reduce(

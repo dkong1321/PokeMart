@@ -19,6 +19,7 @@ class Product(db.Model):
     item_in_order = db.relationship('OrderProduct', back_populates='product', cascade="all, delete-orphan")
 
     # relationships
+    product_cart= db.relationship("Cart", back_populates="product" )
 
     # one to many between product and reviews
     reviews = db.relationship("Review", back_populates="products", cascade="all, delete-orphan" )
