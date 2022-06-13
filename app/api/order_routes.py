@@ -1,7 +1,5 @@
-from calendar import c
-import re
 from flask import Blueprint, request
-from app.forms.order import OrderCreateForm, OrderEditForm
+from app.forms.order import OrderEditForm
 from app.models import db
 from app.models.order import Order
 from app.models.order_products import OrderProduct
@@ -26,6 +24,8 @@ def add_order():
     print(req['shipping_address'])
     print(req['user_id'])
     print(req['order_products'])
+    print(req['order_products'])
+    print(req['order_products'])
     print('\n \n')
 
 
@@ -46,7 +46,7 @@ def add_order():
         print(product["product_name"])
         print(product["quantity"])
         order_product = OrderProduct(
-            order_id=new_order.id, product_id=product["id"], quantity= product["quantity"]
+            order_id=new_order.id, product_id=product["id"], quantity= product["quantity"], product_name=product["product_name"], product_image=product["product_image_url"]
         )
         db.session.add(order_product)
         db.session.commit()

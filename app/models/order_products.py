@@ -7,7 +7,8 @@ class OrderProduct(db.Model):
     order_id = db.Column(db.Integer, db.ForeignKey("orders.id"), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey("products.id"), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
-
+    product_name = db.Column(db.String, nullable=False)
+    product_image = db.Column(db.String, nullable=False)
     # relationships
 
     order = db.relationship('Order', back_populates='products')
@@ -19,6 +20,8 @@ class OrderProduct(db.Model):
             "order_id": self.order_id,
             "product_id": self.product_id,
             "quantity": self.quantity,
+            "product_name": self.product_name,
+            "product_image":self.product_image,
             "product" : self.product.to_dict()
         }
 # =============== Regular join table old =====================

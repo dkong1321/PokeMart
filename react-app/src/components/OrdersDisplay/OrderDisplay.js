@@ -16,7 +16,7 @@ const OrderDisplay = () => {
 
     useEffect(()=>{
         dispatch(getOrders(user.id)).then(()=>setIsLoaded(true))
-        // warning here
+        // warning
     }, [dispatch])
 
     const getTotal = () =>{
@@ -68,7 +68,17 @@ const OrderDisplay = () => {
                             <div>Shipping Address{order.shipping_address}</div>
                             <div>Date: {formatDate(order.timestamp)}</div>
                             {order.delivered ? (<div>delivered</div>):(<div>pending</div>)}
+
                             {Object.values(order.products).map((product)=>{
+                                return (
+                                    <div key={product.id}>
+                                        <div>{product.product_name}</div>
+                                        <div>qty: {product.quantity}</div>
+                                        <img className="order__product__image" alt="" src={product.product_image}></img>
+                                    </div>
+                                )
+                            })}
+                            {/* {Object.values(order.products).map((product)=>{
                                 return (
                                     <div key={product.id}>
                                         <div>{product.product.product_name}</div>
@@ -76,7 +86,7 @@ const OrderDisplay = () => {
                                         <img className="order__product__image" alt="" src={product.product.product_image_url}></img>
                                     </div>
                                 )
-                            })}
+                            })} */}
                             {order.delivered ? (<></>):(<button onClick={()=> cancelOrder(order)}>cancel</button>)}
                         </div>
                     )

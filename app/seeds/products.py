@@ -52,19 +52,23 @@ def seed_products():
 
     # ===============================================================================================================
     demo_order_product1 = OrderProduct(
-        order_id=1, product_id=1, quantity=3,
+        order_id=1, product_id=1, quantity=3, product_name='Vaporeon Vmax (SWSH182)',
+        product_image= "http://kanto-prime.s3.amazonaws.com/da4a15d831414318a48514ce1fca94b6.jpg"
     )
 
     demo_order_product2 = OrderProduct(
-        order_id=2, product_id=1, quantity=3,
+        order_id=2, product_id=1, quantity=3, product_name='Vaporeon Vmax (SWSH182)',
+        product_image= "http://kanto-prime.s3.amazonaws.com/da4a15d831414318a48514ce1fca94b6.jpg"
     )
 
     demo_order_product3 = OrderProduct(
-        order_id=3, product_id=1, quantity=2,
+        order_id=3, product_id=1, quantity=2, product_name='Vaporeon Vmax (SWSH182)',
+        product_image= "http://kanto-prime.s3.amazonaws.com/da4a15d831414318a48514ce1fca94b6.jpg"
     )
 
     demo_order_product4 = OrderProduct(
-        order_id=3, product_id=4, quantity=3,
+        order_id=3, product_id=4, quantity=3, product_name='Blastoise Celebrations (2/102)',
+        product_image= "http://kanto-prime.s3.amazonaws.com/55c9361d5d02408591305c6f16b1bafb.jpg"
     )
 
     orderProductArr = [demo_order_product1, demo_order_product2, demo_order_product3, demo_order_product4]
