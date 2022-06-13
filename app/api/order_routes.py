@@ -100,7 +100,7 @@ def edit_order(order_id):
 def delete_order(order_id):
 
     order = Order.query.get(order_id)
-    order_deleted = order
+    order_deleted = order.to_dict()
     db.session.delete(order)
     db.session.commit()
-    return order_deleted.to_dict()
+    return order_deleted

@@ -39,7 +39,7 @@ function CartProduct ({product, count }) {
                 <button onClick={(e)=>incrementQty(e)}>+</button>
                 <button onClick={(e)=>decrementQty(e)}>-</button>
                 <input type="number" value={quantity} onChange={(e)=>setQuantity(Number(e.target.value))}
-                     onBlur={() => updateQty()}
+                     onBlur={() => updateQty()} min="1" max="10" increment="1"
                     ></input>
                 <button onClick={(e)=>removeFromCart(e)}>Remove from Cart</button>
             </div>
