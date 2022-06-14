@@ -2,7 +2,6 @@ import "./cart_product.css"
 import { useEffect, useState } from "react"
 import {useDispatch, useSelector} from "react-redux"
 import { deleteCartItem, setItemQuantity} from "../../store/cart"
-import { NavLink } from "react-router-dom"
 
 function CartProduct ({product, count }) {
     const dispatch = useDispatch()
@@ -49,7 +48,6 @@ function CartProduct ({product, count }) {
             </div>
             <div>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(product.product.price)}</div>
             <div>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(product.product.price*quantity)}</div>
-            <NavLink to='/checkout' exact={true}>Proceed to Checkout</NavLink>
         </div>
     )
 }

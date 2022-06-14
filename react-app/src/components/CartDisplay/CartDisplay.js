@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { useDispatch , useSelector} from "react-redux"
 import CartProduct from "./CartProduct"
 import AddOrderForm from "./AddOrderForm"
+import { NavLink } from "react-router-dom"
+
 // import {clearCart} from "../../store/cart"
 const CartDisplay = () => {
     const dispatch = useDispatch()
@@ -52,6 +54,7 @@ const CartDisplay = () => {
                     </div>
 
                 </div>
+                <NavLink to='/checkout' exact={true}>Proceed to Checkout</NavLink>
                 <AddOrderForm/>
             </div>
         )
