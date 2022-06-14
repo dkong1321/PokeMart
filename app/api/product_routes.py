@@ -6,32 +6,13 @@ from app.api.aws_s3_bucket import (upload_file_to_s3, allowed_file, get_unique_f
 import uuid
 product_routes = Blueprint('products', __name__)
 
-# def validation_errors_to_error_messages(validation_errors):
-#     """
-#     Simple function that turns the WTForms validation errors into a simple list
-#     """
-#     errorMessages = []
-#     for field in validation_errors:
-#         for error in validation_errors[field]:
-#             errorMessages.append(f'{field} : {error}')
-#     return errorMessages
 
 #  get all product
 @product_routes.route('/')
 def all_products():
     products = Product.query.all()
-    print("===================================")
-    print("                                   ")
-    print(products)
-    print("                                   ")
-    print("===================================")
 
     return {"products" : [ product.to_dict() for product in products]}
-
-# get all products from a user
-# @product_routes.route('/<int:user_id>')
-# def user_products(user_id):
-#     user_products = Product.query.filter(Product.user_id == user_id )
 
 #  get a single product
 @product_routes.route('/<int:id>/')

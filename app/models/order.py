@@ -7,10 +7,16 @@ class Order(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     total_price = db.Column(db.Float,nullable=False )
-    shipping_address = db.Column(db.String(255), nullable=False )
     timestamp = db.Column(db.DateTime, default=datetime.datetime.now())
     delivered = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    first_name = db.Column(db.String(255), nullable=False)
+    last_name = db.Column(db.String(255), nullable=False)
+    shipping_address = db.Column(db.String(255), nullable=False)
+    city = db.Column(db.String(255), nullable=False)
+    state = db.Column(db.String(255), nullable=False)
+
+
 
     # orderProduct relationship
     products = db.relationship('OrderProduct', back_populates='order', cascade="all, delete-orphan")
@@ -29,5 +35,9 @@ class Order(db.Model):
             "delivered" : self.delivered,
             "user_id" : self.user_id,
             "products" : [product.to_dict() for product in self.products],
-            "shipping_address" : self.shipping_address
+            "first_name" : self.first_name,
+            "last_name" : self.last_name,
+            "shipping_address" : self.shipping_address,
+            "city": self.city,
+            "state": self.state,
         }

@@ -19,8 +19,8 @@ const addCart = (product) =>{
     }
 }
 
-const editQuantity = (product) => {
-    if (product.quantity < 1) return removeCartItem(product);
+const editQuantity = (product, cartUserId) => {
+    if (product.quantity < 1) return deleteCartItem(product, cartUserId);
     return {
         type: EDIT_CART_ITEM,
         product
@@ -78,7 +78,7 @@ export const setItemQuantity = (product, quantity, cartUserId) => async (dispatc
     if (response.ok){
         console.log(response)
         const cart_item = await response.json()
-        dispatch(editQuantity(cart_item))
+        dispatch(editQuantity(cart_item,cartUserId))
 
     }
 }
@@ -128,8 +128,10 @@ const createReducer = (state = initialState, action) => {
             return newState
         case EDIT_CART_ITEM:
             console.log(action.product)
+            console.log(typeof action.product.quantity)
+            console.log(typeof action.product.product.price)
             newState.count[action.product.id] = action.product.quantity
-            newState.cartTotal[action.product.id] = newState.count[action.product.id]*action.product.price
+            newState.cartTotal[action.product.id] = action.product.quantity*action.product.product.price
             return newState
         case REMOVE_CART_ITEM:
             delete newState.products[action.product.id]

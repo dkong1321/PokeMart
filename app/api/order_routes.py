@@ -18,23 +18,16 @@ def all_orders(userId):
 @order_routes.route('/', methods=["POST"])
 def add_order():
 
-    print("my request \n\n", request.json)
     req = request.json['data']
-    print("\n\n line 23", req)
-    print(req['total_price'])
-    print(req['shipping_address'])
-    print(req['user_id'])
-    print('\n \n')
-
-
-    # if form.validate_on_submit():
-
     new_order = Order(
         total_price = req['total_price'],
         shipping_address = req['shipping_address'],
+        first_name =req["first_name"],
+        last_name=req["last_name"],
+        city=req["city"],
+        state=req["state"],
         user_id = req['user_id'],
     )
-    # print("new_order is here \n \n", new_order)
     db.session.add(new_order)
     db.session.commit()
 
@@ -55,34 +48,6 @@ def add_order():
         db.session.commit()
 
     return new_order.to_dict()
-    # return {"message": "hello"}
-
-# @order_routes.route('/', methods=["POST"])
-# def add_order():
-#     print("this is the post route \n \n")
-#     form = OrderCreateForm()
-#     print("this is the form \n\n", form)
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     print("\n\n")
-#     print("\n\n")
-#     print("total_price", form.total_price.data)
-#     print("shipping_address", form.shipping_address.data)
-#     print("user_id", form.user_id.data)
-#     # print("order_products", form.order_products.data)
-#     print("\n\n")
-#     print("\n\n")
-
-#     # if form.validate_on_submit():
-
-#     new_order = Order(
-#         total_price = form.total_price.data,
-#         shipping_address = form.shipping_address.data,
-#         user_id = form.user_id.data,
-#     )
-#     print("new_order is here \n \n", new_order)
-#     db.session.add(new_order)
-#     db.session.commit()
-#     return new_order.to_dict()
 
 @order_routes.route('/<int:order_id>', methods=["PUT"])
 def edit_order(order_id):

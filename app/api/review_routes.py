@@ -16,23 +16,12 @@ def all_reviews():
 @review_routes.route('/<int:userId>/')
 def user_reviews(userId):
     reviews = Review.query.filter(Review.user_id == userId)
-    print("======================")
-    print("                      ")
-    print(reviews)
-    print("======================")
-    print("                      ")
     return {"reviews":[review.to_dict() for review in reviews]}
 
 # post a review
 @review_routes.route('/', methods=["POST"])
 def post_review():
     form = ReviewCreateForm()
-    print("                  ")
-    print(form.rating.data)
-    print(form.description.data)
-    print(form.product_id.data)
-    print(form.user_id.data)
-    print("                  ")
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
