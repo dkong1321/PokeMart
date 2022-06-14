@@ -25,7 +25,9 @@ const OrderDisplay = () => {
     }
 
     const formatDate = (date) => {
-        const newDate = moment(date).format("DD/MM/YY hh:mm a");
+        // const newDate = moment(date).format("MM/DD/YY hh:mm a");
+        const newDate = moment(date).format("dddd MM/DD/YY");
+
         return newDate;
     };
 
