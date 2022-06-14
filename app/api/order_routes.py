@@ -18,17 +18,14 @@ def all_orders(userId):
 @order_routes.route('/', methods=["POST"])
 def add_order():
 
-    print("my request \n\n", request.json)
     req = request.json['data']
-    print("\n\n line 23", req)
-    print(req['total_price'])
-    print(req['shipping_address'])
-    print(req['user_id'])
-    print('\n \n')
-
     new_order = Order(
         total_price = req['total_price'],
         shipping_address = req['shipping_address'],
+        first_name =req["first_name"],
+        last_name=req["last_name"],
+        city=req["city"],
+        state=req["state"],
         user_id = req['user_id'],
     )
     db.session.add(new_order)

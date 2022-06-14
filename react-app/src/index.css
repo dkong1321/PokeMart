@@ -3,3 +3,9 @@ body{
     background-color: #e7e4e0;
     margin: 0;
 }
+
+*{
+    font-family: Roboto,
+        open sans,
+        lato;
+}

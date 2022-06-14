@@ -6,9 +6,9 @@ def seed_users():
     demo_user1 = User(
         username='Propane Prince', email='propaneprince@aa.io', password='password')
     demo_user2 = User(
-        username='marnie', email='marnie@aa.io', password='password')
+        username='ChrisCharming', email='christtv@aa.io', password='password')
     demo_user3 = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        username='DukeSilver', email='pmelhus@aa.io', password='password')
 
 
     # demo_product1 = Product(
