@@ -1,10 +1,17 @@
 import rfdc from "rfdc";
 const clone = rfdc()
+const LOAD_CART = "api/cart/LOAD_CART"
 const EDIT_CART_ITEM = "api/cart/EDIT_CART_ITEM"
 const ADD_CART_ITEM = 'api/cart/ADD_CART_ITEM'
 const REMOVE_CART_ITEM = 'api/cart/REMOVE_CART_ITEM'
 const EMPTY_CART = 'api/cart/EMPTY_CART'
 
+const loadCart = (cart) => {
+    return {
+        type: LOAD_CART,
+        cart
+    }
+}
 const addCart = (product) =>{
     return {
         type: ADD_CART_ITEM,
@@ -12,12 +19,11 @@ const addCart = (product) =>{
     }
 }
 
-const editQuantity = (product, quantity) => {
-    if (quantity<1) return removeCartItem(product);
+const editQuantity = (product) => {
+    if (product.quantity < 1) return removeCartItem(product);
     return {
         type: EDIT_CART_ITEM,
-        product,
-        quantity
+        product
     }
 }
 
@@ -35,22 +41,70 @@ const emptyCart = () => {
     }
 }
 
+export const getCart = (data) => async (dispatch) => {
+    const data = 1
+    const response = await fetch(`/api/carts/${data}`)
+
+    if (response.ok) {
+        const cart = await response.json()
+        console.log(cart)
+        dispatch(loadCart(cart))
+    }
+}
+
 
 export const addCartItem = (data) => async (dispatch) => {
-    const myCartProduct = data
-    dispatch(addCart(myCartProduct))
+    const response = await fetch(`/api/carts/`,{
+        method:"POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data })
+    })
+
+    if (response.ok) {
+        const cart_item = await response.json()
+        console.log(cart_item)
+        dispatch(addCart(cart_item))
+    }
 }
 
-export const setItemQuantity = (product, quantity) => async (dispatch) => {
-    dispatch(editQuantity(product, quantity))
+export const setItemQuantity = (product, quantity, cartUserId) => async (dispatch) => {
+    const productId = product.product_id
+    const data = {product,quantity, cartUserId}
+    const response = await fetch(`/api/carts/${productId}`,{
+        method:"PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data })
+    })
+    if (response.ok){
+        console.log(response)
+        const cart_item = await response.json()
+        dispatch(editQuantity(cart_item))
+
+    }
 }
 
-export const deleteCartItem = (product) => async (dispatch) => {
-    dispatch(removeCartItem(product))
+export const deleteCartItem = (product,cartUserId) => async (dispatch) => {
+    const data = {product, cartUserId}
+    console.log(product.product_id)
+    const cartProductId = product.product_id
+    const response = await fetch (`/api/carts/${cartUserId}/${cartProductId}`, {
+        method:"DELETE",
+    })
+    if(response.ok) {
+        const cart_item = await response.json()
+        dispatch(removeCartItem(cart_item))
+
+    }
 }
 
-export const clearCart = () => async(dispatch) => {
-    dispatch(emptyCart())
+export const clearCart = (cartUserId) => async(dispatch) => {
+    console.log(cartUserId)
+    const response = await fetch(`/api/carts/${cartUserId}`,{
+        method:"DELETE"
+    })
+    if(response.ok){
+        dispatch(emptyCart())
+    }
 }
 
 const initialState = {cartTotal:{}, products:{}, count:{}}
@@ -58,13 +112,23 @@ const initialState = {cartTotal:{}, products:{}, count:{}}
 const createReducer = (state = initialState, action) => {
     let newState = clone(state);
     switch (action.type){
+        case LOAD_CART:
+            console.log(action.cart)
+            action.cart.cart_items.forEach((product)=>{
+                newState.products[product.id] = product
+                newState.count[product.id] = product.quantity
+                newState.cartTotal[product.id] = newState.count[product.id]*product.product.price
+            })
+            return newState
         case ADD_CART_ITEM:
+            console.log(action.product)
             newState.products[action.product.id] = action.product
             newState.count[action.product.id] = 1
-            newState.cartTotal[action.product.id] = newState.count[action.product.id]*action.product.price
+            newState.cartTotal[action.product.id] = newState.count[action.product.id]*action.product.product.price
             return newState
         case EDIT_CART_ITEM:
-            newState.count[action.product.id] = action.quantity
+            console.log(action.product)
+            newState.count[action.product.id] = action.product.quantity
             newState.cartTotal[action.product.id] = newState.count[action.product.id]*action.product.price
             return newState
         case REMOVE_CART_ITEM:

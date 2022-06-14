@@ -16,12 +16,13 @@ class Product(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     # orderProduct relationship
-    item_in_order = db.relationship('OrderProduct', back_populates='product')
+    item_in_order = db.relationship('OrderProduct', back_populates='product', cascade="all, delete-orphan")
 
     # relationships
+    product_cart= db.relationship("Cart", back_populates="product" )
 
     # one to many between product and reviews
-    reviews = db.relationship("Review", back_populates="products")
+    reviews = db.relationship("Review", back_populates="products", cascade="all, delete-orphan" )
     # many to many between product and categories
     categories = db.relationship("Category", secondary=products_categories, back_populates="products")
     # many to many between orders and product

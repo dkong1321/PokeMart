@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import {getReviews, createReview, editReview, deleteReview} from "../../store/reviews"
 import {getUsers} from "../../store/users"
-import { addCartItem} from "../../store/cart";
+import {addCartItem} from "../../store/cart";
 
 import ReactStars from 'react-stars'
 import moment from "moment";
@@ -23,6 +23,8 @@ const SingleProductDisplay = () => {
     const user = useSelector((state)=>state.session.user)
     const users = (useSelector((state)=>state.users))
     const cart = (useSelector((state)=>state.cart))
+
+    // <input accept="audio/*,video/*,image/*" />
 
 
     useEffect(()=>{

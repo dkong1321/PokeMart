@@ -110,6 +110,7 @@ const productReducer = (state = initialState, action) => {
             newState.products = newObj
             return newState
         case ADD_PRODUCT:
+            console.log(action.product)
             const product = action.product
             newState.products[product.id] = product
             return newState

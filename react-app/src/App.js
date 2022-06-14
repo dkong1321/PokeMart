@@ -8,7 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-// import { getCart } from './store/cart';
+import { getCart } from './store/cart';
 // import Products from './components/test_product';
 // import Reviews from './components/test_review';
 import Orders from './components/test_order';
@@ -24,6 +24,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(getCart())
       setLoaded(true);
     })();
   }, [dispatch]);

@@ -1,16 +1,21 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import "./nav__bar.css"
 import LoginFormModal from '../Modals/LoginFormModal';
 import SignUpFormModal from '../Modals/SignUpFormModal';
 import AddProductFormModal from '../Modals/PostProductModal';
+import { getCart } from '../../store/cart';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
   const cartProducts = (useSelector((state)=>state.cart.products))
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(getCart())
+  },[dispatch])
   return (
     <nav className='nav__bar__container'>
         <div className='nav__link__container__left'>

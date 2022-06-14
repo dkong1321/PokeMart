@@ -10,7 +10,7 @@ function AddProductFormModal() {
       <button onClick={() => setShowModal(true)}> Post a Product</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <ProductForm />
+          <ProductForm setShowModal={setShowModal}/>
         </Modal>
       )}
     </>

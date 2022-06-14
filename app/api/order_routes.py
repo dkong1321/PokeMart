@@ -1,7 +1,5 @@
-from calendar import c
-import re
 from flask import Blueprint, request
-from app.forms.order import OrderCreateForm, OrderEditForm
+from app.forms.order import OrderEditForm
 from app.models import db
 from app.models.order import Order
 from app.models.order_products import OrderProduct
@@ -22,10 +20,10 @@ def add_order():
 
     print("my request \n\n", request.json)
     req = request.json['data']
+    print("\n\n line 23", req)
     print(req['total_price'])
     print(req['shipping_address'])
     print(req['user_id'])
-    print(req['order_products'])
     print('\n \n')
 
 
@@ -42,11 +40,16 @@ def add_order():
 
     for product in req['order_products']:
         print(new_order.id)
-        print(product["id"])
-        print(product["product_name"])
+        # print(product["id"])
+        print("\n\n on line 44 \n\n", product)
+        print(product["product"]["product_name"])
         print(product["quantity"])
+        print(product["product"]["id"])
+        print(product["product"]["product_image_url"])
+
         order_product = OrderProduct(
-            order_id=new_order.id, product_id=product["id"], quantity= product["quantity"]
+            order_id=new_order.id, product_id=product["product"]["id"], quantity= product["quantity"], product_name=product["product"]["product_name"],
+            product_image=product["product"]["product_image_url"]
         )
         db.session.add(order_product)
         db.session.commit()
@@ -100,7 +103,7 @@ def edit_order(order_id):
 def delete_order(order_id):
 
     order = Order.query.get(order_id)
-    order_deleted = order
+    order_deleted = order.to_dict()
     db.session.delete(order)
     db.session.commit()
-    return order_deleted.to_dict()
+    return order_deleted

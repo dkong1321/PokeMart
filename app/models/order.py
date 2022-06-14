@@ -13,7 +13,7 @@ class Order(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     # orderProduct relationship
-    products = db.relationship('OrderProduct', back_populates='order')
+    products = db.relationship('OrderProduct', back_populates='order', cascade="all, delete-orphan")
 
 
     # relationships

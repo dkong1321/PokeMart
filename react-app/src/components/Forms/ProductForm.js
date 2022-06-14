@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createProduct, getAllProducts } from "../../store/product";
+import { useHistory } from "react-router-dom";
 
-
-const ProductForm = () => {
+const ProductForm = ({setShowModal}) => {
     const dispatch = useDispatch()
     const [ isLoaded, setIsLoaded ] = useState(false)
     const [productName, setProductName] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
+    const history = useHistory()
     const products =Object.values(useSelector((state)=> state.products))
     const user =useSelector((state)=> state.session.user)
 
@@ -26,8 +27,10 @@ const ProductForm = () => {
             description,
             image
         }
-        console.log(data)
-        dispatch(createProduct(data))
+        await dispatch(createProduct(data))
+        history.push('/products')
+        setShowModal(false)
+
     }
 
     const updateImage = (e) => {
