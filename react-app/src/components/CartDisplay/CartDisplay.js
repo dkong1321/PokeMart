@@ -3,6 +3,7 @@ import { useDispatch , useSelector} from "react-redux"
 import CartProduct from "./CartProduct"
 import AddOrderForm from "./AddOrderForm"
 import { NavLink } from "react-router-dom"
+import { clearCart } from "../../store/cart"
 
 // import {clearCart} from "../../store/cart"
 const CartDisplay = () => {
@@ -11,6 +12,7 @@ const CartDisplay = () => {
     const cartProducts = (useSelector((state)=>state.cart.products))
     const cartCounts = useSelector((state=>state.cart.count))
     const cartTotal = useSelector((state=>state.cart.cartTotal))
+    const user = useSelector((state)=> state.session.user)
 
     const getTotal = () =>{
         const initalVal = 0
@@ -25,7 +27,9 @@ const CartDisplay = () => {
         setIsLoaded(true)
     }, [dispatch, cartTotal])
 
-
+    const clearMyCart = () => {
+        dispatch(clearCart(user.id))
+    }
     return (
         isLoaded && (
             <div>
@@ -46,13 +50,18 @@ const CartDisplay = () => {
                     )}
                 </div>
                 <div className="checkout__container">
+
+                    <div className="clear__cart__container">
+                        <button className="clear__cart__button" onClick={(e)=>clearMyCart(e)}>Clear Cart</button>
+                    </div>
+
                     <div className="order__price__details">
                         <div className="">SubTotal :{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(getTotal())}</div>
                         <div className="">Tax :{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(getTotal()*.10)}</div>
                         <div className="black__line"></div>
                         <div className="cart__total__price">Total :{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(getTotal()*1.10)}</div>
+                        <NavLink className="proceed__checkout__button" to='/checkout' exact={true}>Proceed to Checkout</NavLink>
                     </div>
-                    <NavLink className="proceed__checkout__button" to='/checkout' exact={true}>Proceed to Checkout</NavLink>
                 </div>
                 </div>
 
