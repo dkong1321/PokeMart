@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {getOrders, postOrder, deleteOrder} from "../../store/order"
+import {getOrders, postOrder} from "../../store/order"
 import {clearCart} from "../../store/cart"
+import { useHistory } from "react-router-dom";
 import "./cart_product.css"
 const AddOrderForm = () => {
     const dispatch = useDispatch()
@@ -17,7 +18,7 @@ const AddOrderForm = () => {
     const orders = useSelector((state)=> state.orders)
     const cart = useSelector((state)=> state.cart)
     const cartTotal = useSelector((state=>state.cart.cartTotal))
-
+    const history = useHistory()
     useEffect(()=>{
         dispatch(getOrders(user.id)).then(()=>setIsLoaded(true))
         // warning
@@ -50,6 +51,7 @@ const AddOrderForm = () => {
             order_products: cartItems,
         }
         dispatch(postOrder(data)).then(()=>dispatch(clearCart(user.id)))
+        history.push("/myorders")
     }
 
     return (
@@ -135,7 +137,7 @@ const AddOrderForm = () => {
                         </div>
 
                     </div>
-                    <button type="submit">Submit</button>
+                    <button className="confirm__order__button" type="submit">Confirm and Submit Order</button>
                 </form>
 
             </div>

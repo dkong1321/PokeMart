@@ -16,6 +16,7 @@ import ProductsDisplay from './components/ProductDisplay/ProductDisplay';
 import SingleProductDisplay from './components/SingleProductDisplay/SingleProductDisplay';
 import CartDisplay from './components/CartDisplay/CartDisplay';
 import OrderDisplay from './components/OrdersDisplay/OrderDisplay';
+import Checkout from './components/CartDisplay/Checkout';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -55,6 +56,9 @@ function App() {
         <Route path='/mycart' exact={true}>
           <CartDisplay />
         </Route>
+        <Route path='/checkout' exact={true}>
+          <Checkout/>
+        </Route>
         <Route path='/myorders' exact={true}>
           <OrderDisplay />
         </Route>
@@ -67,9 +71,9 @@ function App() {
         <Route path='/products_test/:productId'>
           <Reviews />
         </Route> */}
-        <Route path='/order_test' exact={true}>
+        {/* <Route path='/order_test' exact={true}>
           <Orders />
-        </Route>
+        </Route> */}
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
