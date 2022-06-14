@@ -41,7 +41,7 @@ const OrderDisplay = () => {
             total_price : getTotal(),
             order_products: cartItems,
         }
-        dispatch(postOrder(data)).then(()=>dispatch(clearCart()))
+        dispatch(postOrder(data)).then(()=>dispatch(clearCart(user.id)))
     }
 
     const cancelOrder = (order) => {

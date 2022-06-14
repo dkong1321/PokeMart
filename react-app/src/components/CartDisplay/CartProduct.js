@@ -24,7 +24,7 @@ function CartProduct ({product, count }) {
 
     const removeFromCart = (e) => {
         e.preventDefault()
-        dispatch(deleteCartItem(product))
+        dispatch(deleteCartItem(product, cartUserId))
     }
 
     const updateQty = () => {

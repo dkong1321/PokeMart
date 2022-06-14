@@ -43,3 +43,27 @@ def edit_product(productId):
     db.session.add(product)
     db.session.commit()
     return product.to_dict()
+
+@cart_routes.route('/<int:cartUserId>', methods=["DELETE"])
+def clear_cart(cartUserId):
+    print(cartUserId)
+    cart_product = Cart.query.filter( Cart.user_id == cartUserId).all()
+    print("\n\n")
+    print("\n my cart+product",cart_product)
+    print("\n\n")
+    for product in cart_product:
+        db.session.delete(product)
+    # db.session.delete(cart_product)
+    db.session.commit()
+    return {"message":"deleted cart"}
+
+@cart_routes.route('/<int:cartUserId>/<int:productId>', methods=["DELETE"])
+def delete_product(productId, cartUserId):
+    print(productId)
+    print(cartUserId)
+    cart_product = Cart.query.filter(Cart.product_id == productId and Cart.user_id == cartUserId).first()
+    print("\n\n line 52", cart_product)
+    deleted_cart_product = cart_product.to_dict()
+    db.session.delete(cart_product)
+    db.session.commit()
+    return deleted_cart_product

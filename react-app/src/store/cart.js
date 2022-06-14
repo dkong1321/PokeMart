@@ -54,7 +54,6 @@ export const getCart = (data) => async (dispatch) => {
 
 
 export const addCartItem = (data) => async (dispatch) => {
-    console.log(data)
     const response = await fetch(`/api/carts/`,{
         method:"POST",
         headers: { "Content-Type": "application/json" },
@@ -69,10 +68,8 @@ export const addCartItem = (data) => async (dispatch) => {
 }
 
 export const setItemQuantity = (product, quantity, cartUserId) => async (dispatch) => {
-    console.log(product,quantity)
     const productId = product.product_id
     const data = {product,quantity, cartUserId}
-    console.log(data)
     const response = await fetch(`/api/carts/${productId}`,{
         method:"PUT",
         headers: { "Content-Type": "application/json" },
@@ -86,13 +83,28 @@ export const setItemQuantity = (product, quantity, cartUserId) => async (dispatc
     }
 }
 
-export const deleteCartItem = (product) => async (dispatch) => {
+export const deleteCartItem = (product,cartUserId) => async (dispatch) => {
+    const data = {product, cartUserId}
+    console.log(product.product_id)
+    const cartProductId = product.product_id
+    const response = await fetch (`/api/carts/${cartUserId}/${cartProductId}`, {
+        method:"DELETE",
+    })
+    if(response.ok) {
+        const cart_item = await response.json()
+        dispatch(removeCartItem(cart_item))
 
-    dispatch(removeCartItem(product))
+    }
 }
 
-export const clearCart = () => async(dispatch) => {
-    dispatch(emptyCart())
+export const clearCart = (cartUserId) => async(dispatch) => {
+    console.log(cartUserId)
+    const response = await fetch(`/api/carts/${cartUserId}`,{
+        method:"DELETE"
+    })
+    if(response.ok){
+        dispatch(emptyCart())
+    }
 }
 
 const initialState = {cartTotal:{}, products:{}, count:{}}
