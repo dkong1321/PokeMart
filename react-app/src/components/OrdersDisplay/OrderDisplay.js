@@ -4,11 +4,14 @@ import {getOrders, deleteOrder} from "../../store/order"
 import SingleOrder from "./SingleOrderDisplay";
 import moment from "moment";
 import "./order_display.css"
-
+import EditOrderFormModal from "../Modals/OrderFormModal";
+import EditOrderForm from "../Forms/EditOrderForm"
 const OrderDisplay = () => {
     const dispatch = useDispatch()
     const [ isLoaded, setIsLoaded ] = useState(false)
     const [productShow, setProductShow] = useState(false)
+    const [showModal, setShowModal] = useState(false);
+
     // Form info
 
     const user = useSelector((state)=> state.session.user)
@@ -72,7 +75,9 @@ const OrderDisplay = () => {
                                 </div>
                                     <div className="order__buttons">
                                         {checkDelivered(order.timestamp) ? (<div className="completed__order__tag"><i className="fa-solid fa-circle-check check__circle"></i> Order Completed</div>):(<button className="cancel__order__button" onClick={()=> cancelOrder(order)}><i className="fa-solid fa-trash-can"></i></button>)}
-                                        {checkDelivered(order.timestamp) ? (<></>):(<button className="edit__order__button" onClick={()=> editOrder(order)}><i className="fa-solid fa-pen-to-square"></i></button>)}
+                                        {/* {checkDelivered(order.timestamp) ? (<></>):(<button className="edit__order__button" onClick={()=> editOrder(order)}><i className="fa-solid fa-pen-to-square"></i></button>)} */}
+                                        {checkDelivered(order.timestamp) ? (<></>):(<EditOrderFormModal order={order}/>)}
+                                        {/* {showModal && <EditOrderFormModal order={order}/>} */}
                                     </div>
                             </div>
                             <SingleOrder order={order}/>
@@ -81,6 +86,7 @@ const OrderDisplay = () => {
                 })}
                 </div>
             </div>
+
         )
     )
 }
