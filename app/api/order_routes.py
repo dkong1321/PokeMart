@@ -32,13 +32,6 @@ def add_order():
     db.session.commit()
 
     for product in req['order_products']:
-        print(new_order.id)
-        # print(product["id"])
-        print("\n\n on line 44 \n\n", product)
-        print(product["product"]["product_name"])
-        print(product["quantity"])
-        print(product["product"]["id"])
-        print(product["product"]["product_image_url"])
 
         order_product = OrderProduct(
             order_id=new_order.id, product_id=product["product"]["id"], quantity= product["quantity"], product_name=product["product"]["product_name"],
@@ -51,18 +44,20 @@ def add_order():
 
 @order_routes.route('/<int:order_id>', methods=["PUT"])
 def edit_order(order_id):
-    print("my request \n\n", request.json)
     order = Order.query.get(order_id)
-    form = OrderEditForm()
-    print(form.data)
-    print("\n \n", order)
-    print("\n \n", form.shipping_address.data )
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        order.shipping_address = form.shipping_address.data
-        db.session.add(order)
-        db.session.commit()
-        return order.to_dict()
+    print("\n\n",request.json)
+    req = request.json
+
+    order.shipping_address = req['shipping_address']
+    order.first_name =req["first_name"]
+    order.last_name=req["last_name"]
+    order.city=req["city"]
+    order.state=req["state"]
+
+    db.session.add(order)
+    db.session.commit()
+    return order.to_dict()
+
 
 @order_routes.route("/<int:order_id>", methods=["DELETE"])
 def delete_order(order_id):

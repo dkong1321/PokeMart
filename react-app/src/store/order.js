@@ -61,30 +61,14 @@ export const postOrder = (data) => async (dispatch) => {
     }
 }
 
-// export const postOrder = (data) => async (dispatch) => {
-//     console.log(data)
-//     const formData = new FormData();
-//     formData.append("shipping_address", data.shipping_address)
-//     formData.append("user_id", data.user_id)
-//     formData.append("total_price", data.total_price)
-//     // formData.append("order_products", data.order_products)
-//     const response = await fetch(`/api/orders/`, {
-//         method:"POST",
-//         body: formData
-//     })
-
-//     if (response.ok) {
-//         const order = await response.json()
-//         dispatch(addOrder(order))
-//     }
-// }
 
 export const editOrder = (data) => async (dispatch) => {
-    const {shipping_address, order_id} = data;
+    const {shipping_address, city, first_name, last_name,state, order_id} = data;
+    console.log(data)
     const response = await fetch(`/api/orders/${order_id}`,{
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ shipping_address })
+        body: JSON.stringify({ shipping_address,city, first_name, last_name,state })
     })
 
     if(response.ok) {
