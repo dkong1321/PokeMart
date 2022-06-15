@@ -1,10 +1,113 @@
 .single__order__container {
-    border: 3px red solid;
-    width: 1000px;
-    background-color: rgb(182, 167, 167);
+    border: 2px solid #353a4b;
+    width: 900px;
+    /* background-color: rgb(182, 167, 167); */
+    display: flex;
+    flex-direction: column;
+
 }
 
+.order__shipping__details__container{
+    display: flex;
+    width: 400px;
+}
+
+.order__see__more{
+    display: flex;
+    margin: 5px;
+    margin-right: 15px;
+    justify-content: flex-end;
+}
+
+.order__see__more:hover{
+    cursor: pointer;
+}
+
+.cancel__order__button{
+    width: 40px;
+    height: 20px;
+    color: black;
+    background-color: transparent;
+    background: none;
+    border: none;
+    /* border: black 2px solid; */
+}
+
+.cancel__order__button:hover{
+    cursor: pointer;
+}
+
+.edit__order__button{
+    width: 40px;
+    height: 20px;
+    color: black;
+    background-color: transparent;
+    background: none;
+    border: none;
+    /* border: black 2px solid; */
+}
+.edit__order__button{
+    cursor: pointer;
+}
+.order__date__price__info{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+.order__heading{
+    font-weight: 600;
+}
+.check__circle{
+    color: green;
+    width: 20px;
+    margin: 0;
+}
+.complete__order__tag{
+    display: flex;
+    flex-wrap: nowrap;
+    /* flex-direction: row; */
+    width: 600px;
+}
+.order__buttons{
+    display: flex;
+    /* flex-direction: row; */
+    /* justify-content: flex-end; */
+    /* border: 1px red solid; */
+    margin-left: 90px;
+    margin-right: 8px;
+    width: auto;
+    height: fit-content;
+}
+
+.order__shipping__info{
+    display: flex;
+    flex-direction: column;
+    width:150px;
+    margin-right:60px ;
+    /* border: red 1px solid; */
+}
+
+.order__date__info{
+    /* border: red 2px solid; */
+    width: 180px;
+    height: auto
+
+}
+
+.order__details__container {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: ; */
+    /* border: red 2px solid; */
+}
 .order__product__image {
     width: 80px;
     height: 120px;
+}
+
+.main__order__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
