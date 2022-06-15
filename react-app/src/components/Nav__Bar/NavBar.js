@@ -31,7 +31,7 @@ const NavBar = () => {
           { sessionUser ? <AddProductFormModal />:<></>}
           { sessionUser ?
             <NavLink
-              to='/mycart' exact={true} activeClassName='active' className="nav__link">{Object.values(cartProducts).length} items in Cart
+              to='/mycart' exact={true} activeClassName='active' className="nav__link"><div>{Object.values(cartProducts).length} <i className="fa-solid fa-cart-shopping"></i></div>
             </NavLink>
           :<></>}
         </div>

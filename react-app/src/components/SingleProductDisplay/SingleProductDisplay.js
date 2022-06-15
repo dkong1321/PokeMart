@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import {getReviews, createReview, editReview, deleteReview} from "../../store/reviews"
 import {getUsers} from "../../store/users"
-import {addCartItem} from "../../store/cart";
+import {addCartItem, setItemQuantity } from "../../store/cart";
 
 import ReactStars from 'react-stars'
 import moment from "moment";
@@ -23,9 +23,6 @@ const SingleProductDisplay = () => {
     const user = useSelector((state)=>state.session.user)
     const users = (useSelector((state)=>state.users))
     const cart = (useSelector((state)=>state.cart))
-
-    // <input accept="audio/*,video/*,image/*" />
-
 
     useEffect(()=>{
         dispatch(getReviews(productId)).then(()=>dispatch(getUsers())).then(()=> setIsLoaded(true))
@@ -86,7 +83,26 @@ const SingleProductDisplay = () => {
     }
 
     const addToCart = () => {
-        dispatch(addCartItem(product))
+        const currCartProduct = Object.values(cart.products)
+        let inCart = false
+        let cartQuantity = 0
+        for (let i = 0; i < currCartProduct.length; i++ ){
+            console.log(currCartProduct[i].product_id)
+            if (currCartProduct[i].product_id === product.id){
+                inCart = true
+                console.log(i)
+                cartQuantity=Object.values(Object.values(cart)[2])[i]
+                console.log(cartQuantity)
+            }
+        }
+        const cartUserId = user.id
+        const quantity = cartQuantity
+        const myProduct = {product_id:product.id}
+        if (inCart) {
+            dispatch(setItemQuantity(myProduct, quantity+1,cartUserId))
+        } else {
+            dispatch(addCartItem(product))
+        }
     }
 
     return(
@@ -98,9 +114,7 @@ const SingleProductDisplay = () => {
                     </div>
                     <div className="product__detail__info">
                         <div>{users[product.user_id].username}'s Shop</div>
-                        {Object.keys(cart).includes(product.id.toString()) ? (
-                                <div>In to Cart</div>
-                            ): (<button onClick={() => addToCart()}>Add to Cart</button>)}
+                        <button onClick={() => addToCart()}><i className="fa-solid fa-cart-plus"></i></button>
                         <span className="stars" style={{ "--ratingValue": `${avgRating()}` }}></span>
                         <div>{Object.values(product.reviews).length} Reviews</div>
                         <div className="single__product__title"> {product.product_name} </div>

@@ -65,18 +65,6 @@ function App() {
         <Route path='/edit-orders' exact={true}>
           <EditOrderForm />
         </Route>
-        {/* <Route path='/products_test' exact={true}>
-          <Products />
-        </Route> */}
-        {/* <Route path='/products_test/:productId'>
-          <Reviews />
-        </Route>
-        <Route path='/products_test/:productId'>
-          <Reviews />
-        </Route> */}
-        {/* <Route path='/order_test' exact={true}>
-          <Orders />
-        </Route> */}
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
