@@ -18,6 +18,9 @@ import CartDisplay from './components/CartDisplay/CartDisplay';
 import OrderDisplay from './components/OrdersDisplay/OrderDisplay';
 import Checkout from './components/CartDisplay/Checkout';
 import EditOrderForm from './components/Forms/EditOrderForm';
+import MyProducts from './components/MyProducts/MyProductsDisplay';
+import EditProductForm from './components/Forms/EditProductForm';
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -62,8 +65,14 @@ function App() {
         <Route path='/myorders' exact={true}>
           <OrderDisplay />
         </Route>
+        <Route path='/my-products' exact={true}>
+          <MyProducts></MyProducts>
+        </Route>
         <Route path='/edit-orders' exact={true}>
           <EditOrderForm />
+        </Route>
+        <Route path='/edit-product' exact={true}>
+          <EditProductForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

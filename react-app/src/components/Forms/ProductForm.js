@@ -27,7 +27,7 @@ const ProductForm = ({setShowModal}) => {
             description,
             image
         }
-        await dispatch(createProduct(data))
+        dispatch(createProduct(data))
         history.push('/products')
         setShowModal(false)
 

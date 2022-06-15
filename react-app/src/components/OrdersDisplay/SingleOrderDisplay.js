@@ -20,6 +20,8 @@ const SingleOrder = ({order}) => {
     return (
         <div>
             <div className="order__see__more" onClick={()=>setProductShow(!productShow)}><i className="fa-solid fa-circle-chevron-down"></i></div>
+            {Object.values(order.products).length ?
+            <div>
             {Object.values(order.products).map((product)=>{
                 return (
                 <div key={product.id}>
@@ -33,6 +35,8 @@ const SingleOrder = ({order}) => {
                 </div>
                 )
             })}
+            </div>
+            : <div>listing has been removed</div>}
         </div>
     )
 

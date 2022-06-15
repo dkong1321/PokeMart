@@ -23,7 +23,7 @@ const SingleProductDisplay = () => {
     const user = useSelector((state)=>state.session.user)
     const users = (useSelector((state)=>state.users))
     const cart = (useSelector((state)=>state.cart))
-
+    console.log(user)
     useEffect(()=>{
         dispatch(getReviews(productId)).then(()=>dispatch(getUsers())).then(()=> setIsLoaded(true))
     }, [dispatch, productId])
@@ -105,6 +105,9 @@ const SingleProductDisplay = () => {
         }
     }
 
+
+
+
     return(
         isLoaded && (
             <div>
@@ -113,8 +116,10 @@ const SingleProductDisplay = () => {
                         <img className="single__product__image" src={product.product_image_url} alt=""></img>
                     </div>
                     <div className="product__detail__info">
-                        <div>{users[product.user_id].username}'s Shop</div>
+                        <div>{users[product?.user_id]?.username}'s Shop</div>
+                        {user === null ? <></>:
                         <button onClick={() => addToCart()}><i className="fa-solid fa-cart-plus"></i></button>
+                        }
                         <span className="stars" style={{ "--ratingValue": `${avgRating()}` }}></span>
                         <div>{Object.values(product.reviews).length} Reviews</div>
                         <div className="single__product__title"> {product.product_name} </div>
@@ -122,12 +127,16 @@ const SingleProductDisplay = () => {
                         <div>{product.description}</div>
                     </div>
                 </div>
-                <div>Post Form for Review</div>
-                <form onSubmit={addNewReview}>
-                    <ReactStars value={rating} count={5} onChange={ratingChanged} size={24} color2={"#e0730d"} color1={'#abb1d8'} half={false} />
-                    <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="enter description" rows="5" cols="50" />
-                    <button type="submit">Submit</button>
-                </form>
+                {user === null ? <></>:
+                    <>
+                        <div>Post Form for Review</div>
+                        <form onSubmit={addNewReview}>
+                            <ReactStars value={rating} count={5} onChange={ratingChanged} size={24} color2={"#e0730d"} color1={'#abb1d8'} half={false} />
+                            <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="enter description" rows="5" cols="50" />
+                            <button type="submit">Submit</button>
+                        </form>
+                    </>
+                }
 
                 <div>Edit Form for Review</div>
                 <form onSubmit={editMyReview}>
@@ -140,11 +149,11 @@ const SingleProductDisplay = () => {
                     return (
                         <div key={review.id} className="product__review__card">
                             <div>
-                                <div>{users[review.user_id].username} - {formatDate(review.timestamp)}</div>
+                                <div>{users[review?.user_id]?.username} - {formatDate(review?.timestamp)}</div>
                             </div>
                             <span className="stars" style={{ "--ratingValue": `${review.rating}` }}></span>
                             <div>Description: {review.description}</div>
-                            {review.user_id===user.id ? (
+                            {review?.user_id===user?.id ? (
                                 <button onClick={() => eraseReview(review)}>delete</button>
                             ): (<></>)}
                         </div>
