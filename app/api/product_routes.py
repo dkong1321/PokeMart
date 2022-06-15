@@ -79,7 +79,7 @@ def edit_product(id):
 
             url = upload["url"]
         else:
-            url =None
+            url =product.product_image_url
         # image upload <-------------------------->
 
         product.product_name = form.product_name.data

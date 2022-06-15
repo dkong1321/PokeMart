@@ -24,10 +24,6 @@ const OrderDisplay = () => {
         // warning
     }, [dispatch])
 
-    const editOrder = (order) => {
-
-    }
-
     const cancelOrder = (order) => {
         const order_id = order.id
         dispatch(deleteOrder(order_id))

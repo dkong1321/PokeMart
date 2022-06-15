@@ -66,12 +66,12 @@ export const createProduct = (data) => async (dispatch) => {
 }
 
 export const updateProduct = (data) => async (dispatch) => {
-
+    console.log(data)
     const formData = new FormData()
     formData.append("image", data.image);
-    formData.append("product_name", data.editName);
-    formData.append("price", data.editPrice);
-    formData.append("description", data.editDescription);
+    formData.append("product_name", data.name);
+    formData.append("price", data.price);
+    formData.append("description", data.description);
     formData.append("user_id", data.user_id )
 
     const response = await fetch(`/api/products/${data.product_id}`, {
