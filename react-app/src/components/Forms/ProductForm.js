@@ -14,12 +14,63 @@ const ProductForm = ({setShowModal}) => {
     const products =Object.values(useSelector((state)=> state.products))
     const user =useSelector((state)=> state.session.user)
 
+    const [errorName, setErrorName] = useState([])
+    const [errorDescription, setErrorDescription] = useState([])
+    const [errorPrice, setErrorPrice] = useState([])
+    const [errorImage, setErrorImage] = useState([])
+
+
+
     useEffect(()=>{
         dispatch(getAllProducts()).then(()=>setIsLoaded(true))
     }, [dispatch]);
 
     const makeNewProduct = async(e) => {
         e.preventDefault()
+
+        const errorNameValidation = []
+        const errorDescriptionValidation =[]
+        const errorPriceValidation = []
+        const errorImageValidation = []
+        if(!productName.length){
+            errorNameValidation.push("Product name cannot be empty")
+
+        }
+        if(productName.length>30){
+            errorNameValidation.push("Product name cannot be more than 30 characters")
+
+        }
+
+        if(!description.length){
+            errorDescriptionValidation.push("Product description cannot be empty")
+
+        }
+        if(description.length>355){
+            errorDescriptionValidation.push("Product description cannot be more than 355 characters")
+
+        }
+        if(price<1){
+            errorPriceValidation.push("Price cannot be negative or 0")
+
+        }
+        if(price === null){
+            errorPriceValidation.push("Price cannot be negative")
+
+        }
+
+        if(image !=="image/jpeg" || image !=="image/png" || image !=="image/jpg"){
+            errorImageValidation.push("Invalid file type")
+        }
+
+
+        if (errorNameValidation.length || errorDescriptionValidation.length || errorPriceValidation.length){
+            setErrorName(errorNameValidation)
+            setErrorDescription(errorDescriptionValidation)
+            setErrorPrice(errorPriceValidation)
+            setErrorImage(errorImageValidation)
+            return
+        }
+
         const data = {
             productName,
             user_id:user.id,
@@ -42,10 +93,27 @@ const ProductForm = ({setShowModal}) => {
         <div>
             <div>New Product Form</div>
             <form onSubmit={makeNewProduct}>
-                <input value={productName} onChange={e => setProductName(e.target.value)} placeholder="enter product name"/>
-                <input value={description} onChange={e => setDescription(e.target.value)} placeholder="enter product name"/>
-                <input type='number' value={price} onChange={e => setPrice(e.target.value)} pattern='[0-9]+(\\.[0-9][0-9]?)?' placeholder="0.00" min="0.00" step="0.01"/>
-                <input type ="file" accept="image/*" onChange={updateImage}/>
+                <div>
+                    <label>Product Name</label>
+                    {errorName ? <div>{errorName}</div> : <></>}
+                    <input value={productName} onChange={e => setProductName(e.target.value)} placeholder="enter product name"/>
+                </div>
+                <div>
+                    <label>Description</label>
+                    {errorDescription ? <div>{errorDescription}</div> : <></>}
+                    <input value={description} onChange={e => setDescription(e.target.value)} placeholder="enter product name"/>
+                </div>
+                <div>
+                    <label>Price</label>
+                    {errorPrice ? <div>{errorPrice}</div> : <></>}
+                    <input type='number' value={price} onChange={e => setPrice(e.target.value)} pattern='[0-9]+(\\.[0-9][0-9]?)?' placeholder="0.00" min="0.00" step="0.01"/>
+                </div>
+                <div>
+                    <label>Add Image</label>
+                    {errorImage ? <div>{errorImage}</div> : <></>}
+                    <input required type ="file" accept="image/*" onChange={updateImage}/>
+                </div>
+
                 <button type="submit">Submit</button>
             </form>
         </div>
