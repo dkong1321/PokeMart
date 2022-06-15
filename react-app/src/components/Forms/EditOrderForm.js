@@ -5,19 +5,19 @@ import { useHistory } from "react-router-dom";
 
 const EditOrderForm = ({setShowModal, order}) => {
     const dispatch = useDispatch()
+    console.log(order)
     const [ isLoaded, setIsLoaded ] = useState(false)
-    const [ firstName, setfirstName] = useState("")
-    const [ lastName, setlastName] = useState("")
-    const [ shipping, setShipping] = useState("")
-    const [ city, setCity] = useState("")
-    const [ state, setState] = useState("")
+    const [ firstName, setfirstName] = useState(order.first_name)
+    const [ lastName, setlastName] = useState(order.last_name)
+    const [ shipping, setShipping] = useState(order.shipping)
+    const [ city, setCity] = useState(order.city)
+    const [ state, setState] = useState(order.state)
 
     const user = useSelector((state)=> state.session.user)
 
     useEffect(()=>{
         console.log("use effect runs here")
-
-        dispatch(getOrders(user.id)).then(()=>setIsLoaded(true))
+        setIsLoaded(true)
     }, [dispatch, user.id])
 
 

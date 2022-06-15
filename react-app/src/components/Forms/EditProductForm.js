@@ -5,12 +5,12 @@ import { getAllProducts, updateProduct } from "../../store/product";
 
 const EditProductForm = ({setShowModal,product}) => {
     const dispatch = useDispatch()
+    console.log(product)
     const [ isLoaded, setIsLoaded ] = useState(false)
     const [image, setImage] = useState(null);
-
-    const [name, setName] = useState("");
-    const [price, setPrice] = useState("");
-    const [description, setDescription] = useState("");
+    const [name, setName] = useState(product.product_name);
+    const [price, setPrice] = useState(product.price);
+    const [description, setDescription] = useState(product.description);
 
     const [errorName, setErrorName] = useState([])
     const [errorDescription, setErrorDescription] = useState([])

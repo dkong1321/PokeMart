@@ -32,14 +32,16 @@ const OrderDisplay = () => {
     const formatDate = (date) => {
         // const newDate = moment(date).format("MM/DD/YY hh:mm a");
         const newDate = moment(date).format("dddd MM/DD/YY");
-        console.log(date)
         return newDate;
     };
 
     const checkDelivered = (date) =>{
-        const orderDate = moment(date)
-        const currentDate = moment().diff(date, 'days');
-        return currentDate > 1
+        // const orderDate = moment(date)
+        const currentTime = moment()
+        let hours = currentTime.diff(date,'hours')
+        console.log(hours)
+
+        return hours > 7
     }
 
 
