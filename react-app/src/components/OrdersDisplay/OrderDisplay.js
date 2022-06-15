@@ -9,15 +9,10 @@ import EditOrderForm from "../Forms/EditOrderForm"
 const OrderDisplay = () => {
     const dispatch = useDispatch()
     const [ isLoaded, setIsLoaded ] = useState(false)
-    const [productShow, setProductShow] = useState(false)
-    const [showModal, setShowModal] = useState(false);
 
     // Form info
-
     const user = useSelector((state)=> state.session.user)
     const orders = useSelector((state)=> state.orders)
-    const cart = useSelector((state)=> state.cart)
-    const cartTotal = useSelector((state=>state.cart.cartTotal))
 
     useEffect(()=>{
         dispatch(getOrders(user.id)).then(()=>setIsLoaded(true))
@@ -39,7 +34,6 @@ const OrderDisplay = () => {
         // const orderDate = moment(date)
         const currentTime = moment()
         let hours = currentTime.diff(date,'hours')
-        console.log(hours)
 
         return hours > 7
     }

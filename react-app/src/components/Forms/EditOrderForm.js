@@ -9,9 +9,15 @@ const EditOrderForm = ({setShowModal, order}) => {
     const [ isLoaded, setIsLoaded ] = useState(false)
     const [ firstName, setfirstName] = useState(order.first_name)
     const [ lastName, setlastName] = useState(order.last_name)
-    const [ shipping, setShipping] = useState(order.shipping)
+    const [ shipping, setShipping] = useState(order.shipping_address)
     const [ city, setCity] = useState(order.city)
     const [ state, setState] = useState(order.state)
+
+    const [firstNameError, setFirstNameError] =useState([])
+    const [lastNameError, setLastNameError] =useState([])
+    const [shippingError, setShippingError] =useState([])
+    const [cityError, setCityError] =useState([])
+
 
     const user = useSelector((state)=> state.session.user)
 
@@ -24,6 +30,43 @@ const EditOrderForm = ({setShowModal, order}) => {
     const editShippingOrder = (e) => {
         e.preventDefault()
         const order_id = order.id
+        const firstNameErrorValidation = []
+        const lastNameErrorValidation = []
+        const shippingErrorValidation = []
+        const cityErrorValidation = []
+        if(!firstName.length){
+            firstNameErrorValidation.push("First name is required")
+        }
+        if(firstName.length>40){
+            firstNameErrorValidation.push("First name cannot be more than 40 characters")
+        }
+        if(!lastName.length){
+            lastNameErrorValidation.push("Last name is required")
+        }
+        if(lastName.length>40){
+            lastNameErrorValidation.push("Last name cannot be more than 40 characters")
+        }
+        if(!shipping.length){
+            shippingErrorValidation.push("Shipping address is required")
+        }
+        if(shipping.length>255){
+            shippingErrorValidation.push("Shipping address cannot be more than 255 characters")
+        }
+        if(!city.length) {
+            cityErrorValidation.push("City is required")
+        }
+
+        if(city.length > 100) {
+            cityErrorValidation.push("City cannot be more than 100 characters")
+        }
+        if(firstNameErrorValidation.length || lastNameErrorValidation.length || shippingErrorValidation.length || cityErrorValidation.length ) {
+            setFirstNameError(firstNameErrorValidation)
+            setLastNameError(lastNameErrorValidation)
+            setShippingError(shippingErrorValidation)
+            setCityError(cityErrorValidation)
+            return
+        }
+
         const data={
             shipping_address:shipping,
             first_name:firstName,
@@ -38,32 +81,37 @@ const EditOrderForm = ({setShowModal, order}) => {
         setShowModal(false)
     }
 
+
     return (
         isLoaded && (
                 <form onSubmit={editShippingOrder}>
                     <div>Edit Order</div>
                     <div className="row__input__container">
                         <div className="sub__input__container" >
-                            <label for="fname">First Name</label>
+                            <label htmlFor="fname">First Name</label>
+                            {firstNameError ? <div>{firstNameError}</div> : <></>}
                             <input id="fname" className="order__inputs" value={firstName} onChange={e=> setfirstName(e.target.value)} ></input>
                         </div>
                         <div className="sub__input__container">
-                            <label f>Last Name</label>
+                            <label htmlFor="lname">Last Name</label>
+                            {lastNameError ? <div>{lastNameError}</div> : <></>}
                             <input id="lname" className="order__inputs" value={lastName} onChange={e=> setlastName(e.target.value)} ></input>
                         </div>
                     </div>
                     <div className="sub__input__container address__input__container" >
-                        <label for="address">Address</label>
+                        <label htmlFor="address">Address</label>
+                        {shippingError ? <div>{shippingError}</div> : <></>}
                         <input id="address" className="order__inputs" value={shipping} onChange={e=> setShipping(e.target.value)}></input>
                     </div>
                     <div className="row__input__container">
                         <div className="sub__input__container">
-                            <label for="city">City</label>
+                            <label htmlFor="city">City</label>
+                            {cityError ? <div>{cityError}</div> : <></>}
                             <input id="city" className="order__inputs" value={city} onChange={e=> setCity(e.target.value)} ></input>
                         </div>
                         <div className="sub__input__container">
-                            <label for="state">State</label>
-                            <select id="state" className="order__select__input" onChange={e=>setState(e.target.value)}>
+                            <label htmlFor="state">State</label>
+                            <select id="state" value={state} className="order__select__input" onChange={e=>setState(e.target.value)}>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
                                 <option value="AZ">Arizona</option>

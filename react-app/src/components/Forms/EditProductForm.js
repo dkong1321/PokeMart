@@ -49,7 +49,7 @@ const EditProductForm = ({setShowModal,product}) => {
 
         }
         if(price<1){
-            errorPriceValidation.push("Price cannot be negative")
+            errorPriceValidation.push("Price cannot be negative or 0")
 
         }
         if(price === null){
@@ -104,7 +104,7 @@ const EditProductForm = ({setShowModal,product}) => {
                         <input type='number' value={price} onChange={e => setPrice(e.target.value)} pattern='[0-9]+(\\.[0-9][0-9]?)?' placeholder="0.00" min="0.00" step="0.01"/>
                     </div>
                     <div>
-                        <label>Description</label>
+                        <label>Change Image if Needed</label>
                         {errorDescription ? <div>{errorDescription}</div> : <></>}
                         <input type ="file" accept="image/*" onChange={updateImage}/>
                     </div>
