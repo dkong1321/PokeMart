@@ -123,7 +123,7 @@ const SingleProductDisplay = () => {
                         <span className="stars" style={{ "--ratingValue": `${avgRating()}` }}></span>
                         <div>{Object.values(product.reviews).length} Reviews</div>
                         <div className="single__product__title"> {product.product_name} </div>
-                        <div>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
+                        <div>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
                         <div>{product.description}</div>
                     </div>
                 </div>

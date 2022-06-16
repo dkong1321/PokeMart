@@ -11,7 +11,7 @@ import { authenticate } from './store/session';
 import { getCart } from './store/cart';
 // import Products from './components/test_product';
 // import Reviews from './components/test_review';
-import Orders from './components/test_order';
+// import Orders from './components/test_order';
 import ProductsDisplay from './components/ProductDisplay/ProductDisplay';
 import SingleProductDisplay from './components/SingleProductDisplay/SingleProductDisplay';
 import CartDisplay from './components/CartDisplay/CartDisplay';

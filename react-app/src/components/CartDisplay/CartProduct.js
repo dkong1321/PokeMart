@@ -46,8 +46,8 @@ function CartProduct ({product, count }) {
                     ></input>
                 <button className="plus__minus__buttons" onClick={(e)=>decrementQty(e)}><i className="fa-solid fa-minus"></i></button>
             </div>
-            <div>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(product.product.price)}</div>
-            <div>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(product.product.price*quantity)}</div>
+            <div>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.product.price)}</div>
+            <div>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.product.price*quantity)}</div>
         </div>
     )
 }

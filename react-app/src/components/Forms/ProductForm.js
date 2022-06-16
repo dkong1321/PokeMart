@@ -5,13 +5,13 @@ import { useHistory } from "react-router-dom";
 
 const ProductForm = ({setShowModal}) => {
     const dispatch = useDispatch()
-    const [ isLoaded, setIsLoaded ] = useState(false)
+    // const [ isLoaded, setIsLoaded ] = useState(false)
     const [productName, setProductName] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
     const history = useHistory()
-    const products =Object.values(useSelector((state)=> state.products))
+    // const products =Object.values(useSelector((state)=> state.products))
     const user =useSelector((state)=> state.session.user)
 
     const [errorName, setErrorName] = useState([])
@@ -22,7 +22,7 @@ const ProductForm = ({setShowModal}) => {
 
 
     useEffect(()=>{
-        dispatch(getAllProducts()).then(()=>setIsLoaded(true))
+        dispatch(getAllProducts())
     }, [dispatch]);
 
     const makeNewProduct = async(e) => {
@@ -53,8 +53,8 @@ const ProductForm = ({setShowModal}) => {
             errorPriceValidation.push("Price cannot be negative or 0")
 
         }
-        if(price === null){
-            errorPriceValidation.push("Price cannot be negative")
+        if(price > 999999999){
+            errorPriceValidation.push("Price is seems too large please check and submit")
 
         }
 
