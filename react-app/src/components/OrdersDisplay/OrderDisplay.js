@@ -42,35 +42,40 @@ const OrderDisplay = () => {
             <div className="main__order__container">
                 <div>Your Orders</div>
                 <div className="my__order__container">
-                {Object.values(orders).map((order)=>{
-                    return (
-                        <div key={order.id} className="single__order__container">
-                            <div className="order__details__container">
-                                <div className="order__shipping__details__container">
-                                    <div className="order__heading">Shipping To:</div>
-                                    <div className="order__shipping__info" >
-                                        <div>{order.first_name} {order.last_name}</div>
-                                        <div>{order.shipping_address},</div>
-                                        <div>{order.city}, {order.state}</div>
-                                    </div>
 
-                                </div>
-                                <div className="order__date__price__info">
-                                    <div className="order__heading">Ordered On:</div>
-                                    <div>{formatDate(order.timestamp)}</div>
-                                    <div>{checkDelivered(order.timestamp)}</div>
-                                    <div className="order__heading">Order Total:</div>
-                                    <div>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(order.total_price)}</div>
-                                </div>
-                                    <div className="order__buttons">
-                                        {checkDelivered(order.timestamp) ? (<div className="completed__order__tag"><i className="fa-solid fa-circle-check check__circle"></i> Order Completed</div>):(<button className="cancel__order__button" onClick={()=> cancelOrder(order)}><i className="fa-solid fa-trash-can"></i></button>)}
-                                        {checkDelivered(order.timestamp) ? (<></>):(<EditOrderFormModal order={order}/>)}
+                {!Object.values(orders).length? <div>Make a Purchase to View Orders Here</div>:
+                    <div>
+                    {Object.values(orders).map((order)=>{
+                        return (
+                            <div key={order.id} className="single__order__container">
+                                <div className="order__details__container">
+                                    <div className="order__shipping__details__container">
+                                        <div className="order__heading">Shipping To:</div>
+                                        <div className="order__shipping__info" >
+                                            <div>{order.first_name} {order.last_name}</div>
+                                            <div>{order.shipping_address},</div>
+                                            <div>{order.city}, {order.state}</div>
+                                        </div>
+
                                     </div>
+                                    <div className="order__date__price__info">
+                                        <div className="order__heading">Ordered On:</div>
+                                        <div>{formatDate(order.timestamp)}</div>
+                                        <div>{checkDelivered(order.timestamp)}</div>
+                                        <div className="order__heading">Order Total:</div>
+                                        <div>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(order.total_price)}</div>
+                                    </div>
+                                        <div className="order__buttons">
+                                            {checkDelivered(order.timestamp) ? (<div className="completed__order__tag"><i className="fa-solid fa-circle-check check__circle"></i> Order Completed</div>):(<button className="cancel__order__button" onClick={()=> cancelOrder(order)}><i className="fa-solid fa-trash-can"></i></button>)}
+                                            {checkDelivered(order.timestamp) ? (<></>):(<EditOrderFormModal order={order}/>)}
+                                        </div>
+                                </div>
+                                <SingleOrder order={order}/>
                             </div>
-                            <SingleOrder order={order}/>
-                        </div>
-                    )
-                })}
+                        )
+                    })}
+                    </div>
+                }
                 </div>
             </div>
 
