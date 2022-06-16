@@ -7,7 +7,8 @@ cart_routes = Blueprint('carts', __name__)
 # all items in cart of a user
 @cart_routes.route('/<int:userId>')
 def my_cart(userId):
-    cart_items = Cart.query.filter(Cart.user_id == userId)
+    print(userId)
+    cart_items = Cart.query.filter(Cart.user_id == userId).all()
     print(cart_items)
     return {"cart_items": [cart_item.to_dict() for cart_item in cart_items ]}
 
@@ -15,13 +16,13 @@ def my_cart(userId):
 
 @cart_routes.route('/', methods=["POST"])
 def post_product():
-
+    print("in the add item route")
     req = request.json['data']
-    print("\n\n", req)
-
+    print("\n\n this is req \n", req)
+    print("\n\n")
     new_cart_item = Cart(
-        user_id =req["user_id"],
-        product_id=req["id"],
+        user_id =req["cartUserId"],
+        product_id=req["product"]["id"],
         quantity=1,
     )
     db.session.add(new_cart_item)
@@ -31,18 +32,19 @@ def post_product():
 
 @cart_routes.route('/<int:productId>', methods=["PUT"])
 def edit_product(productId):
+    print("\n\nin the increment item route\n\n")
     req = request.json['data']
-    product = Cart.query.filter(Cart.product_id == productId and Cart.user_id == req["cartUserId"]).first()
+    cart = Cart.query.filter(Cart.product_id == productId, Cart.user_id == req["cartUserId"]).first()
     print("\n\n req",req)
     print("\n\n", req["cartUserId"])
     print("\n\n product")
-    print("\n\n", product)
+    print("\n\n", cart)
     print("\n\n",req["quantity"])
-    product.quantity = req["quantity"]
+    cart.quantity = req["quantity"]
 
-    db.session.add(product)
+    db.session.add(cart)
     db.session.commit()
-    return product.to_dict()
+    return cart.to_dict()
 
 @cart_routes.route('/<int:cartUserId>', methods=["DELETE"])
 def clear_cart(cartUserId):

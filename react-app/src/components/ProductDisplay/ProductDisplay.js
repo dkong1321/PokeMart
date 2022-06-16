@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts } from "../../store/product";
+import {getCart} from "../../store/cart";
 import {Link} from "react-router-dom"
 import "./product_display.css"
 
@@ -9,9 +10,11 @@ const ProductsDisplay = () => {
     const [ isLoaded, setIsLoaded ] = useState(false)
     // refactor maybe
     const products =Object.values(useSelector((state)=> state.products))
-
+    // const user = useSelector((state)=>state.session.users)
     useEffect(()=>{
-        dispatch(getAllProducts()).then(()=>setIsLoaded(true))
+        dispatch(getAllProducts())
+        // dispatch(getCart(user?.id))
+        .then(()=>setIsLoaded(true))
     }, [dispatch]);
 
     return(

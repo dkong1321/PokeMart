@@ -101,23 +101,26 @@ const SingleProductDisplay = () => {
                 cartQuantity=Object.values(Object.values(cart)[2])[i]
             }
         }
+        console.log("its in the cart", inCart)
         const cartUserId = user.id
+        console.log(cartUserId)
         const quantity = cartQuantity
+        console.log(quantity)
         const myProduct = {product_id:product.id}
         if (inCart) {
+            console.log("its in the cart")
+            // setShowAdded(true)
             dispatch(setItemQuantity(myProduct, quantity+1,cartUserId))
-            setShowAdded(true)
-            setTimeout(()=>setShowAdded(false),1000)
+            // setShowAdded(false)
+            // setTimeout(()=>setShowAdded(false),2000)
 
         } else {
-            dispatch(addCartItem(product))
-            setShowAdded(true)
-            setTimeout(()=>setShowAdded(false),1000)
+            console.log("not in cart already will add")
+            dispatch(addCartItem(product, cartUserId))
+
+            // setTimeout(()=>setShowAdded(false),2000)
         }
     }
-
-
-
 
     return(
         isLoaded && (
@@ -129,52 +132,58 @@ const SingleProductDisplay = () => {
                     <div className="product__detail__info">
                         <div>{users[product?.user_id]?.username}'s Shop</div>
                         <span className="stars" style={{ "--ratingValue": `${avgRating()}` }}></span>
-                        <div>
+                        <span>{Object.values(product.reviews).length} Reviews</span>
+                        <div>{avgRating()} stars</div>
+                        <div className="single__product__title"> {product.product_name} </div>
+                        <div className="single__product__price">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
+                        <div className="single__product__description">{product.description}</div>
+                        <div className="add__cart__container">
                             {user === null ? <></>:
-                                <button className="add__cart__button" onClick={() => addToCart()}><i className="fa-solid fa-cart-plus"></i></button>
+                                <button className="add__cart__button" onClick={() => addToCart()}>ADD TO CART</button>
                             }
                             {showAdded ?
                                 <div className="added__cart__message">added to cart</div>:
                                 <></>
                             }
                         </div>
-                        <div>{Object.values(product.reviews).length} Reviews</div>
-                        <div className="single__product__title"> {product.product_name} </div>
-                        <div>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
-                        <div>{product.description}</div>
                     </div>
                 </div>
-                {user === null || user.id === product.user_id ? <></>:
-                    <>
-                        <div>Post Form for Review</div>
-                        <form onSubmit={addNewReview}>
-                            {errorDescription ? <div>{errorDescription}</div> : <></>}
-                            {errorRating ? <div>{errorRating}</div> : <></>}
-                            <ReactStars value={rating} count={5} onChange={ratingChanged} size={24} color2={"#e0730d"} color1={'#abb1d8'} half={false} />
-                            <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="enter description" rows="5" cols="50" />
-                            <button type="submit">Submit</button>
-                        </form>
-                    </>
-                }
-
-                <div className="product__review__container">
-                {Object.values(product.reviews).reverse().map((review)=>{
-                    return (
-                        <div key={review.id} className="product__review__card">
-                            <div>
-                                <div>{users[review?.user_id]?.username} - {formatDate(review?.timestamp)}</div>
-                            </div>
-                            <span className="stars" style={{ "--ratingValue": `${review.rating}` }}></span>
-                            <div>Description: {review.description}</div>
-                            {review?.user_id===user?.id ? (
+                <div className="review__form__container">
+                    <div>
+                        {user === null || user.id === product.user_id ? <></>:
+                            <>
+                                <div>Post Form for Review</div>
+                                <form onSubmit={addNewReview}>
+                                    {errorDescription ? <div>{errorDescription}</div> : <></>}
+                                    {errorRating ? <div>{errorRating}</div> : <></>}
+                                    <ReactStars value={rating} count={5} onChange={ratingChanged} size={24} color2={"#e0730d"} color1={'#abb1d8'} half={false} />
+                                    <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="enter description" rows="5" cols="50" />
+                                    <button type="submit">Submit</button>
+                                </form>
+                            </>
+                        }
+                    </div>
+                </div>
+                <div className="main__reviews__container">
+                    <div className="product__review__container">
+                    {Object.values(product.reviews).reverse().map((review)=>{
+                        return (
+                            <div key={review.id} className="product__review__card">
                                 <div>
-                                <button onClick={() => eraseReview(review)}>delete</button>
-                                <EditReviewFormModal review={review} />
+                                    <div>{users[review?.user_id]?.username} - {formatDate(review?.timestamp)}</div>
                                 </div>
-                            ): (<></>)}
-                        </div>
-                    )
-                })}
+                                <span className="stars" style={{ "--ratingValue": `${review.rating}` }}></span>
+                                <div>Description: {review.description}</div>
+                                {review?.user_id===user?.id ? (
+                                    <div>
+                                    <button onClick={() => eraseReview(review)}>delete</button>
+                                    <EditReviewFormModal review={review} />
+                                    </div>
+                                ): (<></>)}
+                            </div>
+                        )
+                    })}
+                    </div>
                 </div>
             </div>
         )

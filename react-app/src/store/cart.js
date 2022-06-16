@@ -35,14 +35,13 @@ const removeCartItem = (product) => {
 
 }
 
-const emptyCart = () => {
+export const emptyCart = () => {
     return {
         type: EMPTY_CART,
     }
 }
 
 export const getCart = (data) => async (dispatch) => {
-    const data = 1
     const response = await fetch(`/api/carts/${data}`)
 
     if (response.ok) {
@@ -53,11 +52,13 @@ export const getCart = (data) => async (dispatch) => {
 }
 
 
-export const addCartItem = (data) => async (dispatch) => {
+export const addCartItem = (product, cartUserId) => async (dispatch) => {
+    const data = {product, cartUserId}
+    console.log(data)
     const response = await fetch(`/api/carts/`,{
         method:"POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ data })
+        body: JSON.stringify({data})
     })
 
     if (response.ok) {
@@ -69,7 +70,8 @@ export const addCartItem = (data) => async (dispatch) => {
 
 export const setItemQuantity = (product, quantity, cartUserId) => async (dispatch) => {
     const productId = product.product_id
-    const data = {product,quantity, cartUserId}
+    const data = {productId,quantity, cartUserId}
+    console.log(data)
     const response = await fetch(`/api/carts/${productId}`,{
         method:"PUT",
         headers: { "Content-Type": "application/json" },
