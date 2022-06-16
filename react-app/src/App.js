@@ -84,6 +84,7 @@ function App() {
           <SplashPage/>
         </ProtectedRoute>
       </Switch>
+      {/* footer here later */}
     </BrowserRouter>
   );
 }

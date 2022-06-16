@@ -7,6 +7,9 @@
     /* border: 3px red solid; */
     /* background-color: #BF4342; */
     background-color: #4A4E69;
+    position: sticky;
+    top: 0;
+    width: 100%;
 }
 
 .nav__link__container__right {
