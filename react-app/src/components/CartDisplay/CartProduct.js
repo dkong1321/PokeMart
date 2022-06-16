@@ -10,6 +10,7 @@ function CartProduct ({product, count }) {
     const cartUserId = user.id
     useEffect(()=>{
         setQuantity(count)
+
     }, [count])
 
     const incrementQty = (e) =>{
