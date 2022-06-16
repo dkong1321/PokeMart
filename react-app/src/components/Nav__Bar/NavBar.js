@@ -12,10 +12,12 @@ import { getCart } from '../../store/cart';
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
   const cartProducts = (useSelector((state)=>state.cart.products))
+  const user = useSelector((state)=>state.session.user)
+  console.log(user)
   const dispatch = useDispatch()
   useEffect(()=>{
-    dispatch(getCart())
-  },[dispatch])
+    dispatch(getCart(user?.id))
+  },[dispatch, user])
   return (
     <nav className='nav__bar__container'>
         <div className='nav__link__container__left'>
