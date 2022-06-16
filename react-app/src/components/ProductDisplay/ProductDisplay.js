@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts } from "../../store/product";
-import {getCart} from "../../store/cart";
 import {Link} from "react-router-dom"
 import "./product_display.css"
 

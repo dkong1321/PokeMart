@@ -31,9 +31,6 @@ function CartProduct ({product, count }) {
         dispatch(deleteCartItem(product, cartUserId))
     }
 
-    const updateQty = () => {
-        dispatch(setItemQuantity(product, quantity,cartUserId))
-    }
     return(
         <div className="cart__product__container">
             <img className="product__cart__image" src={product.product.product_image_url} alt=""></img>
