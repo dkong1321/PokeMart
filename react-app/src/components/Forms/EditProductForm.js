@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllProducts, updateProduct } from "../../store/product";
+import { updateProduct } from "../../store/product";
 // import "./single_product.css"
 
 const EditProductForm = ({setShowModal,product}) => {
@@ -105,7 +105,6 @@ const EditProductForm = ({setShowModal,product}) => {
                     </div>
                     <div>
                         <label>Change Image if Needed</label>
-                        {errorDescription ? <div>{errorDescription}</div> : <></>}
                         <input type ="file" accept="image/*" onChange={updateImage}/>
                     </div>
                     <button type="submit">Submit</button>

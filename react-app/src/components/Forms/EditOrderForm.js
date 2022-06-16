@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {getOrders, postOrder, editOrder, deleteOrder} from "../../store/order"
-import { useHistory } from "react-router-dom";
+import {editOrder} from "../../store/order"
 
 const EditOrderForm = ({setShowModal, order}) => {
     const dispatch = useDispatch()
@@ -34,6 +33,7 @@ const EditOrderForm = ({setShowModal, order}) => {
         const lastNameErrorValidation = []
         const shippingErrorValidation = []
         const cityErrorValidation = []
+
         if(!firstName.length){
             firstNameErrorValidation.push("First name is required")
         }
@@ -49,15 +49,14 @@ const EditOrderForm = ({setShowModal, order}) => {
         if(!shipping.length){
             shippingErrorValidation.push("Shipping address is required")
         }
-        if(shipping.length>255){
-            shippingErrorValidation.push("Shipping address cannot be more than 255 characters")
+        if(shipping.length>40){
+            shippingErrorValidation.push("Shipping address cannot be more than 40 characters")
         }
         if(!city.length) {
             cityErrorValidation.push("City is required")
         }
-
-        if(city.length > 100) {
-            cityErrorValidation.push("City cannot be more than 100 characters")
+        if(city.length > 30) {
+            cityErrorValidation.push("City cannot be more than 20 characters")
         }
         if(firstNameErrorValidation.length || lastNameErrorValidation.length || shippingErrorValidation.length || cityErrorValidation.length ) {
             setFirstNameError(firstNameErrorValidation)

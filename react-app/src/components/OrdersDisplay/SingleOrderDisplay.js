@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {getOrders, deleteOrder} from "../../store/order"
-import moment from "moment";
+import { useDispatch } from "react-redux";
 import "./order_display.css"
 
 const SingleOrder = ({order}) => {
     const dispatch = useDispatch()
-    const [ isLoaded, setIsLoaded ] = useState(false)
     const [productShow, setProductShow] = useState(false)
     // Form info
 
-    const user = useSelector((state)=> state.session.user)
 
     useEffect(()=>{
-        dispatch(getOrders(user.id)).then(()=>setIsLoaded(true))
+        // setIsLoaded(true)
         // warning
     }, [dispatch])
 
     return (
         <div>
-            <div className="order__see__more" onClick={()=>setProductShow(!productShow)}><i className="fa-solid fa-circle-chevron-down"></i></div>
+            {Object.values(order.products).length ?
+                <div>
+                    <div className="order__see__more" onClick={()=>setProductShow(!productShow)}><i className="fa-solid fa-circle-chevron-down"></i></div>
+                </div>
+            :<div>Listing has been removed</div>}
+            {/* <div className="order__see__more" onClick={()=>setProductShow(!productShow)}><i className="fa-solid fa-circle-chevron-down"></i></div> */}
             {Object.values(order.products).length ?
             <div>
             {Object.values(order.products).map((product)=>{
@@ -36,7 +37,7 @@ const SingleOrder = ({order}) => {
                 )
             })}
             </div>
-            : <div>listing has been removed</div>}
+            : <></>}
         </div>
     )
 

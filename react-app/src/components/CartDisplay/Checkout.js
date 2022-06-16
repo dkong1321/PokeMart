@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch , useSelector} from "react-redux"
-import CartProduct from "./CartProduct"
 import AddOrderForm from "./AddOrderForm"
-import { NavLink } from "react-router-dom"
 import "./checkout.css"
 // import {clearCart} from "../../store/cart"
 const Checkout = () => {
@@ -11,7 +9,6 @@ const Checkout = () => {
     const cartProducts = (useSelector((state)=>state.cart.products))
     const cartCounts = useSelector((state=>state.cart.count))
     const cartTotal = useSelector((state=>state.cart.cartTotal))
-    // const [quantity, setQuantity] = useState(count)
     const getTotal = () =>{
         const initalVal = 0
         const myCartTotal = Object.values(cartTotal).reduce(
@@ -46,17 +43,17 @@ const Checkout = () => {
                     <div className="co__product__cart__description">{product.product.description}</div>
                     </div>
                         <div>{cartCounts[product.id]}</div>
-                        <div>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(product.product.price*cartCounts[product.id])}</div>
+                        <div>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.product.price*cartCounts[product.id])}</div>
                     </div>
                 </div>
                         )
                     }
                     )}
                     <div className="order__price__details">
-                        <div className="">SubTotal :{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(getTotal())}</div>
-                        <div className="">Tax :{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(getTotal()*.10)}</div>
+                        <div className="">SubTotal :{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(getTotal())}</div>
+                        <div className="">Tax :{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(getTotal()*.10)}</div>
                         <div className="black__line"></div>
-                        <div className="cart__total__price">Total :{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(getTotal()*1.10)}</div>
+                        <div className="cart__total__price">Total :{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(getTotal()*1.10)}</div>
                     </div>
                 </div>
             </div>

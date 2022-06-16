@@ -14,8 +14,12 @@ const AddOrderForm = () => {
     const [ city, setCity] = useState("")
     const [ state, setState] = useState("")
 
+    const [firstNameError, setFirstNameError] =useState([])
+    const [lastNameError, setLastNameError] =useState([])
+    const [shippingError, setShippingError] =useState([])
+    const [cityError, setCityError] =useState([])
+
     const user = useSelector((state)=> state.session.user)
-    const orders = useSelector((state)=> state.orders)
     const cart = useSelector((state)=> state.cart)
     const cartTotal = useSelector((state=>state.cart.cartTotal))
     const history = useHistory()
@@ -40,6 +44,44 @@ const AddOrderForm = () => {
         for (let i=0; i<cartItems.length; i++) {
             cartItems[i].quantity=cartItemQty[i]
         }
+
+        const firstNameErrorValidation = []
+        const lastNameErrorValidation = []
+        const shippingErrorValidation = []
+        const cityErrorValidation = []
+
+        if(!firstName.length){
+            firstNameErrorValidation.push("First name is required")
+        }
+        if(firstName.length>40){
+            firstNameErrorValidation.push("First name cannot be more than 40 characters")
+        }
+        if(!lastName.length){
+            lastNameErrorValidation.push("Last name is required")
+        }
+        if(lastName.length>40){
+            lastNameErrorValidation.push("Last name cannot be more than 40 characters")
+        }
+        if(!shipping.length){
+            shippingErrorValidation.push("Shipping address is required")
+        }
+        if(shipping.length>40){
+            shippingErrorValidation.push("Shipping address cannot be more than 40 characters")
+        }
+        if(!city.length) {
+            cityErrorValidation.push("City is required")
+        }
+        if(city.length > 30) {
+            cityErrorValidation.push("City cannot be more than 20 characters")
+        }
+        if(firstNameErrorValidation.length || lastNameErrorValidation.length || shippingErrorValidation.length || cityErrorValidation.length ) {
+            setFirstNameError(firstNameErrorValidation)
+            setLastNameError(lastNameErrorValidation)
+            setShippingError(shippingErrorValidation)
+            setCityError(cityErrorValidation)
+            return
+        }
+
         const data={
             shipping_address:shipping,
             first_name:firstName,
@@ -63,20 +105,24 @@ const AddOrderForm = () => {
                     <div className="row__input__container">
                         <div className="sub__input__container" >
                             <label for="fname">First Name</label>
+                            {firstNameError ? <div>{firstNameError}</div> : <></>}
                             <input id="fname" className="order__inputs" value={firstName} onChange={e=> setfirstName(e.target.value)} ></input>
                         </div>
                         <div className="sub__input__container">
                             <label f>Last Name</label>
+                            {lastNameError ? <div>{lastNameError}</div> : <></>}
                             <input id="lname" className="order__inputs" value={lastName} onChange={e=> setlastName(e.target.value)} ></input>
                         </div>
                     </div>
                     <div className="sub__input__container address__input__container" >
                         <label for="address">Address</label>
+                        {shippingError ? <div>{shippingError}</div> : <></>}
                         <input id="address" className="order__inputs" value={shipping} onChange={e=> setShipping(e.target.value)}></input>
                     </div>
                     <div className="row__input__container">
                         <div className="sub__input__container">
                             <label for="city">City</label>
+                            {cityError ? <div>{cityError}</div> : <></>}
                             <input id="city" className="order__inputs" value={city} onChange={e=> setCity(e.target.value)} ></input>
                         </div>
                         <div className="sub__input__container">

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch , useSelector} from "react-redux"
 import CartProduct from "./CartProduct"
-import AddOrderForm from "./AddOrderForm"
 import { NavLink } from "react-router-dom"
 import { clearCart } from "../../store/cart"
 
@@ -56,10 +55,10 @@ const CartDisplay = () => {
                     </div>
 
                     <div className="order__price__details">
-                        <div className="">SubTotal :{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(getTotal())}</div>
-                        <div className="">Tax :{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(getTotal()*.10)}</div>
+                        <div className="">SubTotal :{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(getTotal())}</div>
+                        <div className="">Tax :{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(getTotal()*.10)}</div>
                         <div className="black__line"></div>
-                        <div className="cart__total__price">Total :{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(getTotal()*1.10)}</div>
+                        <div className="cart__total__price">Total :{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(getTotal()*1.10)}</div>
                         <NavLink className="proceed__checkout__button" to='/checkout' exact={true}>Proceed to Checkout</NavLink>
                     </div>
                 </div>

@@ -16,6 +16,7 @@ const LoginForm = () => {
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+      return
     }
     history.push('/products')
 
@@ -25,7 +26,7 @@ const LoginForm = () => {
     e.preventDefault();
     const demoEmail = "propaneprince@aa.io"
     const demoPassword = "password"
-    const data = await dispatch(login(demoEmail, demoPassword));
+    dispatch(login(demoEmail, demoPassword));
     history.push('/products')
   };
 
