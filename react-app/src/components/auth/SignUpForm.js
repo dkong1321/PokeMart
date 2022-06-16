@@ -130,7 +130,7 @@ const SignUpForm = ({setShowModal}) => {
           <label>Email</label>
           {emailError ? <div>{emailError}</div> : <></>}
           <input
-            type='text'
+            type='email'
             name='email'
             onChange={updateEmail}
             value={email}

@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams} from "react-router-dom";
-import {getReviews, createReview, editReview, deleteReview} from "../../store/reviews"
+import {getReviews, createReview, deleteReview} from "../../store/reviews"
 import {getUsers} from "../../store/users"
 import {addCartItem, setItemQuantity } from "../../store/cart";
 
 import ReactStars from 'react-stars'
-import moment from "moment";
 import "./single_product.css"
 import EditReviewFormModal from "../Modals/EditReviewFormModal";
 
@@ -15,9 +14,7 @@ const SingleProductDisplay = () => {
     const [isLoaded, setIsLoaded] = useState(false)
     const [rating, setRating] =useState(0)
     const [description, setDescription] = useState("")
-    const [showAdded, setShowAdded] = useState(false)
     const [ productQuantity, setProductQuantity] = useState()
-    const [ averageRating, setAverageRating] = useState(0)
 
     const [errorDescription, setErrorDescription] = useState([])
     const [errorRating, setErrorRating] = useState([])
@@ -36,8 +33,6 @@ const SingleProductDisplay = () => {
 
     const addNewReview = async(e) => {
         e.preventDefault()
-        console.log(!rating)
-        console.log(!description>255)
 
         const errorDescriptionValidation =[]
         const errorRatingValidation = []
@@ -76,8 +71,6 @@ const SingleProductDisplay = () => {
     }
 
     const formatDate = (date) => {
-        // console.log(moment(date))
-        // const newDate = moment(date).format("MM/DD/YY");
         const newDate = date.slice(0,-12)
         return newDate;
     };
@@ -90,7 +83,6 @@ const SingleProductDisplay = () => {
         reviews.forEach((review)=>{
             totalRating+=review.rating
         })
-        console.log(totalRating)
         return Math.round(totalRating/length*2)/2
     }
 
@@ -105,12 +97,9 @@ const SingleProductDisplay = () => {
                 cartQuantity=Object.values(Object.values(cart)[2])[i]
             }
         }
-        console.log("its in the cart", inCart)
         const cartUserId = user.id
-        console.log(cartUserId)
         const quantity = cartQuantity
         setProductQuantity(quantity)
-        console.log(quantity)
         const myProduct = {product_id:product.id}
         if (inCart) {
             console.log("its in the cart")
@@ -119,8 +108,6 @@ const SingleProductDisplay = () => {
         } else {
             console.log("not in cart already will add")
             dispatch(addCartItem(product, cartUserId))
-
-            // setTimeout(()=>setShowAdded(false),2000)
         }
     }
 

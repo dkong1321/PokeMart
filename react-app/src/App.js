@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/Nav__Bar/NavBar';
@@ -8,10 +8,6 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-import { getCart } from './store/cart';
-// import Products from './components/test_product';
-// import Reviews from './components/test_review';
-// import Orders from './components/test_order';
 import ProductsDisplay from './components/ProductDisplay/ProductDisplay';
 import SingleProductDisplay from './components/SingleProductDisplay/SingleProductDisplay';
 import CartDisplay from './components/CartDisplay/CartDisplay';
@@ -25,7 +21,6 @@ import SplashPage from './components/SplashPage/SplashPage';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
-  const user = useSelector((state)=> state.session.user)
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
