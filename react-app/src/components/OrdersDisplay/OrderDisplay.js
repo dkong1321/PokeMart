@@ -29,10 +29,11 @@ const OrderDisplay = () => {
     };
 
     const checkDelivered = (date) =>{
-        const currentTime = moment()
-        let hours = currentTime.diff(date,'hours')
-
-        return hours > 7
+        const orderDate = new Date(date)
+        const currentTime = new Date()
+        const diffTime = currentTime - orderDate
+        console.log(diffTime)
+        return diffTime/360000 > 1
     }
 
 

@@ -27,6 +27,7 @@ def add_order():
         city=req["city"],
         state=req["state"],
         user_id = req['user_id'],
+        timestamp = req["timestamp"]
     )
     db.session.add(new_order)
     db.session.commit()

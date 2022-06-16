@@ -15,6 +15,9 @@ function CartProduct ({product, count }) {
 
     const incrementQty = (e) =>{
         e.preventDefault()
+        if(quantity>8) {
+            return
+        }
         dispatch(setItemQuantity(product, quantity+1,cartUserId))
     }
 
@@ -42,9 +45,10 @@ function CartProduct ({product, count }) {
 
             <div>
                 <button  className="plus__minus__buttons" onClick={(e)=>incrementQty(e)}><i className="fa-solid fa-plus"></i></button>
-                <input className="cart__product__input" type="number" value={quantity} onChange={(e)=>setQuantity(Number(e.target.value))}
-                     onBlur={() => updateQty()} min="1" max="10" increment="1"
-                    ></input>
+                <div>{quantity}</div>
+                {/* <input className="cart__product__input" type="number" value={quantity} onChange={(e)=>setQuantity(Number(e.target.value))}
+                     onBlur={() => updateQty()} min={1} max={9} increment={1}
+                    ></input> */}
                 <button className="plus__minus__buttons" onClick={(e)=>decrementQty(e)}><i className="fa-solid fa-minus"></i></button>
             </div>
             <div>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.product.price)}</div>

@@ -20,6 +20,7 @@ import Checkout from './components/CartDisplay/Checkout';
 import EditOrderForm from './components/Forms/EditOrderForm';
 import MyProducts from './components/MyProducts/MyProductsDisplay';
 import EditProductForm from './components/Forms/EditProductForm';
+import SplashPage from './components/SplashPage/SplashPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -41,7 +42,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <SplashPage/>
         </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -80,7 +81,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <SplashPage/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

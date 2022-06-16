@@ -111,6 +111,20 @@
     margin: 5px 0px;
 }
 
+.disabled__cart__button{
+    background: none;
+    /* border: 4px red solid; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #2e2c2c;
+    background-color: #d8cc8a;
+    width: 160px;
+    height: 50px;
+}
 .add__cart__button{
     background: none;
     /* border: 4px red solid; */
@@ -121,6 +135,10 @@
     background-color: #eccc11;
     width: 160px;
     height: 50px;
+}
+
+.add__cart__button:hover{
+    cursor: pointer;
 }
 
 .add__cart__container{
