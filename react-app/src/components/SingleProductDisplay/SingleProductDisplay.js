@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import {getReviews, createReview, editReview, deleteReview} from "../../store/reviews"
 import {getUsers} from "../../store/users"
 import {addCartItem, setItemQuantity } from "../../store/cart";
@@ -8,28 +8,53 @@ import {addCartItem, setItemQuantity } from "../../store/cart";
 import ReactStars from 'react-stars'
 import moment from "moment";
 import "./single_product.css"
+import EditReviewFormModal from "../Modals/EditReviewFormModal";
 
 const SingleProductDisplay = () => {
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(false)
-    const [rating, setRating] =useState(1)
+    const [rating, setRating] =useState()
     const [description, setDescription] = useState("")
+    const [showAdded, setShowAdded] = useState(false)
 
-    const [editRating, setEditRating] =useState(1)
-    const [editDescription, setEditDescription] = useState("")
+    const [errorDescription, setErrorDescription] = useState([])
+    const [errorRating, setErrorRating] = useState([])
+
+
 
     const productId = useParams().productId
     const product = (useSelector((state)=> state.currProduct))
     const user = useSelector((state)=>state.session.user)
     const users = (useSelector((state)=>state.users))
     const cart = (useSelector((state)=>state.cart))
-    console.log(user)
+    console.log(user.id)
+    console.log(product.user_id)
     useEffect(()=>{
         dispatch(getReviews(productId)).then(()=>dispatch(getUsers())).then(()=> setIsLoaded(true))
     }, [dispatch, productId])
 
     const addNewReview = async(e) => {
         e.preventDefault()
+
+        const errorDescriptionValidation =[]
+        const errorRatingValidation = []
+        if(!description.length){
+            errorDescriptionValidation.push("Review description cannot be empty")
+        }
+        if(!description.length>255){
+            errorDescriptionValidation.push("Review description cannot be more than 255 characters")
+        }
+        if(!rating){
+            errorRatingValidation.push("Please select a start rating")
+
+        }
+
+        if (errorDescriptionValidation.length || errorRatingValidation) {
+            setErrorDescription(errorDescriptionValidation)
+            setErrorRating(errorRatingValidation)
+            return
+        }
+
         const data = {
             rating,
             description,
@@ -41,22 +66,6 @@ const SingleProductDisplay = () => {
 
     const ratingChanged = (rating) => {
         setRating(rating)
-    }
-
-    const editRatingChanged = (editRating) => {
-        setEditRating(editRating)
-    }
-
-    const editMyReview = async(e) => {
-        e.preventDefault()
-        const data = {
-            editRating,
-            editDescription,
-            user_id:user.id,
-            product_id:productId,
-            review_id:5
-        }
-        dispatch(editReview(data))
     }
 
     const eraseReview = async (review) => {
@@ -74,7 +83,6 @@ const SingleProductDisplay = () => {
         const reviews = Object.values(product.reviews)
         const length = reviews.length
         let totalRating = 0
-        console.log(reviews)
         reviews.forEach((review)=>{
             totalRating+=review.rating
         })
@@ -90,9 +98,7 @@ const SingleProductDisplay = () => {
             console.log(currCartProduct[i].product_id)
             if (currCartProduct[i].product_id === product.id){
                 inCart = true
-                console.log(i)
                 cartQuantity=Object.values(Object.values(cart)[2])[i]
-                console.log(cartQuantity)
             }
         }
         const cartUserId = user.id
@@ -100,8 +106,13 @@ const SingleProductDisplay = () => {
         const myProduct = {product_id:product.id}
         if (inCart) {
             dispatch(setItemQuantity(myProduct, quantity+1,cartUserId))
+            setShowAdded(true)
+            setTimeout(()=>setShowAdded(false),1000)
+
         } else {
             dispatch(addCartItem(product))
+            setShowAdded(true)
+            setTimeout(()=>setShowAdded(false),1000)
         }
     }
 
@@ -117,20 +128,28 @@ const SingleProductDisplay = () => {
                     </div>
                     <div className="product__detail__info">
                         <div>{users[product?.user_id]?.username}'s Shop</div>
-                        {user === null ? <></>:
-                        <button onClick={() => addToCart()}><i className="fa-solid fa-cart-plus"></i></button>
-                        }
                         <span className="stars" style={{ "--ratingValue": `${avgRating()}` }}></span>
+                        <div>
+                            {user === null ? <></>:
+                                <button className="add__cart__button" onClick={() => addToCart()}><i className="fa-solid fa-cart-plus"></i></button>
+                            }
+                            {showAdded ?
+                                <div className="added__cart__message">added to cart</div>:
+                                <></>
+                            }
+                        </div>
                         <div>{Object.values(product.reviews).length} Reviews</div>
                         <div className="single__product__title"> {product.product_name} </div>
                         <div>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
                         <div>{product.description}</div>
                     </div>
                 </div>
-                {user === null ? <></>:
+                {user === null || user.id === product.user_id ? <></>:
                     <>
                         <div>Post Form for Review</div>
                         <form onSubmit={addNewReview}>
+                            {errorDescription ? <div>{errorDescription}</div> : <></>}
+                            {errorRating ? <div>{errorRating}</div> : <></>}
                             <ReactStars value={rating} count={5} onChange={ratingChanged} size={24} color2={"#e0730d"} color1={'#abb1d8'} half={false} />
                             <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="enter description" rows="5" cols="50" />
                             <button type="submit">Submit</button>
@@ -138,12 +157,6 @@ const SingleProductDisplay = () => {
                     </>
                 }
 
-                <div>Edit Form for Review</div>
-                <form onSubmit={editMyReview}>
-                    <input value={editDescription} onChange={e => setEditDescription(e.target.value)} placeholder="enter description" />
-                    <ReactStars value={editRating} count={5} onChange={editRatingChanged} size={24} color2={"#e0730d"} color1={'#abb1d8'} half={false} />
-                    <button type="submit">Submit</button>
-                </form>
                 <div className="product__review__container">
                 {Object.values(product.reviews).reverse().map((review)=>{
                     return (
@@ -154,7 +167,10 @@ const SingleProductDisplay = () => {
                             <span className="stars" style={{ "--ratingValue": `${review.rating}` }}></span>
                             <div>Description: {review.description}</div>
                             {review?.user_id===user?.id ? (
+                                <div>
                                 <button onClick={() => eraseReview(review)}>delete</button>
+                                <EditReviewFormModal review={review} />
+                                </div>
                             ): (<></>)}
                         </div>
                     )

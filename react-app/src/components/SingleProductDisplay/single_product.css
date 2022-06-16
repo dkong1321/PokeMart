@@ -55,3 +55,11 @@
     font-size: 30px;
     font-weight: 600;
 }
+
+.add__cart__button{
+    background: none;
+    border: none;
+}
+.added__cart__message{
+    opacity: 1;
+}
