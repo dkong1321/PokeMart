@@ -88,17 +88,17 @@ def seed_products():
 
     demo_order1 = Order(
         shipping_address="123 Zelma Corners", total_price =15.00, delivered=False, user_id=1,
-        first_name="Propane", last_name="Prince", city="Rockford", state="IL",
+        first_name="Propane", last_name="Prince", city="Rockford", state="IL", timestamp="Tue Jun 07 2022 20:33:17 GMT-0700 (Pacific Daylight Time)"
     )
 
     demo_order2 = Order(
         shipping_address="555 Kiehn Streets", total_price =15.00, delivered=False, user_id=1,
-        first_name="Propane", last_name="Prince", city="Chicago", state="IL",
+        first_name="Propane", last_name="Prince", city="Chicago", state="IL", timestamp="Tue Jun 07 2022 20:33:17 GMT-0700 (Pacific Daylight Time)"
     )
 
     demo_order3 = Order(
         shipping_address="333 Market", total_price =25.00, delivered=False, user_id=1,
-        first_name="Propane", last_name="Prince", city="San Francisco", state="CA",
+        first_name="Propane", last_name="Prince", city="San Francisco", state="CA", timestamp="Tue Jun 07 2022 20:33:17 GMT-0700 (Pacific Daylight Time)"
     )
 
     orderArr =[demo_order1, demo_order2, demo_order3]

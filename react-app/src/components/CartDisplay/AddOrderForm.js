@@ -81,7 +81,7 @@ const AddOrderForm = () => {
             setCityError(cityErrorValidation)
             return
         }
-
+        const timestamp = new Date()
         const data={
             shipping_address:shipping,
             first_name:firstName,
@@ -91,9 +91,11 @@ const AddOrderForm = () => {
             user_id :user.id,
             total_price : getTotal(),
             order_products: cartItems,
+            timestamp: timestamp.toString()
         }
-        dispatch(postOrder(data)).then(()=>dispatch(clearCart(user.id)))
-        history.push("/myorders")
+        dispatch(postOrder(data))
+        dispatch(clearCart(user.id))
+        .then(()=>history.push("/myorders"))
     }
 
     return (

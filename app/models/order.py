@@ -7,7 +7,7 @@ class Order(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     total_price = db.Column(db.Float,nullable=False )
-    timestamp = db.Column(db.DateTime, default=datetime.datetime.now())
+    timestamp = db.Column(db.String)
     delivered = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     first_name = db.Column(db.String(255), nullable=False)

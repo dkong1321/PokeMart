@@ -16,6 +16,7 @@ const SingleProductDisplay = () => {
     const [rating, setRating] =useState(0)
     const [description, setDescription] = useState("")
     const [showAdded, setShowAdded] = useState(false)
+    const [ productQuantity, setProductQuantity] = useState()
     const [ averageRating, setAverageRating] = useState(0)
 
     const [errorDescription, setErrorDescription] = useState([])
@@ -56,7 +57,6 @@ const SingleProductDisplay = () => {
             return
         }
 
-        console.log("finish the errors")
         const data = {
             rating,
             description,
@@ -76,7 +76,9 @@ const SingleProductDisplay = () => {
     }
 
     const formatDate = (date) => {
-        const newDate = moment(date).format("DD/MM/YY hh:mm a");
+        // console.log(moment(date))
+        // const newDate = moment(date).format("MM/DD/YY");
+        const newDate = date.slice(0,-12)
         return newDate;
     };
 
@@ -107,6 +109,7 @@ const SingleProductDisplay = () => {
         const cartUserId = user.id
         console.log(cartUserId)
         const quantity = cartQuantity
+        setProductQuantity(quantity)
         console.log(quantity)
         const myProduct = {product_id:product.id}
         if (inCart) {
@@ -140,13 +143,15 @@ const SingleProductDisplay = () => {
                         <div className="single__product__price">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
                         <div className="single__product__description">{product.description}</div>
                         <div className="add__cart__container">
-                            {user === null || user.id === product.user_id  ? <></>:
-                                <button className="add__cart__button" onClick={() => addToCart()}>ADD TO CART</button>
-                            }
-                            {showAdded ?
-                                <div className="added__cart__message">added to cart</div>:
-                                <></>
-                            }
+                            {user === null || user.id === product.user_id ?
+                             <></>:
+                                <div>
+                                    { productQuantity > 8 ?
+                                    <div className="disabled__cart__button">Max Qty in Cart</div>:
+                                    <button className="add__cart__button" onClick={() => addToCart()}>ADD TO CART</button>
+                                    }
+                                </div>
+                             }
                         </div>
                     </div>
                 </div>
