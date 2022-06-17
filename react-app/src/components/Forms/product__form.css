@@ -3,3 +3,39 @@
     height: 100px;
 
 }
+
+
+.new__product__form__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product__form__input{
+    margin-bottom: 10px;
+}
+
+.submit__product__button {
+    border: #000000 2px solid;
+    background-color: #4b5cac;
+    color: white;
+    padding: 5px;
+    width: 80px;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+}
+
+/* .add__image__input{
+    border: #000000 2px solid;
+        background-color: #4b5cac;
+        color: white;
+        padding: 5px;
+        width: 80px;
+        height: 30px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 0px;
+} */

@@ -1,0 +1,20 @@
+.signup__button {
+    border: #000000 2px solid;
+    background-color: #4b5cac;
+    color: white;
+    padding: 5px;
+    width: 80px;
+    height: 30px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    margin-left: 40px;
+}
+
+.signup__form__input {
+    margin: 5px 0px;
+}
+
+.signup__modal__container{
+    padding: 0px 20px;
+
+}

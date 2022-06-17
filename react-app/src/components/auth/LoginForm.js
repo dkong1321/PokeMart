@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { useHistory } from 'react-router-dom';
+import "./login__form.css"
 const LoginForm = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
@@ -45,36 +46,28 @@ const LoginForm = () => {
   }
 
   return (
-    <div>
+    <div className='main__login__form__container'>
       <div className='modal__form__heading'>Login In</div>
-      <form onSubmit={onLogin}>
+      <form  className="login__form" onSubmit={onLogin}>
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
-        <div>
-          <input
-            name='email'
-            type='text'
-            placeholder='Email'
-            value={email}
-            onChange={updateEmail}
+        <div className='login__email__input'>
+          <label for="email">Email</label>
+          <input id="email" name='email' type='text' placeholder='Email' value={email} onChange={updateEmail}
           />
         </div>
-        <div>
-          <input
-            name='password'
-            type='password'
-            placeholder='Password'
-            value={password}
-            onChange={updatePassword}
+        <div className='login__password__input'>
+          <label for="password">Password</label>
+          <input id="password" name='password' type='password' placeholder='Password' value={password} onChange={updatePassword}
           />
         </div>
-        <button type='submit'>Login</button>
+        <button className='login__button' type='submit'>Login</button>
       </form>
       <form onSubmit={demoLogin}>
-        <button type='submit'>Demo User</button>
+        <button className='demo__button' type='submit'>Demo User</button>
       </form>
     </div>
   );

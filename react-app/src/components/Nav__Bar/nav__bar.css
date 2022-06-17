@@ -14,8 +14,14 @@
 
 .nav__link__container__right {
     display: flex;
+    align-items: center;
     text-decoration: none;
     /* border: 3px rgb(36, 145, 94) solid; */
+}
+
+.shop__product__link{
+    color: white;
+    text-decoration: none;
 }
 
 .nav__link__container__left {
@@ -27,5 +33,27 @@
 .nav__link {
     color: white;
     /* border: 3px rgb(214, 29, 29) solid; */
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.nav__button {
+    border: #000000 2px solid;
+    background-color: #4b5cac;
+    color: white;
+    padding: 5px;
+    width: 80px;
+    height: 30px;
+    margin-left: 10px;
+
+}
+
+.add__product__button {
+    border: #000000 2px solid;
+    background-color: #4b5cac;
+    color: white;
+    padding: 5px;
+    width: 80px;
+    height: 30px;
     margin-left: 10px;
 }
