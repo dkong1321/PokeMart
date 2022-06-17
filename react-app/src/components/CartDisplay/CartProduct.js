@@ -17,7 +17,7 @@ function CartProduct ({product, count }) {
 
     const incrementQty = (e) =>{
         e.preventDefault()
-        if(quantity>8) {
+        if(quantity>9) {
             return
         }
         dispatch(setItemQuantity(product, quantity+1,cartUserId)).then(()=>dispatch(getCart(user.id)))

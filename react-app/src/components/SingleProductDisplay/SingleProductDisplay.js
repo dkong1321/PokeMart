@@ -20,6 +20,7 @@ const SingleProductDisplay = () => {
     const [errorRating, setErrorRating] = useState([])
     const [notSignedIn, setNotSignedIn] = useState([])
     const [productOwner, setProductOwner] = useState([])
+    const [ productQuantity, setProductQuantity] = useState()
 
 
     const productId = useParams().productId
@@ -28,12 +29,9 @@ const SingleProductDisplay = () => {
     const users = (useSelector((state)=>state.users))
     const cart = (useSelector((state)=>state.cart))
 
-    const [ productQuantity, setProductQuantity] = useState()
-    const testCartProduct = Object.values(cart.products)
-
-
     useEffect(()=>{
-        dispatch(getReviews(productId)).then(()=>dispatch(getUsers())).then(()=> setIsLoaded(true))
+        dispatch(getReviews(productId)).then(()=>dispatch(getUsers()))
+        .then(()=> setIsLoaded(true))
     }, [dispatch, productId])
 
 
@@ -108,6 +106,18 @@ const SingleProductDisplay = () => {
         return Math.round(totalRating/length*2)/2
     }
 
+    const currentQuant = () =>{
+        const currCartProduct = Object.values(cart.products)
+        let cartQuantity = 0
+        for (let i = 0; i < currCartProduct.length; i++ ){
+            console.log(currCartProduct[i].product_id)
+            if (currCartProduct[i].product_id === product.id){
+                cartQuantity=Object.values(Object.values(cart)[2])[i]
+                // setProductQuantity(cartQuantity)
+                return
+            }
+        }
+    }
     const addToCart = () => {
         const currCartProduct = Object.values(cart.products)
         let inCart = false
@@ -137,6 +147,14 @@ const SingleProductDisplay = () => {
     return(
         isLoaded && (
             <div>
+                {/* <div>{currentQuant()}</div> */}
+                {/* {console.log(product)}
+                {console.log(
+                    Object.values(cart.products).filter((product)=>(product.product_id === parseInt(productId)))[0].quantity
+                    )}
+                {console.log(
+                    Object.values(cart.products)
+                    )} */}
                 <div className="product__detail__container">
                     <div className="product__detail__image">
                         <img className="single__product__image" src={product.product_image_url} alt=""></img>
@@ -156,7 +174,7 @@ const SingleProductDisplay = () => {
                             {user === null || user.id === product.user_id ?
                              <></>:
                                 <div>
-                                    { productQuantity > 8 ?
+                                    { productQuantity > 8 || Object.values(cart.products).filter((product)=>(product.product_id === parseInt(productId)))[0]?.quantity>9 ?
                                     <div className="disabled__cart__button">Max Qty in Cart</div>:
                                     <button className="add__cart__button" onClick={() => addToCart()}>ADD TO CART</button>
                                     }
