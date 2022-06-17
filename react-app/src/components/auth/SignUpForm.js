@@ -35,7 +35,7 @@ const SignUpForm = ({setShowModal}) => {
         emailExists = true
       }
     })
-
+    setErrors([])
     const usernameErrorValidation = []
     const emailErrorValidation = []
     const passwordErrorValidation = []
@@ -83,7 +83,12 @@ const SignUpForm = ({setShowModal}) => {
       return
     }
     // $dk
-    dispatch(signUp(username, email, password))
+    const data = await dispatch(signUp(username, email, password))
+    if(data){
+      console.log(data)
+      setErrors(data);
+      return
+    }
     dispatch(login(email,password))
     setShowModal(false)
     history.push('/products')
