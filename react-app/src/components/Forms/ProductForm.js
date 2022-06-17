@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createProduct, getAllProducts } from "../../store/product";
 import { useHistory } from "react-router-dom";
@@ -13,7 +13,7 @@ const ProductForm = ({setShowModal}) => {
     const [productLoading, setProductLoading] = useState(false)
     const history = useHistory()
     const user =useSelector((state)=> state.session.user)
-
+    const uploadHiddenInput = useRef()
     const [errorName, setErrorName] = useState([])
     const [errorDescription, setErrorDescription] = useState([])
     const [errorPrice, setErrorPrice] = useState([])
@@ -89,6 +89,11 @@ const ProductForm = ({setShowModal}) => {
         setImage(file);
     }
 
+    const chooseImage = (e)=> {
+        e.preventDefault()
+        uploadHiddenInput.current.click()
+    }
+
     return(
         <div>
             {productLoading &&
@@ -116,10 +121,12 @@ const ProductForm = ({setShowModal}) => {
                         {errorPrice ? <div>{errorPrice}</div> : <></>}
                         <input className="product__form__input" type='number' value={price} onChange={e => setPrice(e.target.value)} pattern='[0-9]+(\\.[0-9][0-9]?)?' placeholder="0.00" min="0.00" step="0.01"/>
                     </div>
+
                     <div>
                         <label>Add Image</label>
                         {errorImage ? <div>{errorImage}</div> : <></>}
-                        <input className="product__form__input" required type ="file" accept="image/*" onChange={updateImage}/>
+                        <button className="product__image__button" onClick={chooseImage}>Choose Image</button>
+                        <input className="product__form__input" required type ="file" accept="image/*" onChange={updateImage} hidden ref={uploadHiddenInput}/>
                     </div>
 
                     <button className="submit__product__button" type="submit">Submit</button>

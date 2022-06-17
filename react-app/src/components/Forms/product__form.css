@@ -1,6 +1,6 @@
 .loading__gif {
-    width: 100px;
-    height: 100px;
+    width: 400px;
+    height: 400px;
 
 }
 
@@ -22,6 +22,18 @@
     color: white;
     padding: 5px;
     width: 80px;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+}
+
+.product__image__button {
+    border: #000000 2px solid;
+    background-color: #4b5cac;
+    color: white;
+    padding: 5px;
+    width: 100px;
     height: 30px;
     margin-top: 10px;
     margin-bottom: 10px;

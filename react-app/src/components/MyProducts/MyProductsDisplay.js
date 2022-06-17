@@ -24,9 +24,9 @@ const MyProducts = () => {
     return(
         isLoaded && (
             <div>
-                <div>Hello in ProductDisplay do I need this?</div>
                 <div className="products__display__container">
-                    {Object.values(allProducts[0]).filter((product)=> product.user_id === user.id) ?
+                    {console.log(Object.values(allProducts[0]).filter((product)=> product.user_id === user.id))}
+                    {Object.values(allProducts[0]).filter((product)=> product.user_id === user.id).length ?
                         Object.values(Object.values(allProducts[0]).filter((product)=> product.user_id === user.id)).map((product)=>{
                         return (
                             <div key={product.id} >
@@ -40,9 +40,10 @@ const MyProducts = () => {
 
                             </div>
                         )
-                    }) : <></>
+                    }) : <div>Add a Product to view it here!</div>
+
                     }
-                    {}
+
                 </div>
 
             </div>
