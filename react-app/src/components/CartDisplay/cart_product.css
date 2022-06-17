@@ -35,8 +35,7 @@
 }
 
 .order__description{
-/* margin-right: 300px; */
-width: 450px;
+width: 385px;
 }
 
 .order__price__details{
@@ -116,6 +115,11 @@ width: 450px;
 .plus__minus__buttons:hover {
     cursor: pointer;
     /* border: 1px solid rgba(1, 1, 1, .4); */
+}
+.cart__qty__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 .proceed__checkout__button {
     display: flex;

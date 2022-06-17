@@ -34,26 +34,26 @@ const EditOrderForm = ({setShowModal, order}) => {
         const shippingErrorValidation = []
         const cityErrorValidation = []
 
-        if(!firstName.length){
-            firstNameErrorValidation.push("First name is required")
+        if(!firstName.length || firstName.trim().length===0){
+            firstNameErrorValidation.push("First name cannot be empty")
         }
         if(firstName.length>40){
             firstNameErrorValidation.push("First name cannot be more than 40 characters")
         }
-        if(!lastName.length){
-            lastNameErrorValidation.push("Last name is required")
+        if(!lastName.length || lastName.trim().length===0){
+            lastNameErrorValidation.push("Last name cannot be empty")
         }
         if(lastName.length>40){
             lastNameErrorValidation.push("Last name cannot be more than 40 characters")
         }
-        if(!shipping.length){
-            shippingErrorValidation.push("Shipping address is required")
+        if(!shipping.length || shipping.trim().length===0){
+            shippingErrorValidation.push("Shipping address cannot be empty")
         }
         if(shipping.length>40){
             shippingErrorValidation.push("Shipping address cannot be more than 40 characters")
         }
-        if(!city.length) {
-            cityErrorValidation.push("City is required")
+        if(!city.length || city.trim().length===0) {
+            cityErrorValidation.push("City cannot be empty")
         }
         if(city.length > 30) {
             cityErrorValidation.push("City cannot be more than 20 characters")

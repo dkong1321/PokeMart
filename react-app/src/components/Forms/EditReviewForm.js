@@ -29,7 +29,7 @@ const EditReviewForm = ({setShowModal, review}) => {
         e.preventDefault()
 
         const errorDescriptionValidation =[]
-        if(!editDescription.length){
+        if(!editDescription.length || editDescription.trim().length===0){
             errorDescriptionValidation.push("Review description cannot be empty")
         }
         if(!editDescription.length>255){

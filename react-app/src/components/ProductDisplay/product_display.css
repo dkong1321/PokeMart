@@ -1,6 +1,7 @@
 .products__display__container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows:auto;
     border: red solid 3px;
     text-decoration: none;
     width: 1600px;

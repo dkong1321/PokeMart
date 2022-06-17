@@ -31,7 +31,7 @@ const ProductForm = ({setShowModal}) => {
         const errorDescriptionValidation =[]
         const errorPriceValidation = []
         const errorImageValidation = []
-        if(!productName.length){
+        if(!productName.length || productName.trim().length===0){
             errorNameValidation.push("Product name cannot be empty")
 
         }
@@ -39,7 +39,7 @@ const ProductForm = ({setShowModal}) => {
             errorNameValidation.push("Product name cannot be more than 30 characters")
 
         }
-        if(!description.length){
+        if(!description.length || description.trim().length===0){
             errorDescriptionValidation.push("Product description cannot be empty")
 
         }
