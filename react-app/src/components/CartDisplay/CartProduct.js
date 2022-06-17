@@ -2,6 +2,8 @@ import "./cart_product.css"
 import { useEffect, useState } from "react"
 import {useDispatch, useSelector} from "react-redux"
 import { deleteCartItem, setItemQuantity} from "../../store/cart"
+import { getCart } from "../../store/cart"
+
 
 function CartProduct ({product, count }) {
     const dispatch = useDispatch()
@@ -18,17 +20,17 @@ function CartProduct ({product, count }) {
         if(quantity>8) {
             return
         }
-        dispatch(setItemQuantity(product, quantity+1,cartUserId))
+        dispatch(setItemQuantity(product, quantity+1,cartUserId)).then(()=>dispatch(getCart(user.id)))
     }
 
     const decrementQty = (e) => {
         e.preventDefault()
-        dispatch(setItemQuantity(product, quantity-1,cartUserId))
+        dispatch(setItemQuantity(product, quantity-1,cartUserId)).then(()=>dispatch(getCart(user.id)))
     }
 
     const removeFromCart = (e) => {
         e.preventDefault()
-        dispatch(deleteCartItem(product, cartUserId))
+        dispatch(deleteCartItem(product, cartUserId)).then(()=>dispatch(getCart(user.id)))
     }
 
     return(
