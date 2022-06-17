@@ -117,6 +117,7 @@
 
 .product__review__card {
     border-bottom: rgb(61, 57, 57) 1px solid;
+    overflow-wrap: break-word;
     /* background-color: rgb(55, 134, 252); */
 }
 
@@ -187,13 +188,7 @@
     cursor: pointer;
 }
 
-.add__cart__container{
-    /* margin: 5px 0; */
-    /* display: flex;
-    flex-direction: row;
-    align-items: center; */
-    /* width: 125px; */
-}
+
 
 
 .added__cart__message{
@@ -206,11 +201,6 @@
     padding: 5px;
 }
 
-/* @keyframes fade-out {
-    0% {opacity: 1}
-    50% {opacity: .5}
-    100% {opacity: 0}
-} */
 
 @keyframes fade-out {
     0% {opacity:1}

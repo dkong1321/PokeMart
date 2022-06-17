@@ -14,7 +14,7 @@ const SingleProductDisplay = () => {
     const [isLoaded, setIsLoaded] = useState(false)
     const [rating, setRating] =useState(0)
     const [description, setDescription] = useState("")
-    const [ productQuantity, setProductQuantity] = useState()
+    // const [ productQuantity, setProductQuantity] = useState()
 
     const [errorDescription, setErrorDescription] = useState([])
     const [errorRating, setErrorRating] = useState([])
@@ -28,9 +28,14 @@ const SingleProductDisplay = () => {
     const users = (useSelector((state)=>state.users))
     const cart = (useSelector((state)=>state.cart))
 
+    const [ productQuantity, setProductQuantity] = useState()
+    const testCartProduct = Object.values(cart.products)
+
+
     useEffect(()=>{
         dispatch(getReviews(productId)).then(()=>dispatch(getUsers())).then(()=> setIsLoaded(true))
     }, [dispatch, productId])
+
 
     const addNewReview = async(e) => {
         e.preventDefault()
@@ -195,7 +200,7 @@ const SingleProductDisplay = () => {
                                             <div>Description: {review.description}</div>
                                             {review?.user_id===user?.id ? (
                                                 <div>
-                                                    <button onClick={() => eraseReview(review)}>delete</button>
+                                                    <button onClick={() => eraseReview(review)}><i className="fa-solid fa-trash-can"></i></button>
                                                     <EditReviewFormModal review={review} />
                                                 </div>
                                             ): (<></>)}

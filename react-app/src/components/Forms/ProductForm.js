@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { createProduct, getAllProducts } from "../../store/product";
 import { useHistory } from "react-router-dom";
 import loadingGif from "./279032259_1047884352471825_57850663476320908_n.gif"
+import "./product__form.css"
 const ProductForm = ({setShowModal}) => {
     const dispatch = useDispatch()
     const [productName, setProductName] = useState("");
@@ -76,12 +77,6 @@ const ProductForm = ({setShowModal}) => {
         }
 
         await setProductLoading(true)
-        // setTimeout(async()=>{
-        //     await dispatch(createProduct(data))
-        //     await setProductLoading(false)
-        //     await setShowModal(false)
-        //     await history.push('/products')
-        // }, 1000)
         await dispatch(createProduct(data))
         await setProductLoading(false)
         setShowModal(false)
@@ -104,30 +99,30 @@ const ProductForm = ({setShowModal}) => {
                 }
             {!productLoading &&
             <div>
-                <div>New Product Form</div>
-                <form onSubmit={makeNewProduct}>
+                <div className="modal__form__heading">New Product Form</div>
+                <form onSubmit={makeNewProduct} className="new__product__form__container">
                     <div>
                         <label>Product Name</label>
                         {errorName ? <div>{errorName}</div> : <></>}
-                        <input value={productName} onChange={e => setProductName(e.target.value)} placeholder="enter product name"/>
+                        <input className="product__form__input" value={productName} onChange={e => setProductName(e.target.value)} placeholder="enter product name"/>
                     </div>
                     <div>
                         <label>Description</label>
                         {errorDescription ? <div>{errorDescription}</div> : <></>}
-                        <input value={description} onChange={e => setDescription(e.target.value)} placeholder="enter product name"/>
+                        <input className="product__form__input" value={description} onChange={e => setDescription(e.target.value)} placeholder="enter description"/>
                     </div>
                     <div>
                         <label>Price</label>
                         {errorPrice ? <div>{errorPrice}</div> : <></>}
-                        <input type='number' value={price} onChange={e => setPrice(e.target.value)} pattern='[0-9]+(\\.[0-9][0-9]?)?' placeholder="0.00" min="0.00" step="0.01"/>
+                        <input className="product__form__input" type='number' value={price} onChange={e => setPrice(e.target.value)} pattern='[0-9]+(\\.[0-9][0-9]?)?' placeholder="0.00" min="0.00" step="0.01"/>
                     </div>
                     <div>
                         <label>Add Image</label>
                         {errorImage ? <div>{errorImage}</div> : <></>}
-                        <input required type ="file" accept="image/*" onChange={updateImage}/>
+                        <input className="product__form__input" required type ="file" accept="image/*" onChange={updateImage}/>
                     </div>
 
-                    <button type="submit">Submit</button>
+                    <button className="submit__product__button" type="submit">Submit</button>
                 </form>
             </div>
             }

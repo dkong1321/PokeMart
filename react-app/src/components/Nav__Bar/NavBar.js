@@ -39,7 +39,7 @@ const NavBar = () => {
           </div>
 
           <div className='nav__link__container__right'>
-            <NavLink to='/products' exact={true} activeClassName='active' className="nav_link">Shop Products</NavLink>
+            <NavLink to='/products' exact={true} activeClassName='active' className="nav_link shop__product__link">Shop Products</NavLink>
             {sessionUser ? <NavLink to='/myorders' exact={true} activeClassName='active' className="nav__link">My Orders</NavLink>:<></>}
             {sessionUser ? <NavLink to='/my-products' exact={true} activeClassName='active' className="nav__link">My Listings</NavLink>:<></>}
             {!sessionUser ? <LoginFormModal /> :<></>}

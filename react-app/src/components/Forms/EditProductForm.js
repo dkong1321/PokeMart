@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateProduct } from "../../store/product";
-// import "./single_product.css"
+import "./edit__product__form.css"
 
 const EditProductForm = ({setShowModal,product}) => {
     const dispatch = useDispatch()
@@ -85,29 +85,29 @@ const EditProductForm = ({setShowModal,product}) => {
 
     return(
         isLoaded && (
-            <div>
-                <div>Edit Product Form</div>
-                <form onSubmit={editProduct}>
+            <div className="edit__product__container">
+                <div className="modal__form__heading">Edit Product Form</div>
+                <form onSubmit={editProduct} className="edit__product__form">
                     <div>
                         <label>Product Name</label>
                         {errorName ? <div>{errorName}</div> : <></>}
-                        <input value={name} onChange={e => setName(e.target.value)}/>
+                        <input className="product__form__input" value={name} onChange={e => setName(e.target.value)}/>
                     </div>
                     <div>
                         <label>Description</label>
                         {errorDescription ? <div>{errorDescription}</div> : <></>}
-                        <input value={description} onChange={e => setDescription(e.target.value)}/>
+                        <input className="product__form__input" value={description} onChange={e => setDescription(e.target.value)}/>
                     </div>
                     <div>
                         <label>Price</label>
                         {errorPrice ? <div>{errorPrice}</div> : <></>}
-                        <input type='number' value={price} onChange={e => setPrice(e.target.value)} pattern='[0-9]+(\\.[0-9][0-9]?)?' placeholder="0.00" min="0.00" step="0.01"/>
+                        <input className="product__form__input" type='number' value={price} onChange={e => setPrice(e.target.value)} pattern='[0-9]+(\\.[0-9][0-9]?)?' placeholder="0.00" min="0.00" step="0.01"/>
                     </div>
-                    <div>
+                    <div className="image__select__container">
                         <label>Change Image if Needed</label>
-                        <input type ="file" accept="image/*" onChange={updateImage}/>
+                        <input className="product__form__input" type ="file" accept="image/*" onChange={updateImage}/>
                     </div>
-                    <button type="submit">Submit</button>
+                    <button className="submit__edit__product__button" type="submit">Submit</button>
                 </form>
             </div>
         )

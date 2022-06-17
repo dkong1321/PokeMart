@@ -1,0 +1,44 @@
+.main__login__form__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+
+.login__email__input {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.login__password__input{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.login__button{
+    border: #000000 2px solid;
+    background-color: #4b5cac;
+    color: white;
+    padding: 5px;
+    width: 80px;
+    height: 30px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    margin-left: 35px;
+}
+
+.demo__button {
+    border: #000000 2px solid;
+    background-color: #4b5cac;
+    color: white;
+    padding: 5px;
+    width: 80px;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 35px;
+}

@@ -7,7 +7,7 @@ function AddProductFormModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}> Post a Product</button>
+      <button className='add__product__button' onClick={() => setShowModal(true)}> + Product</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <ProductForm setShowModal={setShowModal}/>

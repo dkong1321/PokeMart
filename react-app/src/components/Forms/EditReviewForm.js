@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams} from "react-router-dom";
 import {getReviews, editReview} from "../../store/reviews"
 import {getUsers} from "../../store/users"
-
 import ReactStars from 'react-stars'
+import "./edit__review__form.css"
 
 const EditReviewForm = ({setShowModal, review}) => {
     const dispatch = useDispatch()
@@ -55,10 +55,10 @@ const EditReviewForm = ({setShowModal, review}) => {
 
     return(
             <div>
-                <div>Edit Form for Review</div>
+                <div className="modal__form__heading">Edit Form for Review</div>
                 <form onSubmit={editMyReview}>
                     {errorDescription ? <div>{errorDescription}</div> : <></>}
-                    <input value={editDescription} onChange={e => setEditDescription(e.target.value)} placeholder="enter description" />
+                    <textarea className="review__edit__form__input" value={editDescription} onChange={e => setEditDescription(e.target.value)} placeholder="enter description" />
                     <ReactStars value={editRating} count={5} onChange={editRatingChanged} size={24} color2={"#e0730d"} color1={'#abb1d8'} half={false} />
                     <button type="submit">Submit</button>
                 </form>

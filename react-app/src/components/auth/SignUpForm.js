@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { login } from '../../store/session';
-
+import "./signup__form.css"
 const SignUpForm = ({setShowModal}) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
@@ -42,7 +42,8 @@ const SignUpForm = ({setShowModal}) => {
     const repeatPasswordErrorValidation = []
 
 
-    if(!username.length){
+    if(!username.length || username.trim().length===0
+){
       usernameErrorValidation.push("Please enter a username")
     }
     if(username.length > 40){
@@ -52,7 +53,8 @@ const SignUpForm = ({setShowModal}) => {
       usernameErrorValidation.push("Username already exists (case insensitive)")
     }
 
-    if(!email.length){
+    if(!email.length || email.trim().length===0
+){
       emailErrorValidation.push("Please enter a email")
     }
     if(email.length > 40){
@@ -61,7 +63,8 @@ const SignUpForm = ({setShowModal}) => {
     if(emailExists){
       emailErrorValidation.push("Email already exists")
     }
-    if(!password.length){
+    if(!password.length || password.trim().length===0
+){
       passwordErrorValidation.push("Please enter a password")
     }
     if(password.length > 40){
@@ -108,7 +111,7 @@ const SignUpForm = ({setShowModal}) => {
   }
 
   return (
-    <div>
+    <div className='signup__modal__container'>
       <div className='modal__form__heading'>Sign Up Today!</div>
       <form onSubmit={onSignUp}>
         <div>
@@ -116,7 +119,7 @@ const SignUpForm = ({setShowModal}) => {
             <div key={ind}>{error}</div>
           ))}
         </div>
-        <div>
+        <div >
           <label>User Name</label>
           {usernameError ? <div>{usernameError}</div> : <></>}
           <input
@@ -124,6 +127,7 @@ const SignUpForm = ({setShowModal}) => {
             name='username'
             onChange={updateUsername}
             value={username}
+            className="signup__form__input"
           ></input>
         </div>
         <div>
@@ -134,6 +138,7 @@ const SignUpForm = ({setShowModal}) => {
             name='email'
             onChange={updateEmail}
             value={email}
+            className="signup__form__input"
           ></input>
         </div>
         <div>
@@ -144,20 +149,22 @@ const SignUpForm = ({setShowModal}) => {
             name='password'
             onChange={updatePassword}
             value={password}
+            className="signup__form__input"
           ></input>
         </div>
         <div>
-          <label>Repeat Password</label>
+          <label>Confirm Password</label>
           {repeatPasswordError ? <div>{repeatPasswordError}</div> : <></>}
           <input
             type='password'
             name='repeat_password'
             onChange={updateRepeatPassword}
             value={repeatPassword}
+            className="signup__form__input"
             required={true}
           ></input>
         </div>
-        <button type='submit'>Sign Up</button>
+        <button className='signup__button' type='submit'>Sign Up</button>
       </form>
     </div>
   );
