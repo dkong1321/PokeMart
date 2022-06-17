@@ -56,11 +56,18 @@ const ProductForm = ({setShowModal}) => {
             errorPriceValidation.push("Price is seems too large please check and submit")
 
         }
-        if(image !=="image/jpeg" || image !=="image/png" || image !=="image/jpg"){
-            errorImageValidation.push("Invalid file type")
+        // console.log(image)
+        // console.log(image.type)
+
+
+
+        if(!image){
+            errorImageValidation.push("Please upload a image")
+        } else if(image.type !=="image/jpeg" && image.type !=="image/png" && image.type !=="image/jpg"){
+                errorImageValidation.push("Invalid file type")
         }
 
-        if (errorNameValidation.length || errorDescriptionValidation.length || errorPriceValidation.length){
+        if (errorNameValidation.length || errorDescriptionValidation.length || errorPriceValidation.length ){
             setErrorName(errorNameValidation)
             setErrorDescription(errorDescriptionValidation)
             setErrorPrice(errorPriceValidation)
@@ -91,6 +98,7 @@ const ProductForm = ({setShowModal}) => {
 
     const chooseImage = (e)=> {
         e.preventDefault()
+        setErrorImage([])
         uploadHiddenInput.current.click()
     }
 
@@ -125,8 +133,9 @@ const ProductForm = ({setShowModal}) => {
                     <div>
                         <label>Add Image</label>
                         {errorImage ? <div>{errorImage}</div> : <></>}
+                        {image ? <>{image.type}</>: null}
                         <button className="product__image__button" onClick={chooseImage}>Choose Image</button>
-                        <input className="product__form__input" required type ="file" accept="image/*" onChange={updateImage} hidden ref={uploadHiddenInput}/>
+                        <input className="product__form__input" type ="file" accept="image/*" onChange={updateImage} hidden ref={uploadHiddenInput}/>
                     </div>
 
                     <button className="submit__product__button" type="submit">Submit</button>
