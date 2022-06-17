@@ -42,12 +42,9 @@ function CartProduct ({product, count }) {
                 <button className="remove__cart__item__button" onClick={(e)=>removeFromCart(e)}><i className="fa-solid fa-xmark fa-lg"></i> Remove</button>
             </div>
 
-            <div>
+            <div className="cart__qty__container">
                 <button  className="plus__minus__buttons" onClick={(e)=>incrementQty(e)}><i className="fa-solid fa-plus"></i></button>
                 <div>{quantity}</div>
-                {/* <input className="cart__product__input" type="number" value={quantity} onChange={(e)=>setQuantity(Number(e.target.value))}
-                     onBlur={() => updateQty()} min={1} max={9} increment={1}
-                    ></input> */}
                 <button className="plus__minus__buttons" onClick={(e)=>decrementQty(e)}><i className="fa-solid fa-minus"></i></button>
             </div>
             <div>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.product.price)}</div>

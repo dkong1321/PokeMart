@@ -31,7 +31,7 @@ const EditProductForm = ({setShowModal,product}) => {
         const errorNameValidation = []
         const errorDescriptionValidation =[]
         const errorPriceValidation = []
-        if(!name.length){
+        if(!name.length || name.trim().length===0){
             errorNameValidation.push("Product name cannot be empty")
 
         }
@@ -40,7 +40,7 @@ const EditProductForm = ({setShowModal,product}) => {
 
         }
 
-        if(!description.length){
+        if(!description.length || description.trim().length===0){
             errorDescriptionValidation.push("Product description cannot be empty")
 
         }
