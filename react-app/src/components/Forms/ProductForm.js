@@ -111,7 +111,7 @@ const ProductForm = ({setShowModal}) => {
                         {errorName ? <div>{errorName}</div> : <></>}
                         <input className="product__form__input" value={productName} onChange={e => setProductName(e.target.value)} placeholder="enter product name"/>
                     </div>
-                    <div>gif
+                    <div>
                         <label>Description</label>
                         {errorDescription ? <div>{errorDescription}</div> : <></>}
                         <input className="product__form__input" value={description} onChange={e => setDescription(e.target.value)} placeholder="enter description"/>
