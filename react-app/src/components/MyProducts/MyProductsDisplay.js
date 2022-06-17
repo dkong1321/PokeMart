@@ -29,8 +29,8 @@ const MyProducts = () => {
                     {Object.values(allProducts[0]).filter((product)=> product.user_id === user.id).length ?
                         Object.values(Object.values(allProducts[0]).filter((product)=> product.user_id === user.id)).map((product)=>{
                         return (
-                            <div key={product.id} className="product__card">
-                                <Link to={`/products/${product.id}`} key={product.id}>
+                            <div key={product.id} className="my__product__card">
+                                <Link to={`/products/${product.id}`} key={product.id} className="my__product__details">
                                     <div className="product__name">{product.product_name}</div>
                                     <img className="my__product__image" src={product.product_image_url} alt=""></img>
                                     <div>{product.description}</div>

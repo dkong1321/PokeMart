@@ -1,6 +1,6 @@
 .my__products__display__container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
     text-decoration: none;
     column-gap: 50px;
@@ -8,9 +8,26 @@
     margin: 20px;
 }
 
-.my__product__image{
+.my__product__card{
+    border: solid 2px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 300px;
-    height: 250px;
+    padding: 15px;
+    /* align-items: center; */
+}
+
+.my__product__details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.my__product__image{
+    width: 150px;
+    height: 100px;
     object-fit: scale-down;
     margin: none;
 }
