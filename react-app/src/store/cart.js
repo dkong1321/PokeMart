@@ -109,7 +109,7 @@ export const clearCart = (cartUserId) => async(dispatch) => {
     }
 }
 
-const initialState = {cartTotal:{}, products:{}, count:{}}
+const initialState = {cartTotal:{}, products:{}, count:{},cartAmount:{}}
 
 const createReducer = (state = initialState, action) => {
     let newState = clone(state);

@@ -48,7 +48,7 @@ const ProductForm = ({setShowModal}) => {
 
         }
         if(price<1){
-            errorPriceValidation.push("Price cannot be negative or 0")
+            errorPriceValidation.push("Price cannot be negative less than 1 dollar")
 
         }
         if(price > 999999999){
@@ -76,6 +76,12 @@ const ProductForm = ({setShowModal}) => {
         }
 
         await setProductLoading(true)
+        // setTimeout(async()=>{
+        //     await dispatch(createProduct(data))
+        //     await setProductLoading(false)
+        //     await setShowModal(false)
+        //     await history.push('/products')
+        // }, 1000)
         await dispatch(createProduct(data))
         await setProductLoading(false)
         setShowModal(false)
@@ -90,12 +96,13 @@ const ProductForm = ({setShowModal}) => {
 
     return(
         <div>
-
-            {productLoading && <div>
+            {productLoading &&
+                <div>
                 <div>Loading...</div>
                 <img className="loading__gif" src={loadingGif}></img>
                 </div>
                 }
+            {!productLoading &&
             <div>
                 <div>New Product Form</div>
                 <form onSubmit={makeNewProduct}>
@@ -123,6 +130,7 @@ const ProductForm = ({setShowModal}) => {
                     <button type="submit">Submit</button>
                 </form>
             </div>
+            }
         </div>
     )
 }

@@ -50,25 +50,25 @@ const AddOrderForm = () => {
         const shippingErrorValidation = []
         const cityErrorValidation = []
 
-        if(!firstName.length){
+        if(!firstName.length || firstName.trim().length===0){
             firstNameErrorValidation.push("First name is required")
         }
         if(firstName.length>40){
             firstNameErrorValidation.push("First name cannot be more than 40 characters")
         }
-        if(!lastName.length){
+        if(!lastName.length || lastName.trim().length===0){
             lastNameErrorValidation.push("Last name is required")
         }
         if(lastName.length>40){
             lastNameErrorValidation.push("Last name cannot be more than 40 characters")
         }
-        if(!shipping.length){
+        if(!shipping.length || shipping.trim().length===0){
             shippingErrorValidation.push("Shipping address is required")
         }
         if(shipping.length>40){
             shippingErrorValidation.push("Shipping address cannot be more than 40 characters")
         }
-        if(!city.length) {
+        if(!city.length || city.trim().length===0) {
             cityErrorValidation.push("City is required")
         }
         if(city.length > 30) {
