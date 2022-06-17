@@ -32,7 +32,6 @@ const OrderDisplay = () => {
         const orderDate = new Date(date)
         const currentTime = new Date()
         const diffTime = currentTime - orderDate
-        console.log(diffTime)
         return diffTime/360000 > 1
     }
 

@@ -16,7 +16,7 @@ const CartDisplay = () => {
     const getTotal = () =>{
         const initalVal = 0
         const myCartTotal = Object.values(cartTotal).reduce(
-            (accum,curr) => accum+curr,
+            (accum,curr) => accum + curr,
             initalVal
         )
         return myCartTotal

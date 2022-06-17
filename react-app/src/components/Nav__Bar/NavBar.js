@@ -12,12 +12,25 @@ import { getCart } from '../../store/cart';
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
   const cartProducts = (useSelector((state)=>state.cart.products))
+  const cartCount = (useSelector((state)=>state.cart.products))
   const user = useSelector((state)=>state.session.user)
-  console.log(user)
   const dispatch = useDispatch()
+
   useEffect(()=>{
     dispatch(getCart(user?.id))
   },[dispatch, user])
+
+  const cartSum = ()=>{
+    const initialVal = 0
+    console.log(Object.values(cartCount))
+    const myCartSum = Object.values(cartCount).reduce(
+      (accum, curr)=> accum + curr.quantity,
+      initialVal
+    )
+    console.log(myCartSum)
+    return myCartSum
+  }
+
   return (
     <div>
       <nav className='nav__bar__container'>
@@ -35,7 +48,9 @@ const NavBar = () => {
             { sessionUser ? <AddProductFormModal />:<></>}
             { sessionUser ?
               <NavLink
-                to='/mycart' exact={true} activeClassName='active' className="nav__link"><div>{Object.values(cartProducts).length} <i className="fa-solid fa-cart-shopping"></i></div>
+                to='/mycart' exact={true} activeClassName='active' className="nav__link"><div>{cartSum()} <i className="fa-solid fa-cart-shopping"></i></div>
+                {/* to='/mycart' exact={true} activeClassName='active' className="nav__link"><div>{Object.values(cartProducts).length} <i className="fa-solid fa-cart-shopping"></i></div> */}
+
               </NavLink>
             :<></>}
           </div>

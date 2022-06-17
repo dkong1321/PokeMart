@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams} from "react-router-dom";
 import {getReviews, createReview, deleteReview} from "../../store/reviews"
 import {getUsers} from "../../store/users"
-import {addCartItem, setItemQuantity } from "../../store/cart";
+import {addCartItem, setItemQuantity, getCart } from "../../store/cart";
 
 import ReactStars from 'react-stars'
 import "./single_product.css"
@@ -18,7 +18,8 @@ const SingleProductDisplay = () => {
 
     const [errorDescription, setErrorDescription] = useState([])
     const [errorRating, setErrorRating] = useState([])
-
+    const [notSignedIn, setNotSignedIn] = useState([])
+    const [productOwner, setProductOwner] = useState([])
 
 
     const productId = useParams().productId
@@ -36,6 +37,17 @@ const SingleProductDisplay = () => {
 
         const errorDescriptionValidation =[]
         const errorRatingValidation = []
+
+        if(!user){
+            // notSignedInValidation.push("You must sign in to submit a review")
+            setNotSignedIn("You must sign in to submit a review")
+            return
+        }
+        if(user.id === product.user_id){
+            // productOwnerValidation.push("Cannot submit review on your own product")
+            setProductOwner("Cannot submit review on your own product")
+            return
+        }
         if(!description.length){
             errorDescriptionValidation.push("Review description cannot be empty")
         }
@@ -59,6 +71,11 @@ const SingleProductDisplay = () => {
             product_id:productId
         }
         dispatch(createReview(data))
+        setRating(0)
+        setDescription("")
+        setErrorRating([])
+        setNotSignedIn("")
+        setProductOwner("")
     }
 
     const ratingChanged = (rating) => {
@@ -103,11 +120,12 @@ const SingleProductDisplay = () => {
         const myProduct = {product_id:product.id}
         if (inCart) {
             console.log("its in the cart")
-            dispatch(setItemQuantity(myProduct, quantity+1,cartUserId))
+            dispatch(setItemQuantity(myProduct, quantity+1,cartUserId)).then(()=>dispatch(getCart(user.id)))
 
         } else {
             console.log("not in cart already will add")
-            dispatch(addCartItem(product, cartUserId))
+            dispatch(addCartItem(product, cartUserId)).then(()=>dispatch(getCart(user.id)))
+
         }
     }
 
@@ -146,21 +164,25 @@ const SingleProductDisplay = () => {
                     <div className="main__reviews__container">
                         <div className="review__form__container">
                             <div>
-                                {user === null || user.id === product.user_id ? <></>:
                                     <>
-                                        <div>Post Form for Review</div>
-                                        <form onSubmit={addNewReview}>
+                                        <div className="review__post__title">Post a Review for this Product</div>
+                                        <div className="product__name__divider"></div>
+                                        <form className=".review__form__container" onSubmit={addNewReview}>
                                             {errorDescription ? <div>{errorDescription}</div> : <></>}
                                             {errorRating ? <div>{errorRating}</div> : <></>}
+                                            {notSignedIn ? <div>{notSignedIn}</div>:<></>}
+                                            {productOwner ? <div>{productOwner}</div>:<></>}
                                             <ReactStars value={rating} count={5} onChange={ratingChanged} size={24} color2={"#4b5cac"} color1={'#bdbaba'} half={false} />
-                                            <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="enter description" rows="5" cols="50" />
-                                            <button type="submit">Submit</button>
+                                            <textarea className="review__description__input" value={description} onChange={e => setDescription(e.target.value)} placeholder="Write a review for this product!" rows="5" cols="50" />
+                                            <button className="review__submit" type="submit">Submit</button>
+
                                         </form>
                                     </>
-                                }
+
                             </div>
                         </div>
                         <div className="product__review__title">Product Reviews</div>
+
                         <div className="product__review__container">
                             <div>
                                 {Object.values(product.reviews).reverse().map((review)=>{
