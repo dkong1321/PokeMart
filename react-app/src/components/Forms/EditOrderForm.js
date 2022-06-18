@@ -4,7 +4,6 @@ import {editOrder} from "../../store/order"
 
 const EditOrderForm = ({setShowModal, order}) => {
     const dispatch = useDispatch()
-    console.log(order)
     const [ isLoaded, setIsLoaded ] = useState(false)
     const [ firstName, setfirstName] = useState(order.first_name)
     const [ lastName, setlastName] = useState(order.last_name)

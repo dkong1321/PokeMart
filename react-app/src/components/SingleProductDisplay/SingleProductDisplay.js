@@ -106,24 +106,11 @@ const SingleProductDisplay = () => {
         return Math.round(totalRating/length*2)/2
     }
 
-    // const currentQuant = () =>{
-    //     const currCartProduct = Object.values(cart.products)
-    //     let cartQuantity = 0
-    //     for (let i = 0; i < currCartProduct.length; i++ ){
-    //         console.log(currCartProduct[i].product_id)
-    //         if (currCartProduct[i].product_id === product.id){
-    //             cartQuantity=Object.values(Object.values(cart)[2])[i]
-    //             // setProductQuantity(cartQuantity)
-    //             return
-    //         }
-    //     }
-    // }
     const addToCart = () => {
         const currCartProduct = Object.values(cart.products)
         let inCart = false
         let cartQuantity = 0
         for (let i = 0; i < currCartProduct.length; i++ ){
-            console.log(currCartProduct[i].product_id)
             if (currCartProduct[i].product_id === product.id){
                 inCart = true
                 cartQuantity=Object.values(Object.values(cart)[2])[i]
@@ -134,27 +121,16 @@ const SingleProductDisplay = () => {
         setProductQuantity(quantity)
         const myProduct = {product_id:product.id}
         if (inCart) {
-            console.log("its in the cart")
             dispatch(setItemQuantity(myProduct, quantity+1,cartUserId)).then(()=>dispatch(getCart(user.id)))
 
         } else {
-            console.log("not in cart already will add")
             dispatch(addCartItem(product, cartUserId)).then(()=>dispatch(getCart(user.id)))
-
         }
     }
 
     return(
         isLoaded && (
             <div>
-                {/* <div>{currentQuant()}</div> */}
-                {/* {console.log(product)}
-                {console.log(
-                    Object.values(cart.products).filter((product)=>(product.product_id === parseInt(productId)))[0].quantity
-                    )}
-                {console.log(
-                    Object.values(cart.products)
-                    )} */}
                 <div className="product__detail__container">
                     <div className="product__detail__image">
                         <img className="single__product__image" src={product.product_image_url} alt=""></img>
