@@ -27,7 +27,12 @@ function CartProduct ({product, count }) {
     const decrementQty = (e) => {
         e.preventDefault()
         console.log("we ran decrement quant")
-        dispatch(setItemQuantity(product, quantity-1,cartUserId)).then(()=>dispatch(getCart(user.id)))
+        console.log("current quant", quantity)
+        if(quantity===1){
+            dispatch(deleteCartItem(product, cartUserId)).then(()=>dispatch(getCart(user.id)))
+        } else {
+            dispatch(setItemQuantity(product, quantity-1,cartUserId)).then(()=>dispatch(getCart(user.id)))
+        }
     }
 
     const removeFromCart = (e) => {
