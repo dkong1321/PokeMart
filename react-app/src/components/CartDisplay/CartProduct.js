@@ -10,6 +10,7 @@ function CartProduct ({product, count }) {
     const [quantity, setQuantity] = useState(count)
     const user = useSelector((state=>state.session.user))
     const cartUserId = user.id
+
     useEffect(()=>{
         setQuantity(count)
 
@@ -25,6 +26,7 @@ function CartProduct ({product, count }) {
 
     const decrementQty = (e) => {
         e.preventDefault()
+        console.log("we ran decrement quant")
         dispatch(setItemQuantity(product, quantity-1,cartUserId)).then(()=>dispatch(getCart(user.id)))
     }
 

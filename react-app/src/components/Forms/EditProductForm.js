@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateProduct } from "../../store/product";
 import "./edit__product__form.css"
 
 const EditProductForm = ({setShowModal,product}) => {
     const dispatch = useDispatch()
-    console.log(product)
     const [ isLoaded, setIsLoaded ] = useState(false)
     const [image, setImage] = useState(null);
     const [name, setName] = useState(product.product_name);
@@ -15,6 +14,8 @@ const EditProductForm = ({setShowModal,product}) => {
     const [errorName, setErrorName] = useState([])
     const [errorDescription, setErrorDescription] = useState([])
     const [errorPrice, setErrorPrice] = useState([])
+    const [errorImage, setErrorImage] = useState([])
+    const uploadHiddenInput = useRef()
 
 
 
@@ -31,6 +32,8 @@ const EditProductForm = ({setShowModal,product}) => {
         const errorNameValidation = []
         const errorDescriptionValidation =[]
         const errorPriceValidation = []
+        const errorImageValidation = []
+
         if(!name.length || name.trim().length===0){
             errorNameValidation.push("Product name cannot be empty")
 
@@ -49,18 +52,25 @@ const EditProductForm = ({setShowModal,product}) => {
 
         }
         if(price<1){
-            errorPriceValidation.push("Price cannot be negative or 0")
+            errorPriceValidation.push("Price cannot be negative or less than 1")
 
         }
-        if(price === null){
-            errorPriceValidation.push("Price cannot be negative")
+        if(price > 999999999){
+            errorPriceValidation.push("Price seems too large please check and submite")
 
+        }
+
+        if(!image){
+            errorImageValidation.push("Please upload a image")
+        } else if(image.type !=="image/jpeg" && image.type !=="image/png" && image.type !=="image/jpg"){
+                errorImageValidation.push("Invalid file type")
         }
 
         if (errorNameValidation.length || errorDescriptionValidation.length || errorPriceValidation.length){
             setErrorName(errorNameValidation)
             setErrorDescription(errorDescriptionValidation)
             setErrorPrice(errorPriceValidation)
+            setErrorImage(errorImageValidation)
             return
         }
 
@@ -73,7 +83,6 @@ const EditProductForm = ({setShowModal,product}) => {
             product_id,
             user_id:user.id,
         }
-        console.log(data)
         dispatch(updateProduct(data))
         setShowModal(false)
     }
@@ -81,6 +90,12 @@ const EditProductForm = ({setShowModal,product}) => {
     const updateImage = (e) => {
         const file = e.target.files[0];
         setImage(file);
+    }
+
+    const chooseImage = (e)=> {
+        e.preventDefault()
+        setErrorImage([])
+        uploadHiddenInput.current.click()
     }
 
     return(
@@ -105,7 +120,10 @@ const EditProductForm = ({setShowModal,product}) => {
                     </div>
                     <div className="image__select__container">
                         <label>Change Image if Needed</label>
-                        <input className="product__form__input" type ="file" accept="image/*" onChange={updateImage}/>
+                        {errorImage ? <div>{errorImage}</div> : <></>}
+                        {image ? <>{image.type}</>: null}
+                        <button className="product__image__button" onClick={chooseImage}>Choose Image</button>
+                        <input className="product__form__input" type ="file" accept="image/*" onChange={updateImage} hidden ref={uploadHiddenInput}/>
                     </div>
                     <button className="submit__edit__product__button" type="submit">Submit</button>
                 </form>

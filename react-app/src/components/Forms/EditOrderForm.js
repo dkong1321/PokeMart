@@ -21,7 +21,6 @@ const EditOrderForm = ({setShowModal, order}) => {
     const user = useSelector((state)=> state.session.user)
 
     useEffect(()=>{
-        console.log("use effect runs here")
         setIsLoaded(true)
     }, [dispatch, user.id])
 

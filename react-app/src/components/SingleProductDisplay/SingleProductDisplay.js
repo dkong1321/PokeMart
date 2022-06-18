@@ -106,18 +106,18 @@ const SingleProductDisplay = () => {
         return Math.round(totalRating/length*2)/2
     }
 
-    const currentQuant = () =>{
-        const currCartProduct = Object.values(cart.products)
-        let cartQuantity = 0
-        for (let i = 0; i < currCartProduct.length; i++ ){
-            console.log(currCartProduct[i].product_id)
-            if (currCartProduct[i].product_id === product.id){
-                cartQuantity=Object.values(Object.values(cart)[2])[i]
-                // setProductQuantity(cartQuantity)
-                return
-            }
-        }
-    }
+    // const currentQuant = () =>{
+    //     const currCartProduct = Object.values(cart.products)
+    //     let cartQuantity = 0
+    //     for (let i = 0; i < currCartProduct.length; i++ ){
+    //         console.log(currCartProduct[i].product_id)
+    //         if (currCartProduct[i].product_id === product.id){
+    //             cartQuantity=Object.values(Object.values(cart)[2])[i]
+    //             // setProductQuantity(cartQuantity)
+    //             return
+    //         }
+    //     }
+    // }
     const addToCart = () => {
         const currCartProduct = Object.values(cart.products)
         let inCart = false

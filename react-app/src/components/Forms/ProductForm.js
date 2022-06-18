@@ -32,6 +32,7 @@ const ProductForm = ({setShowModal}) => {
         const errorDescriptionValidation =[]
         const errorPriceValidation = []
         const errorImageValidation = []
+
         if(!productName.length || productName.trim().length===0){
             errorNameValidation.push("Product name cannot be empty")
 
@@ -53,13 +54,9 @@ const ProductForm = ({setShowModal}) => {
 
         }
         if(price > 999999999){
-            errorPriceValidation.push("Price is seems too large please check and submit")
+            errorPriceValidation.push("Price seems too large please check and submit")
 
         }
-        // console.log(image)
-        // console.log(image.type)
-
-
 
         if(!image){
             errorImageValidation.push("Please upload a image")

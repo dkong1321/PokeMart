@@ -20,6 +20,7 @@ const addCart = (product) =>{
 }
 
 const editQuantity = (product, cartUserId) => {
+    console.log("how much we have decrement",product.quantity)
     if (product.quantity < 1) return deleteCartItem(product, cartUserId);
     return {
         type: EDIT_CART_ITEM,
@@ -71,7 +72,6 @@ export const addCartItem = (product, cartUserId) => async (dispatch) => {
 export const setItemQuantity = (product, quantity, cartUserId) => async (dispatch) => {
     const productId = product.product_id
     const data = {productId,quantity, cartUserId}
-    console.log(data)
     const response = await fetch(`/api/carts/${productId}`,{
         method:"PUT",
         headers: { "Content-Type": "application/json" },
