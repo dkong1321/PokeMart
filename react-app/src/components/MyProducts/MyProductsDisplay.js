@@ -25,7 +25,6 @@ const MyProducts = () => {
         isLoaded && (
             <div>
                 <div className="my__products__display__container">
-                    {console.log(Object.values(allProducts[0]).filter((product)=> product.user_id === user.id))}
                     {Object.values(allProducts[0]).filter((product)=> product.user_id === user.id).length ?
                         Object.values(Object.values(allProducts[0]).filter((product)=> product.user_id === user.id)).map((product)=>{
                         return (

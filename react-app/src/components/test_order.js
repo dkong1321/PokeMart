@@ -14,8 +14,6 @@ const Orders = () => {
     const cartTotal = useSelector((state=>state.cart.cartTotal))
 
     useEffect(()=>{
-        console.log("use effect runs here")
-
         dispatch(getOrders(user.id)).then(()=>setIsLoaded(true))
     }, [dispatch, user.id])
 
@@ -35,14 +33,12 @@ const Orders = () => {
         for (let i=0; i<cartItems.length; i++) {
             cartItems[i].quantity=cartItemQty[i]
         }
-        console.log(cartItems)
         const data={
             shipping_address:shipping,
             user_id :user.id,
             total_price : getTotal(),
             order_products: cartItems,
         }
-        console.log(data)
         dispatch(postOrder(data)).then(()=>dispatch(clearCart()))
     }
 
