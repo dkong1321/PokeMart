@@ -1,6 +1,6 @@
 .edit__product__container{
     width: 420px;
-    height: 295px
+    height: auto;
 }
 .product__form__input {
     margin-bottom: 10px;

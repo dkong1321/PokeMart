@@ -22,12 +22,10 @@ const NavBar = () => {
 
   const cartSum = ()=>{
     const initialVal = 0
-    console.log(Object.values(cartCount))
     const myCartSum = Object.values(cartCount).reduce(
       (accum, curr)=> accum + curr.quantity,
       initialVal
     )
-    console.log(myCartSum)
     return myCartSum
   }
 

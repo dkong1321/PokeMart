@@ -60,7 +60,7 @@ const EditReviewForm = ({setShowModal, review}) => {
                     {errorDescription ? <div>{errorDescription}</div> : <></>}
                     <textarea className="review__edit__form__input" value={editDescription} onChange={e => setEditDescription(e.target.value)} placeholder="enter description" />
                     <ReactStars value={editRating} count={5} onChange={editRatingChanged} size={24} color2={"#e0730d"} color1={'#abb1d8'} half={false} />
-                    <button type="submit">Submit</button>
+                    <button className="submit__edit__product__button" type="submit">Submit</button>
                 </form>
             </div>
 
