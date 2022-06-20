@@ -66,7 +66,6 @@ export const createProduct = (data) => async (dispatch) => {
 }
 
 export const updateProduct = (data) => async (dispatch) => {
-    console.log(data)
     const formData = new FormData()
     formData.append("image", data.image);
     formData.append("product_name", data.name);
@@ -110,7 +109,6 @@ const productReducer = (state = initialState, action) => {
             newState.products = newObj
             return newState
         case ADD_PRODUCT:
-            console.log(action.product)
             const product = action.product
             newState.products[product.id] = product
             return newState

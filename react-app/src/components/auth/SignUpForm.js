@@ -40,10 +40,9 @@ const SignUpForm = ({setShowModal}) => {
     const emailErrorValidation = []
     const passwordErrorValidation = []
     const repeatPasswordErrorValidation = []
+    const re = /\S+@\S+\.\S+/;
 
-
-    if(!username.length || username.trim().length===0
-){
+    if(!username.length || username.trim().length===0){
       usernameErrorValidation.push("Please enter a username")
     }
     if(username.length > 40){
@@ -52,9 +51,10 @@ const SignUpForm = ({setShowModal}) => {
     if(usernameExists){
       usernameErrorValidation.push("Username already exists (case insensitive)")
     }
-
-    if(!email.length || email.trim().length===0
-){
+    if(!re.test(email)){
+      emailErrorValidation.push("Incorrect email format")
+    }
+    if(!email.length || email.trim().length===0){
       emailErrorValidation.push("Please enter a email")
     }
     if(email.length > 40){
