@@ -1,6 +1,6 @@
 # Kanto-Prime
 
-kanto-prime Live Link: https://komication.herokuapp.com/
+kanto-prime Live Link: https://kanto-prime.herokuapp.com/
 
 Git Wiki:https://github.com/dkong1321/PokeMart/wiki
 
