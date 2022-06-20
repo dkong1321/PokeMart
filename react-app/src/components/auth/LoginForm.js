@@ -19,7 +19,6 @@ const LoginForm = () => {
       setErrors(data);
       return
     }
-    // console.log(user)
     history.push('/products')
 
   };
@@ -29,7 +28,6 @@ const LoginForm = () => {
     const demoEmail = "propaneprince@aa.io"
     const demoPassword = "password"
     dispatch(login(demoEmail, demoPassword));
-    // console.log(user)
     history.push('/products')
   };
 
