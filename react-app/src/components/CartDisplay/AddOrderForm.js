@@ -12,7 +12,7 @@ const AddOrderForm = () => {
     const [ lastName, setlastName] = useState("")
     const [ shipping, setShipping] = useState("")
     const [ city, setCity] = useState("")
-    const [ state, setState] = useState("")
+    const [ state, setState] = useState("AL")
 
     const [firstNameError, setFirstNameError] =useState([])
     const [lastNameError, setLastNameError] =useState([])

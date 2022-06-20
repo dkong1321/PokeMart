@@ -64,7 +64,7 @@ const ProductForm = ({setShowModal}) => {
                 errorImageValidation.push("Invalid file type")
         }
 
-        if (errorNameValidation.length || errorDescriptionValidation.length || errorPriceValidation.length ){
+        if (errorNameValidation.length || errorDescriptionValidation.length || errorPriceValidation.length || errorImageValidation.length ){
             setErrorName(errorNameValidation)
             setErrorDescription(errorDescriptionValidation)
             setErrorPrice(errorPriceValidation)
