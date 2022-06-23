@@ -4,11 +4,11 @@ from app.models import db, User, Product
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo_user1 = User(
-        username='Propane Prince', email='propaneprince@aa.io', password='password')
+        username='Propane Prince', email='propaneprince@aa.io', password='password', avatar_url='http://kanto-prime.s3.amazonaws.com/accce75ebdb1455898d39784580a9f48.jpg' )
     demo_user2 = User(
-        username='ChrisCharming', email='christtv@aa.io', password='password')
+        username='ChrisCharming', email='christtv@aa.io', password='password', avatar_url='http://kanto-prime.s3.amazonaws.com/accce75ebdb1455898d39784580a9f48.jpg' )
     demo_user3 = User(
-        username='DukeSilver', email='pmelhus@aa.io', password='password')
+        username='DukeSilver', email='pmelhus@aa.io', password='password', avatar_url='http://kanto-prime.s3.amazonaws.com/accce75ebdb1455898d39784580a9f48.jpg' )
 
 
     # demo_product1 = Product(

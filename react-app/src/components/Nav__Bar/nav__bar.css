@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    height: 50px;
+    height: 80px;
     /* justify-content: flex-end; */
     /* border: 3px red solid; */
     /* background-color: #BF4342; */
@@ -56,4 +56,27 @@
     width: 80px;
     height: 30px;
     margin-left: 10px;
+}
+
+.avatar__container{
+    display: flex;
+    margin: 20px;
+}
+
+.avatar__image{
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    border: 1px solid black;
+}
+
+.drop__down__button{
+    /* border: 2px red solid; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    background-color: #ffffff;
+    border-radius: 30px;
 }

@@ -93,7 +93,8 @@ const ProductsDisplay = () => {
 
                                 </div>
                             </Link>
-                            {user === null || user.id === product.user_id ?
+                            {/* add cart button */}
+                            {/* {user === null || user.id === product.user_id ?
                              <></>:
                                 <div className="product__button__container">
                                     { productQuantity > 8 || Object.values(cart.products).filter((x)=>(x.product_id === parseInt(product.id)))[0]?.quantity>9 ?
@@ -101,7 +102,7 @@ const ProductsDisplay = () => {
                                     <button className="product__card__add__button" onClick={(e) => addToCart(product)}>+</button>
                                     }
                                 </div>
-                             }
+                             } */}
                             </div>
                         )
                     })}

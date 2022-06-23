@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
@@ -8,6 +7,7 @@ import LoginFormModal from '../Modals/LoginFormModal';
 import SignUpFormModal from '../Modals/SignUpFormModal';
 import AddProductFormModal from '../Modals/PostProductModal';
 import { getCart } from '../../store/cart';
+import UserDropDown from './UserDropDown';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
@@ -38,19 +38,24 @@ const NavBar = () => {
 
           <div className='nav__link__container__right'>
             <NavLink to='/products' exact={true} activeClassName='active' className="nav_link shop__product__link">Shop Products</NavLink>
-            {sessionUser ? <NavLink to='/myorders' exact={true} activeClassName='active' className="nav__link">My Orders</NavLink>:<></>}
-            {sessionUser ? <NavLink to='/my-products' exact={true} activeClassName='active' className="nav__link">My Listings</NavLink>:<></>}
+            {/* {sessionUser ? <NavLink to='/myorders' exact={true} activeClassName='active' className="nav__link">My Orders</NavLink>:<></>} */}
+            {/* {sessionUser ? <NavLink to='/my-products' exact={true} activeClassName='active' className="nav__link">My Listings</NavLink>:<></>} */}
             {!sessionUser ? <LoginFormModal /> :<></>}
             {!sessionUser ? <SignUpFormModal /> :<></>}
-            { sessionUser ? <LogoutButton /> :<></>}
+            {/* { sessionUser ? <LogoutButton /> :<></>} */}
             { sessionUser ? <AddProductFormModal />:<></>}
             { sessionUser ?
               <NavLink
                 to='/mycart' exact={true} activeClassName='active' className="nav__link"><div>{cartSum()} <i className="fa-solid fa-cart-shopping"></i></div>
-                {/* to='/mycart' exact={true} activeClassName='active' className="nav__link"><div>{Object.values(cartProducts).length} <i className="fa-solid fa-cart-shopping"></i></div> */}
-
               </NavLink>
             :<></>}
+            { sessionUser ?
+              <div className='avatar__container'>
+                {/* <div>{sessionUser.username}</div> */}
+                {/* <img className='avatar__image' src={sessionUser.avatar_url}></img> */}
+              </div>
+            :<></>}
+            {sessionUser? <UserDropDown/> : <></>}
           </div>
       </nav>
       {/* {!sessionUser ?

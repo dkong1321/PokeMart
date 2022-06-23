@@ -171,7 +171,6 @@
     background-color: #d8cc8a;
     width: 160px;
     height: 50px;
-    opacity: 0;
 }
 .add__cart__button{
     background: none;
@@ -189,7 +188,10 @@
     cursor: pointer;
 }
 
-
+.add__cart__button:active {
+    background-color: #2e2c2c;
+    color: #eccc11;
+}
 
 
 .added__cart__message{
