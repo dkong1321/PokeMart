@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts, deleteProduct } from "../../store/product";
 import {Link} from "react-router-dom"
 import EditProductFormModal from "../Modals/EditProductFormModal";
+import DeleteProductFormModal from "../Modals/DeleteProductModal";
 import "./my__product.css"
 
 const MyProducts = () => {
@@ -39,7 +40,8 @@ const MyProducts = () => {
                                 </Link>
                                     <div className="my__product__buttons">
                                         <EditProductFormModal product={product}/>
-                                        <button onClick={() => eraseProduct(product)}><i className="fa-solid fa-trash-can"></i></button>
+                                        {/* <button onClick={() => eraseProduct(product)}><i className="fa-solid fa-trash-can"></i></button> */}
+                                        <DeleteProductFormModal product={product}/>
                                     </div>
                             </div>
                         )

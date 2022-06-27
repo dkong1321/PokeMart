@@ -2,11 +2,11 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    height: 80px;
+    height: 70px;
     /* justify-content: flex-end; */
     /* border: 3px red solid; */
     /* background-color: #BF4342; */
-    background-color: #4A4E69;
+    background-color: #333333;
     position: sticky;
     top: 0;
     width: 100%;
@@ -118,4 +118,9 @@
     /* right: 3.3rem; */
     top: 78px;
     right: 460px;
+}
+
+.logo {
+    width: auto;
+    height: 60px;
 }

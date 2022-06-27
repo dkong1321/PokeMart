@@ -24,7 +24,7 @@
 }
 
 .my__product__card:hover {
-    background-color: tan;
+    background-color: #a3a39c;
 }
 
 .my__product__details{
@@ -39,8 +39,9 @@
 .my__product__image{
     width: 200px;
     height: 100px;
-    object-fit: scale-down;
-    margin: none;
+    object-fit: cover;
+    margin: 5px;
+
 }
 
 .my__product__name__image__container{
