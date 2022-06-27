@@ -30,9 +30,11 @@ const MyProducts = () => {
                         return (
                             <div key={product.id} className="my__product__card">
                                 <Link to={`/products/${product.id}`} key={product.id} className="my__product__details">
-                                    <div className="product__name">{product.product_name}</div>
-                                    <img className="my__product__image" src={product.product_image_url} alt=""></img>
-                                    <div>{product.description}</div>
+                                    <div className="my__product__name__image__container">
+                                        <img className="my__product__image" src={product.product_image_url} alt=""></img>
+                                        <div className="product__name">{product.product_name}</div>
+                                    </div>
+                                    <div className="my__product__description">{product.description}</div>
                                     <div className="product__price">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(product.price)}</div>
                                 </Link>
                                     <div className="my__product__buttons">
