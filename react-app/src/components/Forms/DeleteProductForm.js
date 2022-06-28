@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteProduct } from "../../store/product";
-// import "./edit__product__form.css"
+import "./delete__product__form.css"
 
 const DeleteProductForm = ({setShowModal, product}) => {
     const dispatch = useDispatch()
@@ -13,9 +13,18 @@ const DeleteProductForm = ({setShowModal, product}) => {
 
     }
 
+    const cancelDelete = (e) => {
+        setShowModal(false)
+    }
+
     return(
-        <div>
-            <button onClick={()=>eraseProduct(product)}>Delete Me</button>
+        <div className="delete__confirm__form">
+            <h3>Are you sure you want to delete this listing?</h3>
+            <div>This process cannot be undone</div>
+            <div className="delete__product__button__container">
+                <button className="delete__product__button" onClick={()=>eraseProduct(product)}>Delete</button>
+                <button className="cancel__button" onClick={(e)=>cancelDelete(e)}>Cancel</button>
+            </div>
         </div>
     )
 }

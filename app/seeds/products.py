@@ -4,27 +4,27 @@ def seed_products():
     demo_product1 = Product(
         product_name = 'Vaporeon Vmax (SWSH182)', price=5.00, user_id=1,
         description = "Full art Vaporeon card",
-        product_image_url="http://kanto-prime.s3.amazonaws.com/da4a15d831414318a48514ce1fca94b6.jpg")
+        product_image_url="http://kanto-prime.s3.amazonaws.com/6d0752143a1a4acead81c85704865ad7.jpg")
 
     demo_product2 = Product(
         product_name = 'Charizard Celebrations (4/102)', price=12.00, user_id=1,
         description = "Near mint Charizard from then 25th Celebrations pack",
-        product_image_url="http://kanto-prime.s3.amazonaws.com/e81d87b9a97c47f5a41b263b413f9b0a.jpg",)
+        product_image_url="http://kanto-prime.s3.amazonaws.com/91b51c646ac644d3821b2077c02ce01c.jpg",)
 
     demo_product3 = Product(
         product_name = 'Venusaur Celebrations (15/102)', price=8.00,  user_id=1,
         description = "Venusaur ungraded from then 25th Celebrations pack",
-        product_image_url="http://kanto-prime.s3.amazonaws.com/e81eebaba0f04841b966a6fbf33814fe.jpg",)
+        product_image_url="http://kanto-prime.s3.amazonaws.com/94b2c56fa0fc46cfbafbffe0c41ab471.jpg",)
 
     demo_product4 = Product(
         product_name = 'Blastoise Celebrations (2/102)', price=5.00,  user_id=1,
         description = "Blastoise from then 25th Celebrations pack",
-        product_image_url="http://kanto-prime.s3.amazonaws.com/55c9361d5d02408591305c6f16b1bafb.jpg",)
+        product_image_url="http://kanto-prime.s3.amazonaws.com/e679b71fe7a44ca38e2c6493fa9e2cac.jpg",)
 
     demo_product5 = Product(
         product_name = 'Pikachu Vmax (SWSH062)', price=12.00,  user_id=1,
         description = "Near min Charizard from then 25th Celebrations pack",
-        product_image_url="http://kanto-prime.s3.amazonaws.com/eaddac14a0eb401eb196ecf40a12a3a4.jpg",)
+        product_image_url="http://kanto-prime.s3.amazonaws.com/151a26cd08f24b70bd6bec5cc15610a4.jpg",)
     demo_product6 = Product(
         product_name = 'Mega Charizard X Statue',
                         price=139.99,  user_id=2,
@@ -69,8 +69,13 @@ def seed_products():
         product_name = 'Charizard Rising Flames',
                         price=249.99,  user_id=1,
         description = "Rising out of the smoke and flames, Charizard unleashes a tremendous Flamethrower attack! Pokémon Center has paired with First 4 Figures to create this stunning figure featuring premium-quality sculpted details and a dazzling LED feature that lights up the raging flames with a warm, beautiful glow. ",
-        product_image_url="http://kanto-prime.s3.amazonaws.com/f74f262d5d974fe0b3a96ecadb99f816.png",)
+        product_image_url="http://kanto-prime.s3.amazonaws.com/cdd46ae7bb884af0873253a4c083ae74.png",)
 
+
+    demo_product15 = Product(
+        product_name = 'Machamp Bullet Punch Figure', price=12.00,  user_id=1,
+        description = "Dynamic action Machamp figure. Offical PokeCenter store Rrelease",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/856646da28da40b89051be5fbc3642c8.jpg",)
 
     # demo_product6 = Product(
     #     product_name = 'Pikachu Vmax (SWSH062)', price=12.00,  user_id=1,
@@ -79,7 +84,7 @@ def seed_products():
 
 
     productArr =[demo_product1, demo_product2, demo_product3, demo_product4, demo_product5, demo_product6, demo_product7, demo_product8, demo_product9, demo_product10, \
-                demo_product11, demo_product12, demo_product13, demo_product14,]
+                demo_product11, demo_product12, demo_product13, demo_product14, demo_product15]
 
     for product in productArr:
         db.session.add(product)
@@ -109,22 +114,22 @@ def seed_products():
     # ===============================================================================================================
     demo_order_product1 = OrderProduct(
         order_id=1, product_id=1, quantity=3, product_name='Vaporeon Vmax (SWSH182)',
-        product_image= "http://kanto-prime.s3.amazonaws.com/da4a15d831414318a48514ce1fca94b6.jpg"
+        product_image= "http://kanto-prime.s3.amazonaws.com/6d0752143a1a4acead81c85704865ad7.jpg"
     )
 
     demo_order_product2 = OrderProduct(
         order_id=2, product_id=1, quantity=3, product_name='Vaporeon Vmax (SWSH182)',
-        product_image= "http://kanto-prime.s3.amazonaws.com/da4a15d831414318a48514ce1fca94b6.jpg"
+        product_image= "http://kanto-prime.s3.amazonaws.com/6d0752143a1a4acead81c85704865ad7.jpg"
     )
 
     demo_order_product3 = OrderProduct(
         order_id=3, product_id=1, quantity=2, product_name='Vaporeon Vmax (SWSH182)',
-        product_image= "http://kanto-prime.s3.amazonaws.com/da4a15d831414318a48514ce1fca94b6.jpg"
+        product_image= "http://kanto-prime.s3.amazonaws.com/6d0752143a1a4acead81c85704865ad7.jpg"
     )
 
     demo_order_product4 = OrderProduct(
         order_id=3, product_id=4, quantity=3, product_name='Blastoise Celebrations (2/102)',
-        product_image= "http://kanto-prime.s3.amazonaws.com/55c9361d5d02408591305c6f16b1bafb.jpg"
+        product_image= "http://kanto-prime.s3.amazonaws.com/e679b71fe7a44ca38e2c6493fa9e2cac.jpg"
     )
 
     orderProductArr = [demo_order_product1, demo_order_product2, demo_order_product3, demo_order_product4]

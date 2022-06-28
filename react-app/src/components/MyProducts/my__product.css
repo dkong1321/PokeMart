@@ -7,20 +7,21 @@
     row-gap: 0px;
     margin: 20px;
     border: solid 2px black;
+    border-radius: 10px;
     width: 1000px;
+    /* padding: 10px; */
 }
 
+
 .my__product__card{
-    /* border: solid 2px black; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     width:inherit;
-    /* padding: 15px; */
-    /* background-color: tan; */
-    /* align-items: center; */
     border-bottom: 2px solid black;
     padding-bottom: 10px;
+    transition: .5s;
+    border-radius: 5px;
 }
 
 .my__product__card:hover {
@@ -38,9 +39,11 @@
 
 .my__product__image{
     width: 200px;
-    height: 100px;
-    object-fit: cover;
-    margin: 5px;
+    height: 200px;
+    object-fit: contain;
+    margin: 15px;
+    border-radius: 10px;
+    /* border: solid 2px black; */
 
 }
 
@@ -58,14 +61,28 @@
     text-decoration: none;
 }
 
-.my__product__buttons{
+.my__product__button__container{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     /* border: red 1px solid; */
+    position: relative;
+    top: -235px;
+    right: -940px;
     opacity: 0;
 }
 
-.my__product__card:hover .my__product__buttons {
+.my__product__card:hover .my__product__button__container {
     opacity: 1;
+}
+
+.my__product__button {
+    background: none;
+    border: none;
+    transition: .5s;
+}
+
+.my__product__button:hover{
+    color: rgb(100, 99, 92);
+    cursor: pointer;
 }

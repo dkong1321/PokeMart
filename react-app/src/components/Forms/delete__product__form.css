@@ -1,0 +1,40 @@
+.delete__confirm__form{
+    height: 180px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* align-items: ; */
+    padding: 10px;
+}
+
+.delete__product__button__container{
+    margin-top: 2em;
+}
+
+.delete__product__button{
+    background-color: #494844;
+    color: #f5f6f9;
+    padding: 8px 30px;
+    margin-right: 130px ;
+    transition: .5s;
+}
+
+.delete__product__button:hover{
+    cursor: pointer;
+    background-color: #969592;
+    color: #f5f6f9;
+}
+
+.cancel__button {
+    background-color:#be1e1e;
+    color: #f5f6f9;
+    padding: 8px 30px;
+    transition: .5s;
+}
+
+.cancel__button:hover{
+    cursor: pointer;
+    background-color: #de2929;
+    color: #f5f6f9;
+}

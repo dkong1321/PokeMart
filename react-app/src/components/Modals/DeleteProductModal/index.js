@@ -7,7 +7,7 @@ function DeleteProductFormModal({product}) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}><i className="fa-solid fa-trash-can"></i></button>
+      <button className="my__product__button" onClick={() => setShowModal(true)}><i className="fa-solid fa-trash-can"></i></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <DeleteProductForm setShowModal={setShowModal} product={product}/>

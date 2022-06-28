@@ -38,7 +38,7 @@ const MyProducts = () => {
                                     <div className="my__product__description">{product.description}</div>
                                     <div className="product__price">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(product.price)}</div>
                                 </Link>
-                                    <div className="my__product__buttons">
+                                    <div className="my__product__button__container">
                                         <EditProductFormModal product={product}/>
                                         {/* <button onClick={() => eraseProduct(product)}><i className="fa-solid fa-trash-can"></i></button> */}
                                         <DeleteProductFormModal product={product}/>

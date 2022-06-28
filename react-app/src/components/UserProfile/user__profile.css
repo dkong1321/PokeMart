@@ -40,3 +40,9 @@
 .profile__info__header{
     font-weight: 600;
 }
+
+.listing__title{
+    font-weight: 600;
+    font-size: 40px;
+    margin-top: 20px;
+}

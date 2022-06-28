@@ -7,7 +7,7 @@ function EditProductFormModal({product}) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}><i className="fa-solid fa-pen-to-square"></i></button>
+      <button className='my__product__button' onClick={() => setShowModal(true)}><i className="fa-solid fa-gear"></i></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditProductForm setShowModal={setShowModal} product={product}/>

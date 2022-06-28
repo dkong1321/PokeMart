@@ -37,7 +37,7 @@ function UserProfile() {
           </div>
         </div>
       </div>
-      <div>Your Listings</div>
+      <div className='listing__title'>Your Listings</div>
       <MyProducts/>
     </div>
 
