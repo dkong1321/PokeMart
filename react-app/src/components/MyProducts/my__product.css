@@ -25,7 +25,7 @@
 }
 
 .my__product__card:hover {
-    background-color: #a3a39c;
+    background-color: #c9c9c9cf;
 }
 
 .my__product__details{
@@ -82,7 +82,11 @@
     transition: .5s;
 }
 
+.extra {
+    font-size: 15px;
+}
+
 .my__product__button:hover{
-    color: rgb(100, 99, 92);
+    color: rgb(255, 255, 255);
     cursor: pointer;
 }

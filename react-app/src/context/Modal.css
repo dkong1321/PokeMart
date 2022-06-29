@@ -28,8 +28,8 @@
 }
 
 .modal__form__heading {
-    color: aliceblue;
+    color: rgb(50, 52, 53);
     font-size: 20px;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin: 10px 0px;
 }

@@ -40,7 +40,6 @@ const MyProducts = () => {
                                 </Link>
                                     <div className="my__product__button__container">
                                         <EditProductFormModal product={product}/>
-                                        {/* <button onClick={() => eraseProduct(product)}><i className="fa-solid fa-trash-can"></i></button> */}
                                         <DeleteProductFormModal product={product}/>
                                     </div>
                             </div>

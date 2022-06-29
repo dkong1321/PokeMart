@@ -21,12 +21,6 @@ body{
 .input__error{
     color: rgb(212, 9, 9);
     font-weight: 600;
-    height: 15px
-}
-
-.input__container{
-    height: 50px;
-    width: fit-content;
-    margin-top: 10px;
-    border: 3px solid blue;
+    height: 15px;
+    margin: 5px 0px;
 }
