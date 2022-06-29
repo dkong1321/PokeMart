@@ -13,7 +13,7 @@ const LogoutButton = () => {
     dispatch(emptyCart())
   };
 
-  return <button className='nav__button' onClick={onLogout}>Logout</button>;
+  return <div className="nav__link__dropdown" onClick={onLogout}>Logout</div>;
 };
 
 export default LogoutButton;

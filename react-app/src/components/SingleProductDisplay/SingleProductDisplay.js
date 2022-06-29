@@ -150,7 +150,7 @@ const SingleProductDisplay = () => {
                             {user === null || user.id === product.user_id ?
                              <></>:
                                 <div>
-                                    { productQuantity > 8 || Object.values(cart.products).filter((product)=>(product.product_id === parseInt(productId)))[0]?.quantity>9 ?
+                                    { Object.values(cart.products).filter((product)=>(product.product_id === parseInt(productId)))[0]?.quantity>9 ?
                                     <div className="disabled__cart__button">Max Qty in Cart</div>:
                                     <button className="add__cart__button" onClick={() => addToCart()}>ADD TO CART</button>
                                     }

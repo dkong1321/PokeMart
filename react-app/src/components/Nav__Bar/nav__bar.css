@@ -1,11 +1,9 @@
 .nav__bar__container{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 160px 1fr;
+    grid-column-gap: 55%;
     align-items: center;
-    justify-content: space-evenly;
-    height: 70px;
-    /* justify-content: flex-end; */
-    /* border: 3px red solid; */
-    /* background-color: #BF4342; */
+    height: 85px;
     background-color: #333333;
     position: sticky;
     top: 0;
@@ -16,27 +14,42 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    /* border: 3px rgb(36, 145, 94) solid; */
+    width: 4200px;
+    height: 100%;
 }
 
-.shop__product__link{
-    color: white;
-    text-decoration: none;
+.logo {
+    width: auto;
+    height: 60px;
 }
 
 .nav__link__container__left {
     display: flex;
+    justify-content: flex-start;
     text-decoration: none;
-    /* border: 3px rgb(36, 145, 94) solid; */
+    margin-left: 50px;
+    padding: none;
 }
 
 .nav__link {
     color: white;
-    /* border: 3px rgb(214, 29, 29) solid; */
     text-decoration: none;
-    margin-left: 10px;
+    transition: .5s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    height: 100%;
+    padding: 0px 5px;
 }
 
+.nav__link:hover{
+    cursor: pointer;
+    color: gold;
+    background-color: #1d1e1f;
+
+}
 .nav__link__dropdown{
     color: #000000;
     text-decoration: none;
@@ -45,82 +58,51 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* margin: 10px; */
-    /* padding: 10px; */
 }
 
 .nav__link__dropdown:hover{
     color: #dbdce1;
     background-color: #4A4E69;
     cursor: pointer;
-
-
 }
 
-.nav__button {
-    border: #000000 2px solid;
-    background-color: #4b5cac;
+
+.shop__product__link{
     color: white;
-    padding: 5px;
-    width: 80px;
-    height: 30px;
-    margin-left: 10px;
-
-}
-
-.add__product__button {
-    border: #000000 2px solid;
-    background-color: #4b5cac;
-    color: white;
-    padding: 5px;
-    width: 80px;
-    height: 30px;
-    margin-left: 10px;
-}
-
-.avatar__container{
-    display: flex;
-    margin: 20px;
+    text-decoration: none;
 }
 
 .avatar__image{
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     border-radius: 30px;
-    border: 1px solid black;
     object-fit: cover;
 }
 
 .drop__down__button{
-    /* border: 2px red solid; */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60px;
-    width: 60px;
-    background-color: #ffffff;
-    border-radius: 30px;
+    height: 100%;
+    width: 120px;
     cursor: pointer;
+    color: white;
+}
+
+.drop__down__button:hover{
+    color: gold;
 }
 
 .drop__down__container {
     border-left: 2px rgb(0, 0, 0) solid;
     border-bottom: 2px rgb(0, 0, 0) solid;
     border-right: 2px rgb(0, 0, 0) solid;
-    width: 140px;
+    width: 130px;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* justify-content: center; */
-    /* padding: 15px; */
     position: absolute;
     background-color: #dbdce1;
-    /* right: 3.3rem; */
-    top: 78px;
-    right: 460px;
-}
+    top: 85px;
+    right: 127px;
 
-.logo {
-    width: auto;
-    height: 60px;
 }

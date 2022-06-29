@@ -40,31 +40,23 @@ const NavBar = () => {
           </div>
 
           <div className='nav__link__container__right'>
-            <NavLink to='/products' exact={true} activeClassName='active' className="nav_link shop__product__link">Shop Products</NavLink>
-            {/* {sessionUser ? <NavLink to='/myorders' exact={true} activeClassName='active' className="nav__link">My Orders</NavLink>:<></>} */}
-            {/* {sessionUser ? <NavLink to='/my-products' exact={true} activeClassName='active' className="nav__link">My Listings</NavLink>:<></>} */}
+            <NavLink to='/products' exact={true} activeClassName='active' className="nav__link">Shop Products</NavLink>
             {!sessionUser ? <LoginFormModal /> :<></>}
             {!sessionUser ? <SignUpFormModal /> :<></>}
-            {/* { sessionUser ? <LogoutButton /> :<></>} */}
             { sessionUser ? <AddProductFormModal />:<></>}
             { sessionUser ?
               <NavLink
                 to='/mycart' exact={true} activeClassName='active' className="nav__link"><div>{cartSum()} <i className="fa-solid fa-cart-shopping"></i></div>
               </NavLink>
             :<></>}
-            { sessionUser ?
+            {/* { sessionUser ?
               <div className='avatar__container'>
-                {/* <div>{sessionUser.username}</div> */}
-                {/* <img className='avatar__image' src={sessionUser.avatar_url}></img> */}
+                <UserDropDown/>
               </div>
-            :<></>}
+            :<></>} */}
             {sessionUser? <UserDropDown/> : <></>}
           </div>
       </nav>
-      {/* {!sessionUser ?
-      <nav className='nav__bar__container'>Hello guest, please log-in to add items to cart or post reviews</nav>:
-      <></>
-      } */}
     </div>
   );
 }
