@@ -12,3 +12,21 @@ body{
         open sans,
         lato;
 }
+
+.input__label{
+    font-weight: 700;
+    /* border: red 1px solid; */
+}
+
+.input__error{
+    color: rgb(212, 9, 9);
+    font-weight: 600;
+    height: 15px
+}
+
+.input__container{
+    height: 50px;
+    width: fit-content;
+    margin-top: 10px;
+    border: 3px solid blue;
+}
