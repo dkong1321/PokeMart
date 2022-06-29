@@ -17,10 +17,6 @@ const EditProductForm = ({setShowModal,product}) => {
     const [errorImage, setErrorImage] = useState([])
     const uploadHiddenInput = useRef()
 
-
-
-    // const [editImage, setEditImage] = useState(null);
-    // refactor maybe
     const user =useSelector((state)=> state.session.user)
 
     useEffect(()=>{
@@ -101,28 +97,28 @@ const EditProductForm = ({setShowModal,product}) => {
     return(
         isLoaded && (
             <div className="edit__product__container">
-                <div className="modal__form__heading">Edit Product Form</div>
+                <div className="modal__form__heading">Make a Change to Your Listing</div>
                 <form onSubmit={editProduct} className="edit__product__form">
                     <div>
-                        <label>Product Name</label>
-                        {errorName ? <div>{errorName}</div> : <></>}
+                        <label className='input__label'>Product Name</label>
+                        {errorName ? <div className="input__error">{errorName}</div> : <></>}
                         <input className="product__form__input" value={name} onChange={e => setName(e.target.value)}/>
                     </div>
                     <div>
                         <label>Description</label>
-                        {errorDescription ? <div>{errorDescription}</div> : <></>}
+                        {errorDescription ? <div className="input__error">{errorDescription}</div> : <></>}
                         <input className="product__form__input" value={description} onChange={e => setDescription(e.target.value)}/>
                     </div>
                     <div>
-                        <label>Price</label>
-                        {errorPrice ? <div>{errorPrice}</div> : <></>}
+                        <label className='input__label'>Price</label>
+                        {errorPrice ? <div className="input__error">{errorPrice}</div> : <></>}
                         <input className="product__form__input" type='number' value={price} onChange={e => setPrice(e.target.value)} pattern='[0-9]+(\\.[0-9][0-9]?)?' placeholder="0.00" min="0.00" step="0.01"/>
                     </div>
                     <div className="image__select__container">
-                        <label>Change Image if Needed</label>
-                        {errorImage ? <div>{errorImage}</div> : <></>}
+                        <label className='input__label'>Change Image if Needed</label>
+                        {errorImage ? <div className="input__error">{errorImage}</div> : <></>}
                         {image ? <>{image.type}</>: null}
-                        <button className="product__image__button" onClick={chooseImage}>Choose Image</button>
+                        <button className="edit__product__image__button" onClick={chooseImage}>Choose Image</button>
                         <input className="product__form__input" type ="file" accept="image/*" onChange={updateImage} hidden ref={uploadHiddenInput}/>
                     </div>
                     <button className="submit__edit__product__button" type="submit">Submit</button>

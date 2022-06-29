@@ -62,11 +62,13 @@ const SingleProductDisplay = () => {
         }
 
         if (errorDescriptionValidation.length || errorRatingValidation.length) {
+            console.log(errorDescriptionValidation)
+            console.log(errorRatingValidation)
             setErrorDescription(errorDescriptionValidation)
             setErrorRating(errorRatingValidation)
             return
         }
-
+        console.log(errorDescriptionValidation)
         const data = {
             rating,
             description,
@@ -77,6 +79,7 @@ const SingleProductDisplay = () => {
         setRating(0)
         setDescription("")
         setErrorRating([])
+        setErrorDescription([])
         setNotSignedIn("")
         setProductOwner("")
     }
@@ -130,7 +133,7 @@ const SingleProductDisplay = () => {
 
     return(
         isLoaded && (
-            <div>
+            <div className="main__product__container">
                 <div className="product__detail__container">
                     <div className="product__detail__image">
                         <img className="single__product__image" src={product.product_image_url} alt=""></img>
@@ -157,31 +160,24 @@ const SingleProductDisplay = () => {
                                 </div>
                              }
                         </div>
+                        <div className="review__form__container">
+                                <div className="review__post__title">Post a Review for this Product</div>
+                                <div className="product__name__divider"></div>
+                                <form classeName="review__form" onSubmit={addNewReview}>
+                                    {errorDescription ? <div className="review__input__error">{errorDescription}</div> : <></>}
+                                    {errorRating ? <div className="review__input__error">{errorRating}</div>: <></>}
+                                    {notSignedIn ? <div className="review__input__error">{notSignedIn}</div>:<></>}
+                                    {productOwner ? <div className="review__input__error">{productOwner}</div>:<></>}
+                                    <ReactStars value={rating} count={5} onChange={ratingChanged} size={24} color2={"goldenrod"} color1={'#bdbaba'} half={false} />
+                                    <textarea className="review__description__input" value={description} onChange={e => setDescription(e.target.value)} placeholder="Write a review for this product!" rows="5" cols="50" />
+                                    <button className="review__submit" type="submit">Submit</button>
+                                </form>
+                        </div>
                     </div>
                 </div>
                     <div className="review__page__container">
+                    <div className="product__review__title">Product Reviews</div>
                     <div className="main__reviews__container">
-                        <div className="review__form__container">
-                            <div>
-                                    <>
-                                        <div className="review__post__title">Post a Review for this Product</div>
-                                        <div className="product__name__divider"></div>
-                                        <form className=".review__form__container" onSubmit={addNewReview}>
-                                            {errorDescription ? <div>{errorDescription}</div> : <></>}
-                                            {errorRating ? <div>{errorRating}</div> : <></>}
-                                            {notSignedIn ? <div>{notSignedIn}</div>:<></>}
-                                            {productOwner ? <div>{productOwner}</div>:<></>}
-                                            <ReactStars value={rating} count={5} onChange={ratingChanged} size={24} color2={"#4b5cac"} color1={'#bdbaba'} half={false} />
-                                            <textarea className="review__description__input" value={description} onChange={e => setDescription(e.target.value)} placeholder="Write a review for this product!" rows="5" cols="50" />
-                                            <button className="review__submit" type="submit">Submit</button>
-
-                                        </form>
-                                    </>
-
-                            </div>
-                        </div>
-                        <div className="product__review__title">Product Reviews</div>
-
                         <div className="product__review__container">
                             <div>
                                 {Object.values(product.reviews).reverse().map((review)=>{

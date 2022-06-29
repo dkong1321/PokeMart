@@ -99,18 +99,43 @@
 }
 
 .confirm__order__button {
-    margin: 15px;
-    width: 200px;
-    height: 40px;
-    color: rgb(255, 255, 255);
-    background-color: #7d8c96;
-    border: none;
-    border-radius: 5px;
+    border: #000000 2px solid;
+    background-color: #504f4f;
+    color: white;
+    padding: 5px;
+    width: 120px;
+    height: 30px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    cursor: pointer;
     transition: .5s;
 }
 
 .confirm__order__button:hover{
+    color: gold;
+    background-color: #1d1e1f;
+}
+
+.confirm__edit__order__button{
+    border: #000000 2px solid;
+    background-color: #504f4f;
+    color: white;
+    padding: 5px;
+    width: 120px;
+    height: 30px;
+    margin-top: 25px;
+    margin-bottom: 10px;
     cursor: pointer;
-    background-color: #b7d1e2;
-    color: #3a4750;
+    transition: .5s;
+}
+
+.confirm__edit__order__button:hover{
+    color: gold;
+    background-color: #1d1e1f;
+}
+
+.edit__order__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

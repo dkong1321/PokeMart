@@ -4,6 +4,15 @@
 
 }
 
+.product__modal__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    padding: 0px 5px;
+}
+
 
 .new__product__form__container{
     display: flex;
@@ -18,36 +27,43 @@
 
 .submit__product__button {
     border: #000000 2px solid;
-    background-color: #4b5cac;
+    background-color: #504f4f;
     color: white;
     padding: 5px;
     width: 80px;
     height: 30px;
-    margin-top: 10px;
+    margin-top: 25px;
     margin-bottom: 10px;
-    margin-left: 0px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.submit__product__button:hover {
+    color: gold;
+    background-color: #1d1e1f;
 }
 
 .product__image__button {
     border: #000000 2px solid;
-    background-color: #4b5cac;
+    background-color: #504f4f;
     color: white;
     padding: 5px;
-    width: 100px;
+    width: 120px;
     height: 30px;
-    margin-top: 10px;
+    margin-top: 25px;
     margin-bottom: 10px;
-    margin-left: 0px;
+    cursor: pointer;
+    transition: .5s;
 }
 
-/* .add__image__input{
-    border: #000000 2px solid;
-        background-color: #4b5cac;
-        color: white;
-        padding: 5px;
-        width: 80px;
-        height: 30px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        margin-left: 0px;
-} */
+.product__image__button:hover{
+    color: gold;
+    background-color: #1d1e1f;
+}
+
+.image__input__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+}

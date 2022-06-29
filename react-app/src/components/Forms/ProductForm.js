@@ -108,29 +108,29 @@ const ProductForm = ({setShowModal}) => {
                 </div>
                 }
             {!productLoading &&
-            <div>
-                <div className="modal__form__heading">New Product Form</div>
+            <div className="product__modal__container">
+                <div className="modal__form__heading">Submit a New Listing!</div>
                 <form onSubmit={makeNewProduct} className="new__product__form__container">
                     <div>
-                        <label>Product Name</label>
-                        {errorName ? <div>{errorName}</div> : <></>}
+                        <label className="input__label">Product Name</label>
+                        {errorName ? <div className="input__error">{errorName}</div> : <></>}
                         <input className="product__form__input" value={productName} onChange={e => setProductName(e.target.value)} placeholder="enter product name"/>
                     </div>
                     <div>
-                        <label>Description</label>
-                        {errorDescription ? <div>{errorDescription}</div> : <></>}
+                        <label className="input__label">Description</label>
+                        {errorDescription ? <div className="input__error">{errorDescription}</div> : <></>}
                         <input className="product__form__input" value={description} onChange={e => setDescription(e.target.value)} placeholder="enter description"/>
                     </div>
                     <div>
-                        <label>Price</label>
-                        {errorPrice ? <div>{errorPrice}</div> : <></>}
+                        <label className="input__label">Price</label>
+                        {errorPrice ? <div className="input__error">{errorPrice}</div> : <></>}
                         <input className="product__form__input" type='number' value={price} onChange={e => setPrice(e.target.value)} pattern='[0-9]+(\\.[0-9][0-9]?)?' placeholder="0.00" min="0.00" step="0.01"/>
                     </div>
 
-                    <div>
-                        <label>Add Image</label>
-                        {errorImage ? <div>{errorImage}</div> : <></>}
-                        {image ? <>{image.type}</>: null}
+                    <div className="image__input__container">
+                        <label className="input__label">Add Image</label>
+                        {errorImage ? <div className="input__error">{errorImage}</div> : <></>}
+                        {image ? <div>{image.type}</div>: null}
                         <button className="product__image__button" onClick={chooseImage}>Choose Image</button>
                         <input className="product__form__input" type ="file" accept="image/*" onChange={updateImage} hidden ref={uploadHiddenInput}/>
                     </div>
