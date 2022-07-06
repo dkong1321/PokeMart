@@ -43,8 +43,6 @@
     object-fit: contain;
     margin: 15px;
     border-radius: 10px;
-    /* border: solid 2px black; */
-
 }
 
 .my__product__name__image__container{
@@ -65,7 +63,6 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    /* border: red 1px solid; */
     position: relative;
     top: -235px;
     right: -940px;

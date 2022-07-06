@@ -1,5 +1,7 @@
 .product__cart__image {
-    max-width: 80px;
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
 }
 
 .order__container {
@@ -35,7 +37,7 @@
 }
 
 .order__description{
-width: 385px;
+    width: 540px;
 }
 
 .order__price__details{
@@ -43,7 +45,6 @@ width: 385px;
     flex-direction: column;
     align-items: flex-end;
     margin-right: 8px ;
-    /* border: #af0d0d 1px solid; */
 }
 
 .clear__cart__container{
@@ -54,7 +55,8 @@ width: 385px;
 
 .main__order__header__container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    border-bottom: 2px solid black;
     margin-top: 8px;
     margin-right: 8px;
     margin-left: 8px;
@@ -69,7 +71,7 @@ width: 385px;
 }
 
 .product__cart__description{
-    width: 450px;
+    width: 550px;
 }
 
 .cart__total__price {

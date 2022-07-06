@@ -19,6 +19,11 @@ def all_orders(userId):
 def add_order():
 
     req = request.json['data']
+    print("\n\n")
+    print(request.json)
+    # print(req)
+    print("\n\n")
+
     new_order = Order(
         total_price = req['total_price'],
         shipping_address = req['shipping_address'],

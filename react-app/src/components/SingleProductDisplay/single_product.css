@@ -22,24 +22,51 @@
 
 .main__reviews__container{
     display: flex;
-    /* flex-direction: column; */
-    /* justify-content: center; */
 }
 
 .review__page__container{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 1200px;
+    width: 100%;
     height: fit-content;
-    margin-top: 50px;
+    margin-top: 20px;
+}
+
+.single__product__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 80px;
+
+}
+
+.single__product__image {
+    width: 500px;
+    height: 500px;
+    border-radius: 5px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.single__product__modal{
+    width: 100%;
+    height: 100%;
 }
 
 .main__product__container {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.product__review__container {
+    border: #5c5a58 2px solid;
+    width: 100%;
+    height: 400px;
+    overflow-y: scroll;
     margin-top: 10px;
+    background-color: #d6d6d6e1;
 }
 
 .review__submit{
@@ -95,7 +122,6 @@
     font-size: 20px;
     font-weight: 600;
     width: 100%;
-    /* border: 1px solid red; */
 }
 
 .review__post__title__line{
@@ -106,9 +132,9 @@
 
 .product__review__title{
     color: #5c5a58;
-    font-size: 40px;
+    font-size: 25px;
     font-weight: 600;
-    width: 40%;
+    width: 100%;
 }
 
 .review__form__container{
@@ -128,40 +154,30 @@
     margin-top: 2rem;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
-
-}
-
-.product__review__container{
-    border: #5c5a58 2px solid;
-    width: 700px;
-    height: 500px;
-    overflow-y: scroll;
-    margin-top: 10px;
-    background-color: #d6d6d6e1;
 }
 
 
 .product__review__card {
     border-bottom: rgb(61, 57, 57) 1px solid;
     overflow-wrap: break-word;
-    /* background-color: rgb(55, 134, 252); */
 }
 
-.single__product__image {
-    max-width: 700px;
-    height: 600px;
-    border-radius: 10px;
-    /* border: #e0730d 4px solid; */
-    margin-right: 80px;
-    margin-top: 80px;
+.review__card__buttons {
+    position: relative;
+    top: -40px;
+    left: 500px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.product__review__card:hover .review__card__buttons{
+    opacity: 1;
 }
 
 .single__product__title {
     font-size: 30px;
     font-weight: 600;
-    /* border: yellowgreen 3px solid; */
-    width: 400px;
+    width: 460px;
     margin-top: 5px;
 }
 
@@ -188,7 +204,6 @@
 
 .disabled__cart__button{
     background: none;
-    /* border: 4px red solid; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -202,7 +217,6 @@
 }
 .add__cart__button{
     background: none;
-    /* border: 4px red solid; */
     margin: 20px 0;
     font-size: 15px;
     font-weight: 600;

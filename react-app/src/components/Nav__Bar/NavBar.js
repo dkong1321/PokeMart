@@ -31,7 +31,7 @@ const NavBar = () => {
   }
 
   return (
-    <div>
+
       <nav className='nav__bar__container'>
           <div className='nav__link__container__left'>
             {/* <NavLink to='/' exact={true} activeClassName='active' className="nav__link">Home</NavLink> */}
@@ -49,15 +49,10 @@ const NavBar = () => {
                 to='/mycart' exact={true} activeClassName='active' className="nav__link"><div>{cartSum()} <i className="fa-solid fa-cart-shopping"></i></div>
               </NavLink>
             :<></>}
-            {/* { sessionUser ?
-              <div className='avatar__container'>
-                <UserDropDown/>
-              </div>
-            :<></>} */}
             {sessionUser? <UserDropDown/> : <></>}
           </div>
       </nav>
-    </div>
+
   );
 }
 

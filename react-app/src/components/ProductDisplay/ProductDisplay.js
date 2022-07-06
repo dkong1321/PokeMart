@@ -65,10 +65,10 @@ const ProductsDisplay = () => {
         isLoaded && (
 
             <div className="products__main__container">
-
+                <div className="products__heading">All Products</div>
                 {/* {console.log(Object.values(cart.products).filter((product)=>(product.product_id === parseInt(productId)))[0]?.quantity)} */}
                 <div className="products__display__container">
-                    {Object.values(products[0]).map((product)=>{
+                    {Object.values(products[0]).reverse().map((product)=>{
                         return (
                             <div className="product__card">
                             <Link to={`/products/${product.id}`} key={product.id} className="product__link__to__single" >

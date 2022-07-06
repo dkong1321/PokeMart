@@ -1,20 +1,20 @@
 .nav__bar__container{
-    display: grid;
-    grid-template-columns: 1fr 160px 1fr;
-    grid-column-gap: 55%;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     height: 85px;
     background-color: #333333;
     position: sticky;
     top: 0;
     width: 100%;
+    z-index: 1000;
 }
 
 .nav__link__container__right {
     display: flex;
     align-items: center;
     text-decoration: none;
-    width: 4200px;
+    padding-right: 100px;
     height: 100%;
 }
 
@@ -103,6 +103,6 @@
     position: absolute;
     background-color: #dbdce1;
     top: 85px;
-    right: 127px;
+    right: 80px;
 
 }

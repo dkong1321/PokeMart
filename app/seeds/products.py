@@ -142,10 +142,10 @@ def seed_products():
 
     # ===============================================================================================================
 
-    demo_cat1 = Category(category_name="new", products= [demo_product1, demo_product2])
-    demo_cat2 = Category(category_name="used")
-    demo_cat3 = Category(category_name="cards", products= [demo_product1, demo_product2, demo_product3, demo_product4, demo_product5, ])
-    demo_cat4 = Category(category_name="toys")
+    demo_cat1 = Category(category_name="plush", products= [demo_product7, demo_product8])
+    demo_cat2 = Category(category_name="games")
+    demo_cat3 = Category(category_name="card", products= [demo_product1, demo_product2, demo_product3, demo_product4, demo_product5, demo_product9, demo_product10, demo_product11, demo_product13 ])
+    demo_cat4 = Category(category_name="figurine", products= [demo_product6, demo_product12, demo_product14, demo_product15])
 
     catArr =[demo_cat1, demo_cat2, demo_cat3, demo_cat4 ]
 

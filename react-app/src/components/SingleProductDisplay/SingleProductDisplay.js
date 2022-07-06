@@ -8,13 +8,13 @@ import {addCartItem, setItemQuantity, getCart } from "../../store/cart";
 import ReactStars from 'react-stars'
 import "./single_product.css"
 import EditReviewFormModal from "../Modals/EditReviewFormModal";
+import ProductImageModal from "../Modals/ProductImageModal";
 
 const SingleProductDisplay = () => {
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(false)
     const [rating, setRating] =useState(0)
     const [description, setDescription] = useState("")
-    // const [ productQuantity, setProductQuantity] = useState()
 
     const [errorDescription, setErrorDescription] = useState([])
     const [errorRating, setErrorRating] = useState([])
@@ -42,12 +42,10 @@ const SingleProductDisplay = () => {
         const errorRatingValidation = []
 
         if(!user){
-            // notSignedInValidation.push("You must sign in to submit a review")
             setNotSignedIn("You must sign in to submit a review")
             return
         }
         if(user.id === product.user_id){
-            // productOwnerValidation.push("Cannot submit review on your own product")
             setProductOwner("Cannot submit review on your own product")
             return
         }
@@ -62,13 +60,11 @@ const SingleProductDisplay = () => {
         }
 
         if (errorDescriptionValidation.length || errorRatingValidation.length) {
-            console.log(errorDescriptionValidation)
-            console.log(errorRatingValidation)
             setErrorDescription(errorDescriptionValidation)
             setErrorRating(errorRatingValidation)
             return
         }
-        console.log(errorDescriptionValidation)
+
         const data = {
             rating,
             description,
@@ -135,20 +131,51 @@ const SingleProductDisplay = () => {
         isLoaded && (
             <div className="main__product__container">
                 <div className="product__detail__container">
-                    <div className="product__detail__image">
-                        <img className="single__product__image" src={product.product_image_url} alt=""></img>
+                    <div className="single__product__container">
+                        <ProductImageModal product={product}></ProductImageModal>
+                        {/* <img className="single__product__image" src={product.product_image_url} alt=""></img> */}
+                        <div className="review__page__container">
+                            <div className="product__review__title">Product Reviews</div>
+                                <div className="main__reviews__container">
+                                    <div className="product__review__container">
+                                        {!Object.values(product.reviews).length ? (<div>No Reviews for This Product Yet</div>) :
+                                        (
+                                            <div>
+                                                {Object.values(product.reviews).reverse().map((review)=>{
+                                                    return (
+                                                        <div key={review.id} className="product__review__card">
+                                                            <span className="stars" style={{ "--ratingValue": `${review.rating}` }}></span>
+                                                            <div>Description: {review.description}</div>
+                                                            {review?.user_id===user?.id ? (
+                                                                <div className="review__card__buttons">
+                                                                    <button className="my__product__button" onClick={() => eraseReview(review)}><i className="fa-solid fa-trash-can"></i></button>
+                                                                    <EditReviewFormModal review={review} />
+                                                                </div>
+                                                            ): (<div></div>)}
+                                                            <div>
+                                                                <div>{formatDate(review?.timestamp)}</div>
+                                                                <div>{users[review?.user_id]?.username}</div>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                     <div className="product__detail__info">
+                        <div className="single__product__title"> {product.product_name} </div>
                         <div>{users[product?.user_id]?.username}'s Shop</div>
                         <div>
                             {avgRating()?<><div>{avgRating()} stars</div></>:<></>}
                             <span className="stars" style={{ "--ratingValue": `${avgRating()}` }}></span>
                         </div>
                         <span>{Object.values(product.reviews).length} Reviews</span>
-                        <div className="single__product__title"> {product.product_name} </div>
-                        <div className="product__name__divider"></div>
-                        <div className="single__product__price">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
+                        {/* <div className="product__name__divider"></div> */}
                         <div className="single__product__description">{product.description}</div>
+                        <div className="single__product__price">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
                         <div className="add__cart__container">
                             {user === null || user.id === product.user_id ?
                              <></>:
@@ -175,7 +202,7 @@ const SingleProductDisplay = () => {
                         </div>
                     </div>
                 </div>
-                    <div className="review__page__container">
+                {/* <div className="review__page__container">
                     <div className="product__review__title">Product Reviews</div>
                     <div className="main__reviews__container">
                         <div className="product__review__container">
@@ -200,7 +227,7 @@ const SingleProductDisplay = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         )
     )

@@ -14,5 +14,6 @@ class Category(db.Model):
     def to_dict(self):
         return {
             "id" : self.id,
-            "category_name" : self.category_name
+            "category_name" : self.category_name,
+            "products" : [product.to_dict() for product in self.products]
         }

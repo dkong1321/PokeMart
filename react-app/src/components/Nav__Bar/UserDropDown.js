@@ -25,19 +25,16 @@ function UserDropDown(){
 
     return(
         <>
-            {/* {!menu && ( */}
               <div className='drop__down__button nav__link' onClick={openDropDown}>
                   <img className='avatar__image' src={user.avatar_url}></img>
                   <i className="fa-solid fa-caret-down"></i>
               </div>
-            {/* ) */}
 
-            {/* } */}
             {menu && (
             <div className='drop__down__container'>
 
                 <NavLink to='/myorders' exact={true} activeClassName='active' className="nav__link__dropdown">My Orders</NavLink>
-                <NavLink to={`users/${user.id}`} exact={true} activeClassName='active' className="nav__link__dropdown">My Profile</NavLink>
+                <NavLink to={`/users/${user.id}`} exact={true} activeClassName='active' className="nav__link__dropdown">My Profile</NavLink>
                 <LogoutButton />
             </div>
             )}
