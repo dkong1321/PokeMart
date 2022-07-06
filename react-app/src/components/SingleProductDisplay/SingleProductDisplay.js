@@ -98,6 +98,9 @@ const SingleProductDisplay = () => {
     const avgRating = () => {
         const reviews = Object.values(product.reviews)
         const length = reviews.length
+        if(reviews.length===0){
+            return 0
+        }
         let totalRating = 0
         reviews.forEach((review)=>{
             totalRating+=review.rating

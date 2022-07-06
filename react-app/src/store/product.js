@@ -41,7 +41,6 @@ export const getAllProducts = () => async (dispatch) => {
         const products = await response.json()
         dispatch(loadAllProducts(products))
     }
-
 }
 
 export const createProduct = (data) => async (dispatch) => {

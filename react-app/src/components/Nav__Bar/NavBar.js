@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
 import { useSelector, useDispatch } from 'react-redux';
 import "./nav__bar.css"
 import LoginFormModal from '../Modals/LoginFormModal';
