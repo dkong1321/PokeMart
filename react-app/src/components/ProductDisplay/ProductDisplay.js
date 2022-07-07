@@ -94,17 +94,6 @@ const ProductsDisplay = () => {
 
     }
 
-    // const sortByRatingLowHigh = () => {
-    //     setRatingSortLowHigh(true)
-
-    //     setRatingSortHighLow(false)
-    //     setPriceSortLowHigh(false)
-    //     setPriceSortHighLow(false)
-    //     setAgeSortDsc(false)
-    //     setAgeSortAsc(false)
-
-    // }
-
     return(
         isLoaded && (
 
@@ -113,6 +102,11 @@ const ProductsDisplay = () => {
                 <div onClick={()=>sortByPriceHighLow()}>Price: High to Low</div>
                 <div onClick={()=>sortByPriceLowHigh()}>Price: Low to High</div>
                 <div onClick={()=>sortByRatingHighLow()}>Top Rated</div>
+                <div><input type="radio" value="any" name="price_filter"></input><label>Any Price</label></div>
+                <div><input type="radio" value="<25" name="price_filter"></input><label>Under $25</label></div>
+                <div><input type="radio" value="25-50" name="price_filter"></input><label>$25 to $50</label></div>
+                <div><input type="radio" value="50-100" name="price_filter"></input><label>$50 to $100</label></div>
+                <div><input type="radio" value="<100" name="price_filter"></input><label>Over $100</label></div>
 
                 <div className="products__display__container">
                     {ageSortAsc ? Object.values(products[0]).reverse().map((product)=>{

@@ -133,10 +133,12 @@ const SingleProductDisplay = () => {
     return(
         isLoaded && (
             <div className="main__product__container">
+                    <div className="single__product__title"> {product.product_name} </div>
+                    <div className="product__name__divider"></div>
+
                 <div className="product__detail__container">
                     <div className="single__product__container">
                         <ProductImageModal product={product}></ProductImageModal>
-                        {/* <img className="single__product__image" src={product.product_image_url} alt=""></img> */}
                         <div className="review__page__container">
                             <div className="product__review__title">Product Reviews</div>
                                 <div className="main__reviews__container">
@@ -169,15 +171,12 @@ const SingleProductDisplay = () => {
                             </div>
                     </div>
                     <div className="product__detail__info">
-                        <div className="single__product__title"> {product.product_name} </div>
                         <div>{users[product?.user_id]?.username}'s Shop</div>
                         <div>
                             {avgRating()?<><div>{avgRating()} stars</div></>:<></>}
                             <span className="stars" style={{ "--ratingValue": `${avgRating()}` }}></span>
                         </div>
                         <span>{Object.values(product.reviews).length} Reviews</span>
-                        {/* <div className="product__name__divider"></div> */}
-                        <div className="single__product__description">{product.description}</div>
                         <div className="single__product__price">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
                         <div className="add__cart__container">
                             {user === null || user.id === product.user_id ?
@@ -189,10 +188,11 @@ const SingleProductDisplay = () => {
                                     }
                                 </div>
                              }
+                        <div className="single__product__description">{product.description}</div>
                         </div>
                         <div className="review__form__container">
                                 <div className="review__post__title">Post a Review for this Product</div>
-                                <div className="product__name__divider"></div>
+                                {/* <div className="product__name__divider"></div> */}
                                 <form classeName="review__form" onSubmit={addNewReview}>
                                     {errorDescription ? <div className="review__input__error">{errorDescription}</div> : <></>}
                                     {errorRating ? <div className="review__input__error">{errorRating}</div>: <></>}
@@ -205,32 +205,6 @@ const SingleProductDisplay = () => {
                         </div>
                     </div>
                 </div>
-                {/* <div className="review__page__container">
-                    <div className="product__review__title">Product Reviews</div>
-                    <div className="main__reviews__container">
-                        <div className="product__review__container">
-                            <div>
-                                {Object.values(product.reviews).reverse().map((review)=>{
-                                    return (
-                                        <div key={review.id} className="product__review__card">
-                                            <div>
-                                                <div>{users[review?.user_id]?.username} - {formatDate(review?.timestamp)}</div>
-                                            </div>
-                                            <span className="stars" style={{ "--ratingValue": `${review.rating}` }}></span>
-                                            <div>Description: {review.description}</div>
-                                            {review?.user_id===user?.id ? (
-                                                <div>
-                                                    <button onClick={() => eraseReview(review)}><i className="fa-solid fa-trash-can"></i></button>
-                                                    <EditReviewFormModal review={review} />
-                                                </div>
-                                            ): (<></>)}
-                                        </div>
-                                    )
-                                })}
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
             </div>
         )
     )

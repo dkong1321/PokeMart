@@ -1,8 +1,3 @@
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllProducts } from "../../store/product";
-import { useParams} from "react-router-dom";
-import {addCartItem, setItemQuantity, getCart } from "../../store/cart";
 import {Link} from "react-router-dom"
 
 const AllProductsCard = ({product}) => {

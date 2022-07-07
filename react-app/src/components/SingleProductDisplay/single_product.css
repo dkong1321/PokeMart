@@ -50,7 +50,7 @@
 }
 
 .single__product__modal{
-    width: 80vw;
+    width: auto;
     height: 80vh;
     object-fit: contain;
 }
@@ -103,7 +103,9 @@
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 10px;
-    /* border: 4px red solid; */
+    margin-top: 2rem;
+    width: 414px;
+    height: 220px;
 }
 
 .review__form{
@@ -138,13 +140,6 @@
     width: 100%;
 }
 
-.review__form__container{
-    display: flex;
-    margin-top: 2rem;
-    width: 414px;
-    height: 300px;
-}
-
 .product__detail__info{
     display: flex;
     flex-direction: column;
@@ -176,14 +171,15 @@
 }
 
 .single__product__title {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 600;
-    width: 460px;
-    margin-top: 5px;
+    width: 1018px;
+    margin-top: 35px;
+
 }
 
 .product__name__divider{
-    width: 400px;
+    width: 1018px;
     height: 3px;
     background-image: linear-gradient(to right, black, #b0b0b0);
 }

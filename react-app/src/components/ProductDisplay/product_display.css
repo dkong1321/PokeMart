@@ -11,8 +11,8 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows:auto;
     text-decoration: none;
-    column-gap: 3px;
-    row-gap: 5px;
+    column-gap: 15px;
+    row-gap: 35px;
     padding: 10px;
     /* width: 100%; */
 }
@@ -30,10 +30,12 @@
     text-decoration: none;
     border-radius: 5px;
     width: 250px;
-    height: 240px;
+    height: 250px;
     text-decoration: none;
     transition: .5s;
-    padding: 5px;
+    /* padding: 5px; */
+    border: 1px solid rgba(133, 128, 128, 0.491);
+    background-color: #f7f7f7;
 }
 
 .products__heading{
@@ -46,66 +48,23 @@
     /* border: 2px solid #0f496a; */
 }
 
-.product__card__add__button{
-    opacity: 0;
-    background: none;
-    margin: 20px 0;
-    font-size: 15px;
-    font-weight: 600;
-    color: #2e2c2c;
-    background-color: #eccc11;
-    width: 50px;
-    height: 50px;
-    border-radius: 35px;
-    cursor: pointer;
-    transition: .3s;
-}
-
 .product__button__container{
     position: relative;
     left: 90px;
     top: -20px;
 }
-.product__card__add__button:hover{
-    background-color: #ceb216;
-}
-
-.product__card:hover .product__card__add__button {
-    opacity: 1;
-}
-
-.product__card__disabled__cart__button {
-    background: none;
-    /* border: 4px red solid; */
-    opacity: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-    font-size: 15px;
-    font-weight: 600;
-    color: #2e2c2c;
-    background-color: #d8cc8a;
-    width: 60px;
-    height: 50px;
-}
-
-.product__card:hover .product__card__disabled__cart__button{
-    opacity: 1;
-}
 
 .product__image {
-    border-radius: 25px;
+    border-radius: 5px;
     /* border: 5px solid pink */
     width: 200px;
     height: 160px;
     object-fit: scale-down;
-    padding: 5px 0px;
+    padding: 10px 0px;
 }
 
 .product__name {
     display: flex;
-    justify-content: center;
     color: #212f56;
     font-size: 15px;
     /* font-weight: 600; */
@@ -113,11 +72,12 @@
 
 .product__price__cart__container{
     display: flex;
+    justify-content: center;
 }
 
 .product__price {
     display: flex;
-    justify-content: center;
+        justify-content: center;
     text-decoration: none;
     font-family: sans-serif;
     font-size: 15px;
