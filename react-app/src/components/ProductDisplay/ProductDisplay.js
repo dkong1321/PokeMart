@@ -2,26 +2,25 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts } from "../../store/product";
 import { useParams} from "react-router-dom";
-import {addCartItem, setItemQuantity, getCart } from "../../store/cart";
-import {Link} from "react-router-dom"
 import "./product_display.css"
+import SortDropDown from "./SortDropDown";
 import AllProductsCard from "./AllProductCard";
 
 const ProductsDisplay = () => {
     const dispatch = useDispatch()
     const [ isLoaded, setIsLoaded ] = useState(false)
-    const [ productOwner, setProductOwner] = useState([])
-    const [ productQuantity, setProductQuantity] = useState()
+    // const [ productOwner, setProductOwner] = useState([])
+    // const [ productQuantity, setProductQuantity] = useState()
     const products =Object.values(useSelector((state)=> state.products))
-    const cart = (useSelector((state)=>state.cart))
-    const user = useSelector((state)=>state.session.user)
-    const productId = useParams().productId
+    // const cart = (useSelector((state)=>state.cart))
+    // const user = useSelector((state)=>state.session.user)
+    // const productId = useParams().productId
     const [ageSortAsc, setAgeSortAsc] = useState(true)
-    const [ageSortDsc, setAgeSortDsc] = useState(false)
+    // const [ageSortDsc, setAgeSortDsc] = useState(false)
     const [priceSortHighLow, setPriceSortHighLow] = useState(false)
     const [priceSortLowHigh, setPriceSortLowHigh] = useState(false)
     const [ratingSortHighLow, setRatingSortHighLow] = useState(false)
-    const [ratingSortLowHigh, setRatingSortLowHigh] = useState(false)
+    // const [ratingSortLowHigh, setRatingSortLowHigh] = useState(false)
 
 
 
@@ -54,33 +53,32 @@ const ProductsDisplay = () => {
     //     setRatingSortLowHigh(false)
     // }
 
-    // const sortByNew = () => {
-    //     setAgeSortDsc(true)
-    //     setAgeSortAsc(false)
-    //     setPriceSortHighLow(false)
-    //     setPriceSortLowHigh(false)
-    //     setRatingSortHighLow(false)
-    //     setRatingSortLowHigh(false)
+    const sortByRecent = () => {
+        setAgeSortAsc(true)
+        setPriceSortHighLow(false)
+        setPriceSortLowHigh(false)
+        setRatingSortHighLow(false)
+        // setRatingSortLowHigh(false)
 
-    // }
+    }
 
     const sortByPriceHighLow = () => {
         setPriceSortHighLow(true)
         setPriceSortLowHigh(false)
-        setAgeSortDsc(false)
+        // setAgeSortDsc(false)
         setAgeSortAsc(false)
         setRatingSortHighLow(false)
-        setRatingSortLowHigh(false)
+        // setRatingSortLowHigh(false)
 
     }
 
     const sortByPriceLowHigh = () => {
         setPriceSortLowHigh(true)
         setPriceSortHighLow(false)
-        setAgeSortDsc(false)
+        // setAgeSortDsc(false)
         setAgeSortAsc(false)
         setRatingSortHighLow(false)
-        setRatingSortLowHigh(false)
+        // setRatingSortLowHigh(false)
 
     }
 
@@ -88,9 +86,9 @@ const ProductsDisplay = () => {
         setRatingSortHighLow(true)
         setPriceSortLowHigh(false)
         setPriceSortHighLow(false)
-        setAgeSortDsc(false)
+        // setAgeSortDsc(false)
         setAgeSortAsc(false)
-        setRatingSortLowHigh(false)
+        // setRatingSortLowHigh(false)
 
     }
 
@@ -99,14 +97,17 @@ const ProductsDisplay = () => {
 
             <div className="products__main__container">
                 <div className="products__heading">All Products</div>
-                <div onClick={()=>sortByPriceHighLow()}>Price: High to Low</div>
-                <div onClick={()=>sortByPriceLowHigh()}>Price: Low to High</div>
-                <div onClick={()=>sortByRatingHighLow()}>Top Rated</div>
-                <div><input type="radio" value="any" name="price_filter"></input><label>Any Price</label></div>
+                <SortDropDown
+                    ageSortAsc={ageSortAsc} setAgeSortAsc={setAgeSortAsc}
+                    priceSortHighLow={priceSortHighLow} setPriceSortHighLow={setPriceSortHighLow}
+                    priceSortLowHigh={priceSortLowHigh} setPriceSortLowHigh={setPriceSortLowHigh}
+                    ratingSortHighLow={ratingSortHighLow} setRatingSortHighLow={setRatingSortHighLow}
+                ></SortDropDown>
+                {/* <div><input type="radio" value="any" name="price_filter"></input><label>Any Price</label></div>
                 <div><input type="radio" value="<25" name="price_filter"></input><label>Under $25</label></div>
                 <div><input type="radio" value="25-50" name="price_filter"></input><label>$25 to $50</label></div>
                 <div><input type="radio" value="50-100" name="price_filter"></input><label>$50 to $100</label></div>
-                <div><input type="radio" value="<100" name="price_filter"></input><label>Over $100</label></div>
+                <div><input type="radio" value="<100" name="price_filter"></input><label>Over $100</label></div> */}
 
                 <div className="products__display__container">
                     {ageSortAsc ? Object.values(products[0]).reverse().map((product)=>{

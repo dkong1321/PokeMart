@@ -120,3 +120,21 @@
     color: transparent;
 
 }
+
+.sort__dropdown{
+    position: absolute;
+    display: block;
+    float: right;
+    border: #919191 solid 1px;
+    border-radius: 25px;
+    padding: 5px 10px;
+    top: 100px;
+    /* padding: 3px 0px; */
+}
+
+.sort__dropdown__options{
+    position: absolute;
+    background-color: white;
+    top: 210px;
+    padding: 3px 0px;
+}
