@@ -25,7 +25,7 @@ function SortDropDown({setAgeSortAsc, setPriceSortHighLow, setPriceSortLowHigh, 
         setPriceSortLowHigh(false)
         setAgeSortAsc(false)
         setRatingSortHighLow(false)
-        setVariable("High to low")
+        setVariable("High to Low")
 
     }
 
@@ -34,7 +34,7 @@ function SortDropDown({setAgeSortAsc, setPriceSortHighLow, setPriceSortLowHigh, 
         setPriceSortHighLow(false)
         setAgeSortAsc(false)
         setRatingSortHighLow(false)
-        setVariable("Low to high")
+        setVariable("Low to High")
 
     }
 
@@ -48,28 +48,26 @@ function SortDropDown({setAgeSortAsc, setPriceSortHighLow, setPriceSortLowHigh, 
 
   useEffect(()=> {
     if (!sortMenu) return;
-    document.addEventListener('click',closeSortMenu)
-    return ()=> document.removeEventListener("click",closeSortMenu)
+      document.addEventListener('click',closeSortMenu)
+      return ()=> document.removeEventListener("click",closeSortMenu)
   }, [sortMenu])
 
     return(
         <div>
-              {!sortMenu && (
+              {
                 <div className='sort__dropdown' onClick={openDropDown}>
                     Sort By: {variable} <i className="fa-solid fa-caret-down"></i>
                 </div>
-              )
-
               }
 
             {sortMenu && (
               <>
-                <div className='sort__dropdown__open' onClick={openDropDown}>
-                  Sort By: {variable} <i className="fa-solid fa-caret-down"></i>
-                </div>
                 <div className="sort__dropdown__option__container">
-                    <div className="sort__dropdown__option" onClick={()=>sortByPriceHighLow()}>Price: High to Low</div>
-                    <div className="sort__dropdown__option" onClick={()=>sortByPriceLowHigh()}>Price: Low to High</div>
+                    <div className='sort__dropdown__open' onClick={openDropDown}>
+                      Sort By: {variable} <i className="fa-solid fa-caret-down"></i>
+                    </div>
+                    <div className="sort__dropdown__option" onClick={()=>sortByPriceLowHigh()}>Price: High to Low</div>
+                    <div className="sort__dropdown__option" onClick={()=>sortByPriceHighLow()}>Price: Low to High</div>
                     <div className="sort__dropdown__option" onClick={()=>sortByRatingHighLow()}>Top Rated</div>
                     <div className="sort__dropdown__option" onClick={()=>sortByRecent()}>Most Recent</div>
                 </div>

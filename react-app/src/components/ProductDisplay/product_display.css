@@ -133,49 +133,44 @@
     border-radius: 25px;
     padding: 5px 10px;
     /* right: -600px; */
-    width: 180px;
+    width: 160px;
     cursor: pointer;
     background-color: #f7f7f7;
     margin-right: 40px;
+    /* z-index: 1000; */
 }
 
 .sort__dropdown__open {
     position: relative;
     display: block;
     float: right;
-    border: #919191 solid 1px;
     border-radius: 25px;
     padding: 5px 10px;
-    /* right: -600px; */
-    width: 180px;
+    width: 160px;
     background-color: #f7f7f7;
     transition: .5s;
-    margin-right: 40px;
+    z-index: 1000;
 }
 
 .sort__dropdown__option__container {
     position: absolute;
-    /* display: grid; */
-    /* row-gap: 7px; */
-    top: 220px;
-    right: 480px;
+    display: flex;
+    flex-direction: column;
     transition: .5s;
     border-radius: 15px;
     padding: 3px;
     background-color: #f7f7f7;
     border: #919191 solid 1px;
-    margin-right: 40px;
+    margin-right: 20px;
+
 
 }
 
 .sort__dropdown__option{
     position: relative;
-    /* background-color: #f7f7f7; */
-    /* border: #919191 solid 1px; */
     border-radius: 20px;
-    padding: 5px 10px;
-    width: 170px;
-    margin-right: 10px;
+    padding: 5px 5px;
+    width: 160px;
     cursor: pointer;
     transition: font-weight 0s, background-color .4s ease-in-out;
 }
@@ -192,9 +187,9 @@
     border: #919191 solid 1px;
     border-radius: 25px;
     padding: 5px 10px;
-    /* right: -370px; */
-    width: 180px;
+    width: 150px;
     cursor: pointer;
+    padding-right: 30px;
     background-color: #f7f7f7;
 }
 
@@ -202,21 +197,24 @@
     position: relative;
     display: block;
     float: right;
-    border: #919191 solid 1px;
     border-radius: 25px;
     padding: 5px 10px;
-    /* right: -600px; */
-    width: 180px;
+    width: 150px;
+    padding-right: 30px;
     background-color: #f7f7f7;
     transition: .5s;
+    z-index: 1000;
+
 }
 
 .filter__dropdown__option__container {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     /* display: grid; */
     /* row-gap: 7px; */
-    top: 220px;
-    right: 280px;
+    /* top: 220px; */
+    /* right: 280px; */
     transition: .5s;
     border-radius: 15px;
     padding: 3px;
@@ -230,7 +228,7 @@
     /* border: #919191 solid 1px; */
     border-radius: 20px;
     padding: 5px 10px;
-    width: 180px;
+    width: 150px;
 
     cursor: pointer;
     transition: font-weight 0s, background-color .4s ease-in-out;

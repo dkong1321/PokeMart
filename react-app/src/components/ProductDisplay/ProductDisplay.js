@@ -62,12 +62,10 @@ const ProductsDisplay = () => {
             case "<25":
                 setFilterUpper(25)
                 setFilterLower(0)
-                console.log("we are at <25")
                 return
             case "25-50":
                 setFilterUpper(50)
                 setFilterLower(25)
-                console.log("we are at 25-50")
                 return
             case "50-100":
                 setFilterUpper(100)
@@ -80,7 +78,6 @@ const ProductsDisplay = () => {
             default:
                 setFilterUpper(Infinity)
                 setFilterLower(0)
-                console.log("not working?")
                 return
 
         }
