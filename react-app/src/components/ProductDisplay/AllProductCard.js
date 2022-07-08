@@ -31,7 +31,7 @@ const AllProductsCard = ({product}) => {
                                 {!product.reviews.length ? <></>:
                                     <div className="products__display__reviews">
                                         <span className="all__products__stars" style={{ "--ratingValue": `${avgRating(product)}` }}></span>
-                                        <span>{Object.values(product.reviews).length} Reviews</span>
+                                        <span>({Object.values(product.reviews).length})</span>
                                     </div>
                                 }
                             </div>

@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
 function SortDropDown({setAgeSortAsc, setPriceSortHighLow, setPriceSortLowHigh, setRatingSortHighLow}){
-  const [menu, setMenu] = useState(false)
+  const [sortMenu, setSortMenu] = useState(false)
   const [variable, setVariable] = useState("Recently")
   const openDropDown = () => {
-    if(menu) return
-    setMenu(true);
+    if(sortMenu) return
+    setSortMenu(true);
   }
 
-  const closeMenu = () => {
-    setMenu(false)
+  const closeSortMenu = () => {
+    setSortMenu(false)
   }
 
      const sortByRecent = () => {
@@ -48,26 +47,35 @@ function SortDropDown({setAgeSortAsc, setPriceSortHighLow, setPriceSortLowHigh, 
     }
 
   useEffect(()=> {
-    if (!menu) return;
-    document.addEventListener('click',closeMenu)
-    return ()=> document.removeEventListener("click",closeMenu)
-  }, [menu])
+    if (!sortMenu) return;
+    document.addEventListener('click',closeSortMenu)
+    return ()=> document.removeEventListener("click",closeSortMenu)
+  }, [sortMenu])
 
     return(
-        <>
-              <div className='sort__dropdown' onClick={openDropDown}>
-                  Sort By: {variable}
-              </div>
+        <div>
+              {!sortMenu && (
+                <div className='sort__dropdown' onClick={openDropDown}>
+                    Sort By: {variable} <i className="fa-solid fa-caret-down"></i>
+                </div>
+              )
 
-            {menu && (
-            <div className="sort__dropdown__options">
-                <div onClick={()=>sortByPriceHighLow()}>Price: High to Low</div>
-                <div onClick={()=>sortByPriceLowHigh()}>Price: Low to High</div>
-                <div onClick={()=>sortByRatingHighLow()}>Top Rated</div>
-                <div onClick={()=>sortByRecent()}>Most Recent</div>
-            </div>
+              }
+
+            {sortMenu && (
+              <>
+                <div className='sort__dropdown__open' onClick={openDropDown}>
+                  Sort By: {variable} <i className="fa-solid fa-caret-down"></i>
+                </div>
+                <div className="sort__dropdown__option__container">
+                    <div className="sort__dropdown__option" onClick={()=>sortByPriceHighLow()}>Price: High to Low</div>
+                    <div className="sort__dropdown__option" onClick={()=>sortByPriceLowHigh()}>Price: Low to High</div>
+                    <div className="sort__dropdown__option" onClick={()=>sortByRatingHighLow()}>Top Rated</div>
+                    <div className="sort__dropdown__option" onClick={()=>sortByRecent()}>Most Recent</div>
+                </div>
+              </>
             )}
-        </>
+        </div>
     )
 }
 

@@ -11,7 +11,6 @@ import logo from "./Kanto_Prime_Logo.svg"
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
-  const cartProducts = (useSelector((state)=>state.cart.products))
   const cartCount = (useSelector((state)=>state.cart.products))
   const user = useSelector((state)=>state.session.user)
   const dispatch = useDispatch()
@@ -33,7 +32,6 @@ const NavBar = () => {
 
       <nav className='nav__bar__container'>
           <div className='nav__link__container__left'>
-            {/* <NavLink to='/' exact={true} activeClassName='active' className="nav__link">Home</NavLink> */}
             <img className="logo" src={logo} ></img>
 
           </div>

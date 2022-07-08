@@ -5,23 +5,25 @@ import { useParams} from "react-router-dom";
 import "./product_display.css"
 import SortDropDown from "./SortDropDown";
 import AllProductsCard from "./AllProductCard";
+import FilterDropDown from "./FilterDropDown";
 
 const ProductsDisplay = () => {
     const dispatch = useDispatch()
     const [ isLoaded, setIsLoaded ] = useState(false)
-    // const [ productOwner, setProductOwner] = useState([])
-    // const [ productQuantity, setProductQuantity] = useState()
     const products =Object.values(useSelector((state)=> state.products))
-    // const cart = (useSelector((state)=>state.cart))
-    // const user = useSelector((state)=>state.session.user)
-    // const productId = useParams().productId
     const [ageSortAsc, setAgeSortAsc] = useState(true)
-    // const [ageSortDsc, setAgeSortDsc] = useState(false)
     const [priceSortHighLow, setPriceSortHighLow] = useState(false)
     const [priceSortLowHigh, setPriceSortLowHigh] = useState(false)
     const [ratingSortHighLow, setRatingSortHighLow] = useState(false)
-    // const [ratingSortLowHigh, setRatingSortLowHigh] = useState(false)
-
+    const [filterUpper, setFilterUpper] = useState(Infinity)
+    const [filterLower, setFilterLower] = useState(0)
+    const [priceFilter, setPriceFilter] = useState("")
+    // cosnt [currentProducts, set]
+    // Infinity 0
+    // 25 0
+    // 100 50
+    // 0 100
+    // Infinity 100
 
 
 
@@ -29,7 +31,7 @@ const ProductsDisplay = () => {
         dispatch(getAllProducts())
         .then(()=>setIsLoaded(true))
 
-    }, [dispatch]);
+    }, [dispatch, priceFilter]);
 
     const avgRating = (product) => {
         const reviews = Object.values(product.reviews)
@@ -44,52 +46,44 @@ const ProductsDisplay = () => {
         return Math.round(totalRating/length*2)/2
     }
 
-    // const sortByOld = () => {
-    //     setAgeSortAsc(true)
-    //     setAgeSortDsc(false)
-    //     setPriceSortHighLow(false)
-    //     setPriceSortLowHigh(false)
-    //     setRatingSortHighLow(false)
-    //     setRatingSortLowHigh(false)
-    // }
-
-    const sortByRecent = () => {
-        setAgeSortAsc(true)
-        setPriceSortHighLow(false)
-        setPriceSortLowHigh(false)
-        setRatingSortHighLow(false)
-        // setRatingSortLowHigh(false)
-
+    const updatePriceFilter = (e) => {
+        // console.log(e.target.value, "target value")
+        setPriceFilter(e.target.value)
+        filterPrice(e.target.value)
     }
 
-    const sortByPriceHighLow = () => {
-        setPriceSortHighLow(true)
-        setPriceSortLowHigh(false)
-        // setAgeSortDsc(false)
-        setAgeSortAsc(false)
-        setRatingSortHighLow(false)
-        // setRatingSortLowHigh(false)
+    const filterPrice = (x) => {
 
-    }
+        switch(x){
+            case "Any":
+                setFilterUpper(Infinity)
+                setFilterLower(0)
+                return
+            case "<25":
+                setFilterUpper(25)
+                setFilterLower(0)
+                console.log("we are at <25")
+                return
+            case "25-50":
+                setFilterUpper(50)
+                setFilterLower(25)
+                console.log("we are at 25-50")
+                return
+            case "50-100":
+                setFilterUpper(100)
+                setFilterLower(50)
+                return
+            case ">100":
+                setFilterUpper(Infinity)
+                setFilterLower(100)
+                return
+            default:
+                setFilterUpper(Infinity)
+                setFilterLower(0)
+                console.log("not working?")
+                return
 
-    const sortByPriceLowHigh = () => {
-        setPriceSortLowHigh(true)
-        setPriceSortHighLow(false)
-        // setAgeSortDsc(false)
-        setAgeSortAsc(false)
-        setRatingSortHighLow(false)
-        // setRatingSortLowHigh(false)
-
-    }
-
-    const sortByRatingHighLow = () => {
-        setRatingSortHighLow(true)
-        setPriceSortLowHigh(false)
-        setPriceSortHighLow(false)
-        // setAgeSortDsc(false)
-        setAgeSortAsc(false)
-        // setRatingSortLowHigh(false)
-
+        }
     }
 
     return(
@@ -97,53 +91,53 @@ const ProductsDisplay = () => {
 
             <div className="products__main__container">
                 <div className="products__heading">All Products</div>
-                <SortDropDown
-                    ageSortAsc={ageSortAsc} setAgeSortAsc={setAgeSortAsc}
-                    priceSortHighLow={priceSortHighLow} setPriceSortHighLow={setPriceSortHighLow}
-                    priceSortLowHigh={priceSortLowHigh} setPriceSortLowHigh={setPriceSortLowHigh}
-                    ratingSortHighLow={ratingSortHighLow} setRatingSortHighLow={setRatingSortHighLow}
-                ></SortDropDown>
-                {/* <div><input type="radio" value="any" name="price_filter"></input><label>Any Price</label></div>
-                <div><input type="radio" value="<25" name="price_filter"></input><label>Under $25</label></div>
-                <div><input type="radio" value="25-50" name="price_filter"></input><label>$25 to $50</label></div>
-                <div><input type="radio" value="50-100" name="price_filter"></input><label>$50 to $100</label></div>
-                <div><input type="radio" value="<100" name="price_filter"></input><label>Over $100</label></div> */}
+                <div className="sort__filter__container">
+                    <SortDropDown
+                        ageSortAsc={ageSortAsc} setAgeSortAsc={setAgeSortAsc}
+                        priceSortHighLow={priceSortHighLow} setPriceSortHighLow={setPriceSortHighLow}
+                        priceSortLowHigh={priceSortLowHigh} setPriceSortLowHigh={setPriceSortLowHigh}
+                        ratingSortHighLow={ratingSortHighLow} setRatingSortHighLow={setRatingSortHighLow}
+                    ></SortDropDown>
+                    <FilterDropDown
+                        setPriceFilter={setPriceFilter} priceFilter={priceFilter}
+                        filterPrice={filterPrice}
+                    >
+                    </FilterDropDown>
+                </div>
 
                 <div className="products__display__container">
-                    {ageSortAsc ? Object.values(products[0]).reverse().map((product)=>{
+                    {ageSortAsc ? Object.values(products[0]).reverse().map((product)=>{ if (product.price <= filterUpper && product.price >= filterLower) {
+
                         return (
                             <AllProductsCard product={product}></AllProductsCard>
                         )
+                    }
                     }): <></>}
 
-                    {priceSortHighLow ? Object.values(products[0]).sort((a,b)=>{return a.price - b.price}).map((product)=>{
+                    {priceSortHighLow ? Object.values(products[0]).sort((a,b)=>{return a.price - b.price}).map((product)=>{ if (product.price <= filterUpper && product.price >= filterLower){
+
                         return (
                             <AllProductsCard product={product}></AllProductsCard>
                         )
+                    }
                     }): <></>}
 
-                    {priceSortLowHigh ? Object.values(products[0]).sort((a,b)=>{return b.price - a.price}).map((product)=>{
+                    {priceSortLowHigh ? Object.values(products[0]).sort((a,b)=>{return b.price - a.price}).map((product)=>{if (product.price <= filterUpper && product.price >= filterLower) {
+
                         return (
                             <AllProductsCard product={product}></AllProductsCard>
                         )
+                    }
                     }): <></>}
 
-                    {ratingSortHighLow ? Object.values(products[0]).sort((a,b)=>{return avgRating(b) - avgRating(a)}).map((product)=>{
-                        return (
-                            <div>
-                                <AllProductsCard product={product}></AllProductsCard>
-                            </div>
-                        )
-                    }): <></>}
+                    {ratingSortHighLow ? Object.values(products[0]).sort((a,b)=>{return b.reviews.length - a.reviews.length}).sort((a,b)=>{return avgRating(b) - avgRating(a)}).map((product)=>{if (product.price <= filterUpper && product.price >= filterLower) {
 
-                    {/* {ratingSortLowHigh ? Object.values(products[0]).sort((a,b)=>{return avgRating(b) - avgRating(a)}).map((product)=>{
                         return (
-                            <div>
-                            {console.log(avgRating(product))}
                             <AllProductsCard product={product}></AllProductsCard>
-                            </div>
                         )
-                    }): <></>} */}
+                    }
+                    }): <></>}
+
                 </div>
             </div>
         )
