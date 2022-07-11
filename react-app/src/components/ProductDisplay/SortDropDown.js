@@ -43,7 +43,7 @@ function SortDropDown({setAgeSortAsc, setPriceSortHighLow, setPriceSortLowHigh, 
         setPriceSortLowHigh(false)
         setPriceSortHighLow(false)
         setAgeSortAsc(false)
-        setVariable("Highest Rating")
+        setVariable("Top Rated")
     }
 
   useEffect(()=> {
