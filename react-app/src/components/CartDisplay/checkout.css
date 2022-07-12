@@ -66,27 +66,21 @@
     height: 25px;
     background-color: rgb(222, 227, 236);
     border: .5px solid rgba(0, 0, 0, .6);
-    outline-color: blue;
 }
 
 .row__input__container {
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* border: 3px solid rgb(15, 134, 75); */
-
 }
 
 .sub__input__container {
     display: flex;
     flex-direction: column;
     width: 275px;
-    /* padding-left: 10px;
-    padding-right: 10px; */
     margin: 5px;
     margin-right: 5px;
     margin-left: 5px;
-    /* border: 3px solid rgb(15, 32, 131); */
 }
 
 .address__input__container {
@@ -99,18 +93,43 @@
 }
 
 .confirm__order__button {
-    margin: 15px;
-    width: 200px;
-    height: 40px;
-    color: rgb(255, 255, 255);
-    background-color: #7d8c96;
-    border: none;
-    border-radius: 5px;
+    border: #000000 2px solid;
+    background-color: #504f4f;
+    color: white;
+    padding: 5px;
+    width: 120px;
+    height: 30px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    cursor: pointer;
     transition: .5s;
 }
 
 .confirm__order__button:hover{
+    color: gold;
+    background-color: #1d1e1f;
+}
+
+.confirm__edit__order__button{
+    border: #000000 2px solid;
+    background-color: #504f4f;
+    color: white;
+    padding: 5px;
+    width: 120px;
+    height: 30px;
+    margin-top: 25px;
+    margin-bottom: 10px;
     cursor: pointer;
-    background-color: #b7d1e2;
-    color: #3a4750;
+    transition: .5s;
+}
+
+.confirm__edit__order__button:hover{
+    color: gold;
+    background-color: #1d1e1f;
+}
+
+.edit__order__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

@@ -81,33 +81,34 @@ const EditOrderForm = ({setShowModal, order}) => {
 
     return (
         isLoaded && (
-                <form onSubmit={editShippingOrder}>
-                    <div>Edit Order</div>
+                <form className="edit__order__container" onSubmit={editShippingOrder}>
+                    <div className='modal__form__heading'>Edit Order</div>
                     <div className="row__input__container">
                         <div className="sub__input__container" >
-                            <label htmlFor="fname">First Name</label>
-                            {firstNameError ? <div>{firstNameError}</div> : <></>}
+                            <label htmlFor="fname" className="input__label">First Name</label>
+                            {firstNameError ? <div className="input__error">{firstNameError}</div> : <></>}
                             <input id="fname" className="order__inputs" value={firstName} onChange={e=> setfirstName(e.target.value)} ></input>
                         </div>
                         <div className="sub__input__container">
-                            <label htmlFor="lname">Last Name</label>
-                            {lastNameError ? <div>{lastNameError}</div> : <></>}
+                            <label htmlFor="lname" className="input__label">Last Name</label>
+                            {lastNameError ? <div className="input__error">{lastNameError}</div> : <></>}
                             <input id="lname" className="order__inputs" value={lastName} onChange={e=> setlastName(e.target.value)} ></input>
                         </div>
                     </div>
                     <div className="sub__input__container address__input__container" >
-                        <label htmlFor="address">Address</label>
-                        {shippingError ? <div>{shippingError}</div> : <></>}
+                        <label htmlFor="address" className="input__label">Address</label>
+                        {shippingError ? <div className="input__error">{shippingError}</div> : <></>}
                         <input id="address" className="order__inputs" value={shipping} onChange={e=> setShipping(e.target.value)}></input>
                     </div>
                     <div className="row__input__container">
                         <div className="sub__input__container">
-                            <label htmlFor="city">City</label>
-                            {cityError ? <div>{cityError}</div> : <></>}
+                            <label htmlFor="city" className="input__label">City</label>
+                            {cityError ? <div className="input__error">{cityError}</div> : <></>}
                             <input id="city" className="order__inputs" value={city} onChange={e=> setCity(e.target.value)} ></input>
                         </div>
                         <div className="sub__input__container">
-                            <label htmlFor="state">State</label>
+                            <label htmlFor="state" className="input__label">State</label>
+                            {cityError ? <div className="input__error"></div> : <></>}
                             <select id="state" value={state} className="order__select__input" onChange={e=>setState(e.target.value)}>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
@@ -164,7 +165,7 @@ const EditOrderForm = ({setShowModal, order}) => {
                         </div>
 
                     </div>
-                    <button className="confirm__order__button" type="submit">Confirm and Submit Order</button>
+                    <button className="confirm__order__button" type="submit">Submit Order</button>
 
 
                 </form>

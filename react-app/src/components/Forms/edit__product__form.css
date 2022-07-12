@@ -1,6 +1,9 @@
 .edit__product__container{
     width: 420px;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .product__form__input {
     margin-bottom: 10px;
@@ -14,18 +17,34 @@
     align-items: center;
 }
 
-.image__select__container{
-    margin-left: 50px;
+.edit__product__image__button{
+    border: #000000 2px solid;
+    background-color: #504f4f;
+    color: white;
+    padding: 5px;
+    width: 120px;
+    height: 30px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: .5s;
+    margin-left: 30px;
 }
 
 .submit__edit__product__button {
     border: #000000 2px solid;
-    background-color: #4b5cac;
+    background-color: #504f4f;
     color: white;
     padding: 5px;
-    width: 80px;
+    width: 120px;
     height: 30px;
-    margin-top: 10px;
+    margin-top: 25px;
     margin-bottom: 10px;
-    margin-left: 0px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.submit__edit__product__button:hover{
+    color: gold;
+    background-color: #1d1e1f;
 }

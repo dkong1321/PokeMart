@@ -64,7 +64,6 @@ export const postOrder = (data) => async (dispatch) => {
 
 export const editOrder = (data) => async (dispatch) => {
     const {shipping_address, city, first_name, last_name,state, order_id} = data;
-    console.log(data)
     const response = await fetch(`/api/orders/${order_id}`,{
         method: "PUT",
         headers: { "Content-Type": "application/json" },

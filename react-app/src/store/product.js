@@ -2,6 +2,7 @@ import rfdc from "rfdc";
 const clone = rfdc()
 
 const LOAD_ALL_PRODUCTS = "api/products/LOAD_ALL_PRODUCTS"
+const LOAD_CAT = "api/products/LOAD_CAT"
 const ADD_PRODUCT = "api/products/ADD_PRODUCT"
 const EDIT_PRODUCT = "api/products/EDIT_PRODUCT"
 const REMOVE_PRODUCT = "api/products/REMOVE_PRODUCT"
@@ -13,6 +14,12 @@ const loadAllProducts = (products) => {
     }
 }
 
+const loadCategory = (products) => {
+    return {
+        type: LOAD_CAT,
+        products
+    }
+}
 const addProduct = (product) => {
     return {
         type: ADD_PRODUCT,
@@ -35,13 +42,21 @@ const removeProduct = (product) => {
 }
 
 export const getAllProducts = () => async (dispatch) => {
-    //  ask vern why I need this "/"
     const response = await fetch("/api/products/");
     if(response.ok) {
         const products = await response.json()
         dispatch(loadAllProducts(products))
     }
+}
 
+export const getCategory = (id) => async (dispatch) => {
+    console.log(id, "we are in thunk")
+    const response = await fetch(`/api/products/category/${id}`);
+    if(response.ok) {
+        const products = await response.json()
+        console.log("hello")
+        dispatch(loadCategory(products))
+    }
 }
 
 export const createProduct = (data) => async (dispatch) => {
@@ -107,6 +122,16 @@ const productReducer = (state = initialState, action) => {
                 newObj[product.id] = product
             })
             newState.products = newObj
+            return newState
+        case LOAD_CAT:
+            const catObj = {}
+            console.log("hello Im here")
+            const catProducts = action.products
+            catProducts.products.forEach((product)=>{
+                catObj[product.id] = product
+            })
+            newState.products = catObj
+            console.log(newState)
             return newState
         case ADD_PRODUCT:
             const product = action.product

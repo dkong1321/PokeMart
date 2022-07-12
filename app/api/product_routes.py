@@ -14,6 +14,13 @@ def all_products():
 
     return {"products" : [ product.to_dict() for product in products]}
 
+# get products by category
+@product_routes.route('/category/<int:id>')
+def cat_products(id):
+    products = Product.query.filter(Product.category_id==id).all()
+    return {"products" : [ product.to_dict() for product in products]}
+
+
 #  get a single product
 @product_routes.route('/<int:id>/')
 def single_product(id):

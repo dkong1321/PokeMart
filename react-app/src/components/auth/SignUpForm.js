@@ -54,17 +54,16 @@ const SignUpForm = ({setShowModal}) => {
     if(!re.test(email)){
       emailErrorValidation.push("Incorrect email format")
     }
-    if(!email.length || email.trim().length===0){
-      emailErrorValidation.push("Please enter a email")
-    }
+    // if(!email.length || email.trim().length===0){
+    //   emailErrorValidation.push("Please enter a email")
+    // }
     if(email.length > 40){
       emailErrorValidation.push("Email cannot be more than 40 characters")
     }
     if(emailExists){
       emailErrorValidation.push("Email already exists")
     }
-    if(!password.length || password.trim().length===0
-){
+    if(!password.length || password.trim().length===0){
       passwordErrorValidation.push("Please enter a password")
     }
     if(password.length > 40){
@@ -123,9 +122,9 @@ const SignUpForm = ({setShowModal}) => {
             <div key={ind}>{error}</div>
           ))}
         </div>
-        <div >
-          <label>User Name</label>
-          {usernameError ? <div>{usernameError}</div> : <></>}
+        <div>
+          <label className='input__label'>User Name</label>
+          {usernameError ? <div className="input__error">{usernameError}</div> : <></>}
           <input
             type='text'
             name='username'
@@ -135,8 +134,8 @@ const SignUpForm = ({setShowModal}) => {
           ></input>
         </div>
         <div>
-          <label>Email</label>
-          {emailError ? <div>{emailError}</div> : <></>}
+          <label className='input__label'>Email</label>
+          {emailError ? <div className="input__error">{emailError}</div> : <></>}
           <input
             type='email'
             name='email'
@@ -146,8 +145,8 @@ const SignUpForm = ({setShowModal}) => {
           ></input>
         </div>
         <div>
-          <label>Password</label>
-          {passwordError ? <div>{passwordError}</div> : <></>}
+          <label className='input__label'>Password</label>
+          {passwordError ? <div className="input__error">{passwordError}</div> : <></>}
           <input
             type='password'
             name='password'
@@ -157,8 +156,8 @@ const SignUpForm = ({setShowModal}) => {
           ></input>
         </div>
         <div>
-          <label>Confirm Password</label>
-          {repeatPasswordError ? <div>{repeatPasswordError}</div> : <></>}
+          <label className='input__label'>Confirm Password</label>
+          {repeatPasswordError ? <div className="input__error">{repeatPasswordError}</div> : <></>}
           <input
             type='password'
             name='repeat_password'
@@ -168,7 +167,7 @@ const SignUpForm = ({setShowModal}) => {
             required={true}
           ></input>
         </div>
-        <button className='signup__button' type='submit'>Sign Up</button>
+        <button className='submit__button' type='submit'>Sign Up</button>
       </form>
     </div>
   );

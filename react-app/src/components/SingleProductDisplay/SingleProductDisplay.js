@@ -8,13 +8,13 @@ import {addCartItem, setItemQuantity, getCart } from "../../store/cart";
 import ReactStars from 'react-stars'
 import "./single_product.css"
 import EditReviewFormModal from "../Modals/EditReviewFormModal";
+import ProductImageModal from "../Modals/ProductImageModal";
 
 const SingleProductDisplay = () => {
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(false)
     const [rating, setRating] =useState(0)
     const [description, setDescription] = useState("")
-    // const [ productQuantity, setProductQuantity] = useState()
 
     const [errorDescription, setErrorDescription] = useState([])
     const [errorRating, setErrorRating] = useState([])
@@ -42,12 +42,10 @@ const SingleProductDisplay = () => {
         const errorRatingValidation = []
 
         if(!user){
-            // notSignedInValidation.push("You must sign in to submit a review")
             setNotSignedIn("You must sign in to submit a review")
             return
         }
         if(user.id === product.user_id){
-            // productOwnerValidation.push("Cannot submit review on your own product")
             setProductOwner("Cannot submit review on your own product")
             return
         }
@@ -77,6 +75,7 @@ const SingleProductDisplay = () => {
         setRating(0)
         setDescription("")
         setErrorRating([])
+        setErrorDescription([])
         setNotSignedIn("")
         setProductOwner("")
     }
@@ -99,6 +98,9 @@ const SingleProductDisplay = () => {
     const avgRating = () => {
         const reviews = Object.values(product.reviews)
         const length = reviews.length
+        if(reviews.length===0){
+            return 0
+        }
         let totalRating = 0
         reviews.forEach((review)=>{
             totalRating+=review.rating
@@ -130,10 +132,43 @@ const SingleProductDisplay = () => {
 
     return(
         isLoaded && (
-            <div>
+            <div className="main__product__container">
+                    <div className="single__product__title"> {product.product_name} </div>
+                    <div className="product__name__divider"></div>
+
                 <div className="product__detail__container">
-                    <div className="product__detail__image">
-                        <img className="single__product__image" src={product.product_image_url} alt=""></img>
+                    <div className="single__product__container">
+                        <ProductImageModal product={product}></ProductImageModal>
+                        <div className="review__page__container">
+                            <div className="product__review__title">Product Reviews</div>
+                                <div className="main__reviews__container">
+                                    <div className="product__review__container">
+                                        {!Object.values(product.reviews).length ? (<div>No Reviews for This Product Yet</div>) :
+                                        (
+                                            <div>
+                                                {Object.values(product.reviews).reverse().map((review)=>{
+                                                    return (
+                                                        <div key={review.id} className="product__review__card">
+                                                            <span className="stars" style={{ "--ratingValue": `${review.rating}` }}></span>
+                                                            <div>Description: {review.description}</div>
+                                                            {review?.user_id===user?.id ? (
+                                                                <div className="review__card__buttons">
+                                                                    <button className="my__product__button" onClick={() => eraseReview(review)}><i className="fa-solid fa-trash-can"></i></button>
+                                                                    <EditReviewFormModal review={review} />
+                                                                </div>
+                                                            ): (<div></div>)}
+                                                            <div>
+                                                                <div>{formatDate(review?.timestamp)}</div>
+                                                                <div>{users[review?.user_id]?.username}</div>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                     <div className="product__detail__info">
                         <div>{users[product?.user_id]?.username}'s Shop</div>
@@ -142,66 +177,31 @@ const SingleProductDisplay = () => {
                             <span className="stars" style={{ "--ratingValue": `${avgRating()}` }}></span>
                         </div>
                         <span>{Object.values(product.reviews).length} Reviews</span>
-                        <div className="single__product__title"> {product.product_name} </div>
-                        <div className="product__name__divider"></div>
                         <div className="single__product__price">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
-                        <div className="single__product__description">{product.description}</div>
                         <div className="add__cart__container">
                             {user === null || user.id === product.user_id ?
                              <></>:
                                 <div>
-                                    { productQuantity > 8 || Object.values(cart.products).filter((product)=>(product.product_id === parseInt(productId)))[0]?.quantity>9 ?
+                                    { Object.values(cart.products).filter((product)=>(product.product_id === parseInt(productId)))[0]?.quantity>9 ?
                                     <div className="disabled__cart__button">Max Qty in Cart</div>:
                                     <button className="add__cart__button" onClick={() => addToCart()}>ADD TO CART</button>
                                     }
                                 </div>
                              }
+                        <div className="single__product__description">{product.description}</div>
                         </div>
-                    </div>
-                </div>
-                    <div className="review__page__container">
-                    <div className="main__reviews__container">
                         <div className="review__form__container">
-                            <div>
-                                    <>
-                                        <div className="review__post__title">Post a Review for this Product</div>
-                                        <div className="product__name__divider"></div>
-                                        <form className=".review__form__container" onSubmit={addNewReview}>
-                                            {errorDescription ? <div>{errorDescription}</div> : <></>}
-                                            {errorRating ? <div>{errorRating}</div> : <></>}
-                                            {notSignedIn ? <div>{notSignedIn}</div>:<></>}
-                                            {productOwner ? <div>{productOwner}</div>:<></>}
-                                            <ReactStars value={rating} count={5} onChange={ratingChanged} size={24} color2={"#4b5cac"} color1={'#bdbaba'} half={false} />
-                                            <textarea className="review__description__input" value={description} onChange={e => setDescription(e.target.value)} placeholder="Write a review for this product!" rows="5" cols="50" />
-                                            <button className="review__submit" type="submit">Submit</button>
-
-                                        </form>
-                                    </>
-
-                            </div>
-                        </div>
-                        <div className="product__review__title">Product Reviews</div>
-
-                        <div className="product__review__container">
-                            <div>
-                                {Object.values(product.reviews).reverse().map((review)=>{
-                                    return (
-                                        <div key={review.id} className="product__review__card">
-                                            <div>
-                                                <div>{users[review?.user_id]?.username} - {formatDate(review?.timestamp)}</div>
-                                            </div>
-                                            <span className="stars" style={{ "--ratingValue": `${review.rating}` }}></span>
-                                            <div>Description: {review.description}</div>
-                                            {review?.user_id===user?.id ? (
-                                                <div>
-                                                    <button onClick={() => eraseReview(review)}><i className="fa-solid fa-trash-can"></i></button>
-                                                    <EditReviewFormModal review={review} />
-                                                </div>
-                                            ): (<></>)}
-                                        </div>
-                                    )
-                                })}
-                            </div>
+                                <div className="review__post__title">Post a Review for this Product</div>
+                                {/* <div className="product__name__divider"></div> */}
+                                <form classeName="review__form" onSubmit={addNewReview}>
+                                    {errorDescription ? <div className="review__input__error">{errorDescription}</div> : <></>}
+                                    {errorRating ? <div className="review__input__error">{errorRating}</div>: <></>}
+                                    {notSignedIn ? <div className="review__input__error">{notSignedIn}</div>:<></>}
+                                    {productOwner ? <div className="review__input__error">{productOwner}</div>:<></>}
+                                    <ReactStars value={rating} count={5} onChange={ratingChanged} size={24} color2={"goldenrod"} color1={'#bdbaba'} half={false} />
+                                    <textarea className="review__description__input" value={description} onChange={e => setDescription(e.target.value)} placeholder="Write a review for this product!" rows="5" cols="50" />
+                                    <button className="review__submit" type="submit">Submit</button>
+                                </form>
                         </div>
                     </div>
                 </div>

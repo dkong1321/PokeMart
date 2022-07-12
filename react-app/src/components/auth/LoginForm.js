@@ -46,26 +46,26 @@ const LoginForm = () => {
   return (
     <div className='main__login__form__container'>
       <div className='modal__form__heading'>Login In</div>
-      <form  className="login__form" onSubmit={onLogin}>
         <div>
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div key={ind} className="input__error">{error}</div>
           ))}
         </div>
-        <div className='login__email__input'>
-          <label for="email">Email</label>
-          <input id="email" name='email' type='text' placeholder='Email' value={email} onChange={updateEmail}
+      <form  className="login__form" onSubmit={onLogin}>
+        <div >
+          <label for="email" className='input__label'>Email</label>
+          <input id="email" className="login__email__input" name='email' type='text' placeholder='Email' value={email} onChange={updateEmail}
           />
         </div>
-        <div className='login__password__input'>
-          <label for="password">Password</label>
-          <input id="password" name='password' type='password' placeholder='Password' value={password} onChange={updatePassword}
+        <div>
+          <label for="password" className='input__label'>Password</label>
+          <input id="password" className="login__password__input" name='password' type='password' placeholder='Password' value={password} onChange={updatePassword}
           />
         </div>
-        <button className='login__button' type='submit'>Login</button>
+        <button className='login__form__buttons' type='submit'>Login</button>
       </form>
       <form onSubmit={demoLogin}>
-        <button className='demo__button' type='submit'>Demo User</button>
+        <button className='demo__form__buttons' type='submit'>Demo User</button>
       </form>
     </div>
   );

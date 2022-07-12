@@ -1,6 +1,6 @@
-.signup__button {
+.submit__button {
     border: #000000 2px solid;
-    background-color: #4b5cac;
+    background-color: #504f4f;
     color: white;
     padding: 5px;
     width: 80px;
@@ -8,13 +8,29 @@
     margin-top: 25px;
     margin-bottom: 10px;
     margin-left: 40px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+
+.submit__button:hover{
+    color: gold;
+    background-color: #1d1e1f;
 }
 
 .signup__form__input {
-    margin: 5px 0px;
+    /* margin: 5px 0px; */
+    margin: 10px 0px;
+    width: 100%;
 }
 
 .signup__modal__container{
-    padding: 0px 20px;
+    padding: 10px 30px;
+    height: 400px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }

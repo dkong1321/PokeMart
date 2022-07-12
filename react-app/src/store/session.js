@@ -24,7 +24,7 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-  
+
     dispatch(setUser(data));
   }
 }
@@ -40,8 +40,8 @@ export const login = (email, password) => async (dispatch) => {
       password
     })
   });
-  
-  
+
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -71,6 +71,7 @@ export const logout = () => async (dispatch) => {
 
 
 export const signUp = (username, email, password) => async (dispatch) => {
+  const avatar_url = "http://kanto-prime.s3.amazonaws.com/85b27058e578473ba2d33f0e101a1106.png"
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
@@ -80,9 +81,10 @@ export const signUp = (username, email, password) => async (dispatch) => {
       username,
       email,
       password,
+      avatar_url
     }),
   });
-  
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))

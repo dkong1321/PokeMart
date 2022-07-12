@@ -6,7 +6,7 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/Nav__Bar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
-import User from './components/User';
+import UserProfile from './components/UserProfile/UserProfile';
 import { authenticate } from './store/session';
 import ProductsDisplay from './components/ProductDisplay/ProductDisplay';
 import SingleProductDisplay from './components/SingleProductDisplay/SingleProductDisplay';
@@ -17,6 +17,8 @@ import EditOrderForm from './components/Forms/EditOrderForm';
 import MyProducts from './components/MyProducts/MyProductsDisplay';
 import EditProductForm from './components/Forms/EditProductForm';
 import SplashPage from './components/SplashPage/SplashPage';
+import TestProducts from './components/test_product';
+import CatProductsDisplay from './components/ProductDisplay/CatProductDisplay';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,6 +50,10 @@ function App() {
         <Route path='/products' exact={true}>
           <ProductsDisplay />
         </Route>
+        <Route path="/category/:category">
+          <CatProductsDisplay />
+        </Route>
+
         <Route path='/products/:productId' exact={true}>
           <SingleProductDisplay />
         </Route>
@@ -73,7 +79,7 @@ function App() {
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
+          <UserProfile />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <SplashPage/>

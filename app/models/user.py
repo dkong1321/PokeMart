@@ -12,7 +12,6 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     avatar_url = db.Column(db.String(255))
     online = db.Column(db.Boolean, nullable=False, default=False)
-    # shipping_address = db.Column(db.String(255), nullable=False)
 
     cart = db.relationship("Cart", back_populates="user")
 
