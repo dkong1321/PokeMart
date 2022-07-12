@@ -17,8 +17,7 @@ function FilterDropDown({setPriceFilter, filterPrice}){
         setPriceFilter(x)
         filterPrice(x)
         setVariable(x)
-        console.log(x)
-        console.log(variable)
+
     }
 
 
