@@ -17,6 +17,8 @@ import EditOrderForm from './components/Forms/EditOrderForm';
 import MyProducts from './components/MyProducts/MyProductsDisplay';
 import EditProductForm from './components/Forms/EditProductForm';
 import SplashPage from './components/SplashPage/SplashPage';
+import TestProducts from './components/test_product';
+import CatProductsDisplay from './components/ProductDisplay/CatProductDisplay';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,6 +49,9 @@ function App() {
         </Route>
         <Route path='/products' exact={true}>
           <ProductsDisplay />
+        </Route>
+        <Route path={["/category/plush", "/category/tradingcards","/category/figures", "/category/games"]} exact={true}>
+          <CatProductsDisplay />
         </Route>
         <Route path='/products/:productId' exact={true}>
           <SingleProductDisplay />

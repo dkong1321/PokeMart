@@ -1,8 +1,5 @@
 from .db import db
 import datetime
-# from app.models.order_products import order_products
-from app.models.product_categories import products_categories
-
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -13,6 +10,7 @@ class Product(db.Model):
     price = db.Column(db.Float,nullable=False )
     product_image_url = db.Column(db.String(255), nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.datetime.now())
+    category_id = db.Column(db.Integer, db.ForeignKey("categories.id"), default=1, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     # orderProduct relationship
@@ -23,10 +21,9 @@ class Product(db.Model):
 
     # one to many between product and reviews
     reviews = db.relationship("Review", back_populates="products", cascade="all, delete-orphan" )
-    # many to many between product and categories
-    categories = db.relationship("Category", secondary=products_categories, back_populates="products")
-    # many to many between orders and product
-    # orders = db.relationship("Order", secondary=order_products, back_populates="products")
+
+    # one to many between product and categories
+    category = db.relationship("Category", back_populates="products")
 
 
     def to_dict(self):
@@ -39,6 +36,6 @@ class Product(db.Model):
             "product_image_url" : self.product_image_url,
             "timestamp" : self.timestamp,
             "user_id" : self.user_id,
+            "category_id": self.category_id,
             "reviews" : [review.to_dict() for review in self.reviews]
-            # "orders" : [order.to_dict() for order in self.orders]
         }

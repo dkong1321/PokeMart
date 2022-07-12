@@ -12,9 +12,9 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     seed_users()
+    seed_categories()
     seed_products()
     seed_reviews()
-    # seed_categories()
     # Add other seed functions here
 
 
@@ -22,7 +22,7 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
+    undo_categories()
     undo_products()
     undo_reviews()
-    undo_categories()
     # Add other undo functions here

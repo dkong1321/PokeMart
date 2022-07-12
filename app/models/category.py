@@ -1,19 +1,14 @@
 from .db import db
-from app.models.product_categories import products_categories
 class Category(db.Model):
     __tablename__ = 'categories'
 
     id = db.Column(db.Integer, primary_key=True)
-    category_name = db.Column(db.String(255))
+    category_name = db.Column(db.String(255), nullable=False)
 
-    # relationships
-    # one to many between product and categories
-    products = db.relationship("Product", secondary=products_categories, back_populates="categories")
-
-
+    products = db.relationship("Product", back_populates="category")
     def to_dict(self):
         return {
             "id" : self.id,
             "category_name" : self.category_name,
-            "products" : [product.to_dict() for product in self.products]
+            # "products" : [product.to_dict() for product in self.products]
         }

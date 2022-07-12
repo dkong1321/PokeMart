@@ -29,26 +29,34 @@ const NavBar = () => {
   }
 
   return (
+      <>
+        <nav className='nav__bar__container'>
+            <div className='nav__link__container__left'>
+              <img className="logo" src={logo} ></img>
+            </div>
 
-      <nav className='nav__bar__container'>
-          <div className='nav__link__container__left'>
-            <img className="logo" src={logo} ></img>
-
-          </div>
-
-          <div className='nav__link__container__right'>
-            <NavLink to='/products' exact={true} activeClassName='active' className="nav__link">Shop Products</NavLink>
-            {!sessionUser ? <LoginFormModal /> :<></>}
-            {!sessionUser ? <SignUpFormModal /> :<></>}
-            { sessionUser ? <AddProductFormModal />:<></>}
-            { sessionUser ?
-              <NavLink
-                to='/mycart' exact={true} activeClassName='active' className="nav__link"><div>{cartSum()} <i className="fa-solid fa-cart-shopping"></i></div>
-              </NavLink>
-            :<></>}
-            {sessionUser? <UserDropDown/> : <></>}
-          </div>
-      </nav>
+            <div className='nav__link__container__right'>
+              <NavLink to='/products' exact={true} activeClassName='active' className="nav__link">Shop Products</NavLink>
+              {!sessionUser ? <LoginFormModal /> :<></>}
+              {!sessionUser ? <SignUpFormModal /> :<></>}
+              { sessionUser ? <AddProductFormModal />:<></>}
+              { sessionUser ?
+                <NavLink
+                  to='/mycart' exact={true} activeClassName='active' className="nav__link"><div>{cartSum()} <i className="fa-solid fa-cart-shopping"></i></div>
+                </NavLink>
+              :<></>}
+              {sessionUser? <UserDropDown/> : <></>}
+            </div>
+        </nav>
+        <div className='cat__main__container'>
+          <nav className="cat__container">
+              <NavLink to='/category/plush' exact={true} activeClassName='active' className="cat__link">Plush</NavLink>
+              <NavLink to='/category/tradingcards' exact={true} activeClassName='active' className="cat__link">Trading Card Game</NavLink>
+              <NavLink to='/category/figures' exact={true} activeClassName='active' className="cat__link">Figures</NavLink>
+              <NavLink to='/category/games' exact={true} activeClassName='active' className="cat__link">Game</NavLink>
+          </nav>
+        </div>
+      </>
 
   );
 }

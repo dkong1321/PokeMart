@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllProducts } from "../../store/product";
 import "./product_display.css"
 import SortDropDown from "./SortDropDown";
 import AllProductsCard from "./AllProductCard";
 import FilterDropDown from "./FilterDropDown";
+import { getCategory } from "../../store/product";
+import { useParams} from "react-router-dom";
 
-const ProductsDisplay = () => {
+const CatProductsDisplay = () => {
     const dispatch = useDispatch()
     const [ isLoaded, setIsLoaded ] = useState(false)
-    const products =Object.values(useSelector((state)=> state.products))
+    const products = Object.values(useSelector((state)=> state.products))
     const [ageSortAsc, setAgeSortAsc] = useState(true)
     const [priceSortHighLow, setPriceSortHighLow] = useState(false)
     const [priceSortLowHigh, setPriceSortLowHigh] = useState(false)
@@ -17,20 +18,19 @@ const ProductsDisplay = () => {
     const [filterUpper, setFilterUpper] = useState(Infinity)
     const [filterLower, setFilterLower] = useState(0)
     const [priceFilter, setPriceFilter] = useState("")
-    // cosnt [currentProducts, set]
-    // Infinity 0
-    // 25 0
-    // 100 50
-    // 0 100
-    // Infinity 100
-
-
-
+    const url = window.location.href.split("/")
+    const cate = url[url.length-1]
+    const category_types = ["plush", "tradingcards", "figures","games"]
+    const category_titles = ["Plushes", "Pokemon TCG", "Figures", "Games" ]
+    const category_banner = ["1", "http://kanto-prime.s3.amazonaws.com/1c87961b4efb479dad97d2c3145542fc.jpg", "3", "4"]
+    const catId = category_types.indexOf(cate)
+    console.log(useParams().category_type)
+    console.log(window.location.href.split("/")[window.location.href.split("/").length-1])
     useEffect(()=>{
-        dispatch(getAllProducts())
+        dispatch(getCategory(catId+1))
         .then(()=>setIsLoaded(true))
 
-    }, [dispatch, priceFilter]);
+    }, [dispatch, priceFilter, catId]);
 
     const avgRating = (product) => {
         const reviews = Object.values(product.reviews)
@@ -43,12 +43,6 @@ const ProductsDisplay = () => {
             totalRating+=review.rating
         })
         return Math.round(totalRating/length*2)/2
-    }
-
-    const updatePriceFilter = (e) => {
-        // console.log(e.target.value, "target value")
-        setPriceFilter(e.target.value)
-        filterPrice(e.target.value)
     }
 
     const filterPrice = (x) => {
@@ -86,7 +80,8 @@ const ProductsDisplay = () => {
         isLoaded && (
 
             <div className="products__main__container">
-                <div className="products__heading">All Products</div>
+                <img src="http://kanto-prime.s3.amazonaws.com/1c87961b4efb479dad97d2c3145542fc.jpg"></img>
+                <div className="products__heading">{category_titles[catId]}</div>
                 <div className="sort__filter__container">
                     <SortDropDown
                         ageSortAsc={ageSortAsc} setAgeSortAsc={setAgeSortAsc}
@@ -102,7 +97,7 @@ const ProductsDisplay = () => {
                 </div>
 
                 <div className="products__display__container">
-                    {ageSortAsc ? Object.values(products[0]).reverse().map((product)=>{ if (product.price <= filterUpper && product.price >= filterLower) {
+                    {ageSortAsc ? Object?.values(products[0]).reverse().map((product)=>{ if (product.price <= filterUpper && product.price >= filterLower) {
 
                         return (
                             <AllProductsCard product={product}></AllProductsCard>
@@ -140,4 +135,4 @@ const ProductsDisplay = () => {
     )
 }
 
-export default ProductsDisplay
+export default CatProductsDisplay
