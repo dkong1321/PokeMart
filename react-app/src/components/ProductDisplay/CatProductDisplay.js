@@ -18,8 +18,8 @@ const CatProductsDisplay = () => {
     const [filterUpper, setFilterUpper] = useState(Infinity)
     const [filterLower, setFilterLower] = useState(0)
     const [priceFilter, setPriceFilter] = useState("")
-    // const url = window.location.pathname.split("/")
-    // const cate = url[url.length-1]
+    const [sortLabel, setSortLabel] = useState("Recently")
+    const [filterLabel, setFilterLabel] = useState("Any")
     const category_types = ["plush", "tradingcards", "figures","games"]
     const category_banner = [   "http://kanto-prime.s3.amazonaws.com/41f79464837940bf8f5c04c9f5f23a22.jpg",
                                 "http://kanto-prime.s3.amazonaws.com/1c87961b4efb479dad97d2c3145542fc.jpg",
@@ -28,14 +28,16 @@ const CatProductsDisplay = () => {
                             ]
     const catId = category_types.indexOf(useParams().category)
     console.log(useParams().category)
-    // console.log(window.location.href.split("/")[window.location.href.split("/").length-1])
-    // console.log(catId)
+
     useEffect(()=>{
-        setFilterUpper(Infinity)
-        setFilterLower(0)
+        setAgeSortAsc(true)
+        // setFilterUpper(Infinity)
+        // setFilterLower(0)
         setPriceSortHighLow(false)
         setPriceSortLowHigh(false)
         setRatingSortHighLow(false)
+        // setPriceFilter("")
+        setSortLabel("Recently")
         dispatch(getCategory(catId+1))
         .then(()=>setIsLoaded(true))
 
@@ -55,13 +57,11 @@ const CatProductsDisplay = () => {
     }
 
     const updatePriceFilter = (e) => {
-        // console.log(e.target.value, "target value")
         setPriceFilter(e.target.value)
         filterPrice(e.target.value)
     }
 
     const filterPrice = (x) => {
-        console.log("we in filter")
         console.log(x)
         switch(x){
             case "Any":
@@ -71,7 +71,6 @@ const CatProductsDisplay = () => {
             case "<$25":
                 setFilterUpper(25)
                 setFilterLower(0)
-                console.log("hello from <25")
                 return
             case "$25-$50":
                 setFilterUpper(50)
@@ -88,9 +87,7 @@ const CatProductsDisplay = () => {
             default:
                 setFilterUpper(Infinity)
                 setFilterLower(0)
-                console.log("hello")
                 return
-
         }
     }
 
@@ -107,10 +104,11 @@ const CatProductsDisplay = () => {
                         priceSortHighLow={priceSortHighLow} setPriceSortHighLow={setPriceSortHighLow}
                         priceSortLowHigh={priceSortLowHigh} setPriceSortLowHigh={setPriceSortLowHigh}
                         ratingSortHighLow={ratingSortHighLow} setRatingSortHighLow={setRatingSortHighLow}
+                        sortLabel={sortLabel} setSortLabel={setSortLabel}
                     ></SortDropDown>
                     <FilterDropDown
                         setPriceFilter={setPriceFilter} priceFilter={priceFilter}
-                        filterPrice={filterPrice}
+                        filterPrice={filterPrice} filterLabel={filterLabel} setFilterLabel={setFilterLabel}
                     >
                     </FilterDropDown>
                 </div>
