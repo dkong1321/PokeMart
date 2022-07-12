@@ -50,7 +50,7 @@ function App() {
         <Route path='/products' exact={true}>
           <ProductsDisplay />
         </Route>
-        <Route path="/category/">
+        <Route path="/category/:category">
           <CatProductsDisplay />
         </Route>
 

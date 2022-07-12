@@ -18,22 +18,28 @@ const CatProductsDisplay = () => {
     const [filterUpper, setFilterUpper] = useState(Infinity)
     const [filterLower, setFilterLower] = useState(0)
     const [priceFilter, setPriceFilter] = useState("")
-    const url = window.location.pathname.split("/")
-    const cate = url[url.length-1]
+    // const url = window.location.pathname.split("/")
+    // const cate = url[url.length-1]
     const category_types = ["plush", "tradingcards", "figures","games"]
     const category_banner = [   "http://kanto-prime.s3.amazonaws.com/41f79464837940bf8f5c04c9f5f23a22.jpg",
                                 "http://kanto-prime.s3.amazonaws.com/1c87961b4efb479dad97d2c3145542fc.jpg",
                                 "http://kanto-prime.s3.amazonaws.com/9d4a4d15f0c74d188a19613c09b8538f.jpg",
                                 "http://kanto-prime.s3.amazonaws.com/13ed417e8cc445d3b4ddb0f7da971b5c.jpg",
                             ]
-    const catId = category_types.indexOf(cate)
-    console.log(window.location.href.split("/")[window.location.href.split("/").length-1])
-    console.log(catId)
+    const catId = category_types.indexOf(useParams().category)
+    console.log(useParams().category)
+    // console.log(window.location.href.split("/")[window.location.href.split("/").length-1])
+    // console.log(catId)
     useEffect(()=>{
+        setFilterUpper(Infinity)
+        setFilterLower(0)
+        setPriceSortHighLow(false)
+        setPriceSortLowHigh(false)
+        setRatingSortHighLow(false)
         dispatch(getCategory(catId+1))
         .then(()=>setIsLoaded(true))
-        console.log("hello from cat")
-    }, [dispatch, priceFilter, catId, cate]);
+
+    }, [dispatch, priceFilter, catId]);
 
     const avgRating = (product) => {
         const reviews = Object.values(product.reviews)
