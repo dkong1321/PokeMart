@@ -18,19 +18,22 @@ const CatProductsDisplay = () => {
     const [filterUpper, setFilterUpper] = useState(Infinity)
     const [filterLower, setFilterLower] = useState(0)
     const [priceFilter, setPriceFilter] = useState("")
-    const url = window.location.href.split("/")
+    const url = window.location.pathname.split("/")
     const cate = url[url.length-1]
     const category_types = ["plush", "tradingcards", "figures","games"]
-    const category_titles = ["Plushes", "Pokemon TCG", "Figures", "Games" ]
-    const category_banner = ["1", "http://kanto-prime.s3.amazonaws.com/1c87961b4efb479dad97d2c3145542fc.jpg", "3", "4"]
+    const category_banner = [   "http://kanto-prime.s3.amazonaws.com/41f79464837940bf8f5c04c9f5f23a22.jpg",
+                                "http://kanto-prime.s3.amazonaws.com/1c87961b4efb479dad97d2c3145542fc.jpg",
+                                "http://kanto-prime.s3.amazonaws.com/9d4a4d15f0c74d188a19613c09b8538f.jpg",
+                                "http://kanto-prime.s3.amazonaws.com/13ed417e8cc445d3b4ddb0f7da971b5c.jpg",
+                            ]
     const catId = category_types.indexOf(cate)
-    console.log(useParams().category_type)
     console.log(window.location.href.split("/")[window.location.href.split("/").length-1])
+    console.log(catId)
     useEffect(()=>{
         dispatch(getCategory(catId+1))
         .then(()=>setIsLoaded(true))
-
-    }, [dispatch, priceFilter, catId]);
+        console.log("hello from cat")
+    }, [dispatch, priceFilter, catId, cate]);
 
     const avgRating = (product) => {
         const reviews = Object.values(product.reviews)
@@ -45,32 +48,41 @@ const CatProductsDisplay = () => {
         return Math.round(totalRating/length*2)/2
     }
 
-    const filterPrice = (x) => {
+    const updatePriceFilter = (e) => {
+        // console.log(e.target.value, "target value")
+        setPriceFilter(e.target.value)
+        filterPrice(e.target.value)
+    }
 
+    const filterPrice = (x) => {
+        console.log("we in filter")
+        console.log(x)
         switch(x){
             case "Any":
                 setFilterUpper(Infinity)
                 setFilterLower(0)
                 return
-            case "<25":
+            case "<$25":
                 setFilterUpper(25)
                 setFilterLower(0)
+                console.log("hello from <25")
                 return
-            case "25-50":
+            case "$25-$50":
                 setFilterUpper(50)
                 setFilterLower(25)
                 return
-            case "50-100":
+            case "$50-$100":
                 setFilterUpper(100)
                 setFilterLower(50)
                 return
-            case ">100":
+            case ">$100":
                 setFilterUpper(Infinity)
                 setFilterLower(100)
                 return
             default:
                 setFilterUpper(Infinity)
                 setFilterLower(0)
+                console.log("hello")
                 return
 
         }
@@ -78,10 +90,11 @@ const CatProductsDisplay = () => {
 
     return(
         isLoaded && (
-
             <div className="products__main__container">
-                <img src="http://kanto-prime.s3.amazonaws.com/1c87961b4efb479dad97d2c3145542fc.jpg"></img>
-                <div className="products__heading">{category_titles[catId]}</div>
+                {console.log(filterLower)}
+                {console.log(filterUpper)}
+                {console.log(ageSortAsc)}
+                <img className="cat__banner" src={category_banner[catId]}></img>
                 <div className="sort__filter__container">
                     <SortDropDown
                         ageSortAsc={ageSortAsc} setAgeSortAsc={setAgeSortAsc}

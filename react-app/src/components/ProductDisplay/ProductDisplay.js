@@ -17,19 +17,11 @@ const ProductsDisplay = () => {
     const [filterUpper, setFilterUpper] = useState(Infinity)
     const [filterLower, setFilterLower] = useState(0)
     const [priceFilter, setPriceFilter] = useState("")
-    // cosnt [currentProducts, set]
-    // Infinity 0
-    // 25 0
-    // 100 50
-    // 0 100
-    // Infinity 100
-
-
 
     useEffect(()=>{
         dispatch(getAllProducts())
         .then(()=>setIsLoaded(true))
-
+        console.log("hello producs")
     }, [dispatch, priceFilter]);
 
     const avgRating = (product) => {
@@ -87,6 +79,7 @@ const ProductsDisplay = () => {
 
             <div className="products__main__container">
                 <div className="products__heading">All Products</div>
+
                 <div className="sort__filter__container">
                     <SortDropDown
                         ageSortAsc={ageSortAsc} setAgeSortAsc={setAgeSortAsc}

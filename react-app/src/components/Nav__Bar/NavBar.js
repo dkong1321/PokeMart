@@ -50,8 +50,8 @@ const NavBar = () => {
         </nav>
         <div className='cat__main__container'>
           <nav className="cat__container">
-              <NavLink to='/category/plush' exact={true} activeClassName='active' className="cat__link">Plush</NavLink>
-              <NavLink to='/category/tradingcards' exact={true} activeClassName='active' className="cat__link">Trading Card Game</NavLink>
+              <NavLink to='/category/plush' onClick={(e)=>console.log("click plush")} exact={true} activeClassName='active' className="cat__link">Plush</NavLink>
+              <NavLink to='/category/tradingcards' onClick={(e)=>console.log("click tcg")} exact={true} activeClassName='active' className="cat__link">Trading Card Game</NavLink>
               <NavLink to='/category/figures' exact={true} activeClassName='active' className="cat__link">Figures</NavLink>
               <NavLink to='/category/games' exact={true} activeClassName='active' className="cat__link">Game</NavLink>
           </nav>

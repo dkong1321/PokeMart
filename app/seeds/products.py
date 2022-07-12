@@ -94,32 +94,68 @@ def seed_products():
     demo_product16 = Product(
         product_name = 'Lapras Plushie Large', price=450.00,  user_id=1,
         description = "Extremely large Lapras plushie 59in. Perfect for any room to look at or sleep on. Lapras is a ice and water type pokemon based on the lochness monster",
-        product_image_url="23213",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/1d181c1768de426ca10b126bd8f358b7.png",
         category_id=1,)
 
     demo_product17 = Product(
         product_name = 'Eevee Evolution Figures', price=235.00,  user_id=1,
         description = "Dynamic figure showing off 8 Eevee Evolutions in a dynamic composition!",
-        product_image_url="1231",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/8ab93c90be194e0bae1643e50b2888e8.png",
         category_id=3,)
 
     demo_product18 = Product(
         product_name = 'Pokemon Legends:Arceus', price=59.99,  user_id=1,
         description = "Pokémon Legends: Arceus, a brand-new game from Game Freak that blends action and exploration with the RPG roots of the Pokémon series. Embark on survey missions in the ancient Hisui region.",
-        product_image_url="13",
-        category_id=4,)
-
-    demo_product18 = Product(
-        product_name = 'Pokemon Emerald Version', price=39.99,  user_id=1,
-        description = "Rayquaza has awakened! Your skills as a Trainer will be challenged like they've never been before as you try to maintain balance between Kyogre and Groudon.",
-        product_image_url="13",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/05c24115599549bea1a092be42d89929.jpg",
         category_id=4,)
 
     demo_product19 = Product(
         product_name = 'Pokemon Snap', price=49.99,  user_id=1,
         description = "1999 release of first person photography game with rail shooter style gameplay mechanics. Snap a shot of your favorite pokemon",
-        product_image_url="13",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/2db92e60d2814ee187131b1039fc0841.jpg",
         category_id=4,)
+
+    demo_product20 = Product(
+        product_name = 'Pokemon Yellow', price=49.99,  user_id=1,
+        description = "Pokémon Yellow Version: Special Pikachu Edition, more commonly known as Pokémon Yellow Version. It is an enhanced version of Pokémon Red and Blue and is part of the first generation of the Pokémon video game series",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/fb7d3d3eb28e4980a2157fd8a7eb816b.jpg",
+        category_id=4,)
+
+    demo_product21 = Product(
+        product_name = 'Pokemon Emerald Version', price=39.99,  user_id=1,
+        description = "Rayquaza has awakened! Your skills as a Trainer will be challenged like they've never been before as you try to maintain balance between Kyogre and Groudon.",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/f21894d3e1914fc392a8b4b308850c53.jpg",
+        category_id=4,)
+
+    demo_product22 = Product(
+        product_name = 'Piplup Plushie', price=39.99,  user_id=1,
+        description = "Amazing Piplup plushie 10 inches in height",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/f6830cf7913b4d6ebd4c9f3859652324.jpg",
+        category_id=1,)
+
+    demo_product23 = Product(
+        product_name = 'Mimikyu Plushie', price=19.99,  user_id=1,
+        description = "Mimikyu Plushie 10 inches in height",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/8498fbf73a8b497083eb8d2aab01ceaf.png",
+        category_id=1,)
+
+    demo_product24 = Product(
+        product_name = 'Magnemite Plushie', price=19.99,  user_id=1,
+        description = "Magnemite Plushie 10 inches in height",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/fb8b12c25df24c799a1a09fd6123f4f2.jpg",
+        category_id=1,)
+
+    demo_product25 = Product(
+        product_name = 'Munchlax Sitting Cuties Plush', price=19.99,  user_id=1,
+        description = "The Munchlax Sitting Cuties Plush is weighted with microbeads, so it sits up when you put it on a flat surface. This palm-sized plush is a fun, charming way to show off a favorite Normal-type Pokémon originally discovered in Sinnoh!",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/a99664a72dae4efeb44bbc8805f1899b.png",
+        category_id=1,)
+
+    demo_product26 = Product(
+        product_name = 'Treecko Secret Base Poké Doll', price=14.99,  user_id=1,
+        description = "The Munchlax Sitting Cuties Plush is weighted with microbeads, so it sits up when you put it on a flat surface. This palm-sized plush is a fun, charming way to show off a favorite Normal-type Pokémon originally discovered in Sinnoh!",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/b633e13f04674bf69762c16e53042235.jpg",
+        category_id=1,)
     # demo_product6 = Product(
     #     product_name = 'Pikachu Vmax (SWSH062)', price=12.00,  user_id=1,
     #     description = "Near min Charizard from then 25th Celebrations pack",
@@ -127,7 +163,8 @@ def seed_products():
 
 
     productArr =[demo_product1, demo_product2, demo_product3, demo_product4, demo_product5, demo_product6, demo_product7, demo_product8, demo_product9, demo_product10, \
-                demo_product11, demo_product12, demo_product13, demo_product14, demo_product15, demo_product16, demo_product17, demo_product18, demo_product19]
+                demo_product11, demo_product12, demo_product13, demo_product14, demo_product15, demo_product16, demo_product17, demo_product18, demo_product19, demo_product20, \
+                demo_product21, demo_product22, demo_product23, demo_product24, demo_product25, demo_product26]
 
     for product in productArr:
         db.session.add(product)

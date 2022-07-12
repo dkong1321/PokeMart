@@ -10,7 +10,7 @@ class Product(db.Model):
     price = db.Column(db.Float,nullable=False )
     product_image_url = db.Column(db.String(255), nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.datetime.now())
-    category_id = db.Column(db.Integer, db.ForeignKey("categories.id"), default=1, nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey("categories.id"), default=5, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     # orderProduct relationship

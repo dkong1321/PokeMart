@@ -17,8 +17,10 @@ function FilterDropDown({setPriceFilter, filterPrice}){
         setPriceFilter(x)
         filterPrice(x)
         setVariable(x)
+        console.log(x)
         console.log(variable)
     }
+
 
     useEffect(()=> {
     if (!menu) return;
@@ -34,7 +36,6 @@ function FilterDropDown({setPriceFilter, filterPrice}){
 
             {menu && (
                 <>
-                    {/* <div className='filter__dropdown' onClick={openDropDown}>Filter By: Price {variable}</div> */}
                     <div className="filter__dropdown__option__container">
                         <div className='filter__dropdown__open' onClick={openDropDown}>Filter By: Price {variable} <i className="fa-solid fa-caret-down"></i></div>
                         <div className="filter__dropdown__option" onClick={()=>updatePriceFilter("Any")}>Any Price</div>

@@ -114,7 +114,6 @@
 }
 
 .cat__container{
-    /* border: 2px red solid; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 110px;
@@ -131,14 +130,20 @@
     color: #1d1e1f;
     font-size: 18px;
     font-weight: 600;
-    /* border: 3px solid blue; */
     margin-bottom: 10px;
     padding-bottom: 10px;
     transition: .5s;
-    /* background-color: #232f7e; */
-    /* border-radius: 10px; */
 }
 
 .cat__link:hover {
     box-shadow: inset 0px -6px rgb(231, 198, 10);
+}
+
+.cat__banner {
+    /* width: 1000px; */
+    height: 200px;
+    margin-bottom: 40px;
+    border: rgb(255, 255, 255) 3px solid;
+    outline: 3px solid rgb(255, 255, 255) ;
+    outline-offset: -9px;
 }
