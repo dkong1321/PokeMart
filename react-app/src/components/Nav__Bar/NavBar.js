@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import "./nav__bar.css"
@@ -8,11 +8,13 @@ import AddProductFormModal from '../Modals/PostProductModal';
 import { getCart } from '../../store/cart';
 import UserDropDown from './UserDropDown';
 import logo from "./Kanto_Prime_Logo.svg"
+import { searchProduct } from '../../store/search';
+import SearchBar from './SearchBar';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
-  const cartCount = (useSelector((state)=>state.cart.products))
-  const user = useSelector((state)=>state.session.user)
+  const cartCount = (useSelector((state)=> state.cart.products))
+  const user = useSelector((state) => state.session.user)
   const dispatch = useDispatch()
 
   useEffect(()=>{
@@ -34,9 +36,8 @@ const NavBar = () => {
             <div className='nav__link__container__left'>
               <img className="logo" src={logo} ></img>
             </div>
-
+            <SearchBar />
             <div className='nav__link__container__right'>
-              {/* <NavLink to='/products' exact={true} activeClassName='active' className="nav__link">Shop Products</NavLink> */}
               {!sessionUser ? <LoginFormModal /> :<></>}
               {!sessionUser ? <SignUpFormModal /> :<></>}
               { sessionUser ? <AddProductFormModal />:<></>}

@@ -20,6 +20,8 @@ const loadCategory = (products) => {
         products
     }
 }
+
+
 const addProduct = (product) => {
     return {
         type: ADD_PRODUCT,
@@ -57,6 +59,16 @@ export const getCategory = (id) => async (dispatch) => {
         dispatch(loadCategory(products))
     }
 }
+
+// export const searchProduct = (searchTerm) => async (dispatch) => {
+//     console.log(searchTerm)
+//     const response = await fetch(`/api/products/search/${searchTerm}`);
+//     if(response.ok) {
+//         const products = await response.json()
+//         console.log(products)
+//     }
+// }
+
 
 export const createProduct = (data) => async (dispatch) => {
 
