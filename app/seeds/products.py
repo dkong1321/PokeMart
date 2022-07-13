@@ -152,9 +152,45 @@ def seed_products():
         category_id=1,)
 
     demo_product26 = Product(
-        product_name = 'Treecko Secret Base Poké Doll', price=14.99,  user_id=1,
+        product_name = 'Treecko Secret Base Poké Doll', price=19.99,  user_id=1,
         description = "The Munchlax Sitting Cuties Plush is weighted with microbeads, so it sits up when you put it on a flat surface. This palm-sized plush is a fun, charming way to show off a favorite Normal-type Pokémon originally discovered in Sinnoh!",
         product_image_url="http://kanto-prime.s3.amazonaws.com/b633e13f04674bf69762c16e53042235.jpg",
+        category_id=1,)
+
+    demo_product27 = Product(
+        product_name = 'Pokemon Red Version', price=99.99,  user_id=1,
+        description = "You begin your journey in Pallet Town as a young boy. After a dangerous brush with wild Pokémon, Professor Oak teaches you how to capture Pokémon, and then sends you on your way as a fledgling Trainer. Pokemon Red Released 1998",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/16bb75bbdb514d499524c14adef85e8a.jpg",
+        category_id=4,)
+
+    demo_product28 = Product(
+        product_name = 'Pokemon Blue Version', price=99.99,  user_id=1,
+        description = "You begin your journey in Pallet Town as a young boy. After a dangerous brush with wild Pokémon, Professor Oak teaches you how to capture Pokémon, and then sends you on your way as a fledgling Trainer. Pokemon Blue Released 1998 ",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/75c5ff0145f74281bb1aa1ab6bc36685.jpg",
+        category_id=4,)
+
+    demo_product29 = Product(
+        product_name = 'Pokemon Silver Version', price=25.99,  user_id=1,
+        description = "Pokemon Silver allows you to catch Lugia!. The game features brand new additions from the previous three games. These two games take place in the Johto region and the Kanto region.",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/a3cf80f74f8f4eeb82a763b454fe73f4.jpg",
+        category_id=4,)
+
+    demo_product30 = Product(
+        product_name = 'Pokemon Gold Version', price=25.99,  user_id=1,
+        description = "Pokemon Gold allows you to catch Ho-Oh. The game features brand new additions from the previous three games. These two games take place in the Johto region and the Kanto region.",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/a72efdb097314bbf820aea9d37d08972.png",
+        category_id=4,)
+
+    demo_product31 = Product(
+        product_name = 'Swampert Sitting Cuties Plush', price=10.99,  user_id=1,
+        description = "The Swampert Sitting Cuties Plush is weighted with microbeads, so it sits up when you put it on a flat surface. This palm-sized plush is a fun, charming way to show off a favorite Water- and Ground-type Pokémon",
+        product_image_url="http://kanto-prime.s3.amazonaws.com/dda61c73609b428c9454e5b31e27dbad.jpg",
+        category_id=1,)
+
+    demo_product32 = Product(
+        product_name = 'Gible Sitting Cuties Plush', price=10.99,  user_id=1,
+        description = "The Gible Sitting Cuties Plush is weighted with microbeads, so it sits up when you put it on a flat surface. This palm-sized plush is a fun, charming way to show off a favorite Dragon- and Ground-type",
+        product_image_url="https://kanto-prime.s3.amazonaws.com/0d58174f53b64baabf2e96ed8947c331.jpg",
         category_id=1,)
     # demo_product6 = Product(
     #     product_name = 'Pikachu Vmax (SWSH062)', price=12.00,  user_id=1,
@@ -164,7 +200,8 @@ def seed_products():
 
     productArr =[demo_product1, demo_product2, demo_product3, demo_product4, demo_product5, demo_product6, demo_product7, demo_product8, demo_product9, demo_product10, \
                 demo_product11, demo_product12, demo_product13, demo_product14, demo_product15, demo_product16, demo_product17, demo_product18, demo_product19, demo_product20, \
-                demo_product21, demo_product22, demo_product23, demo_product24, demo_product25, demo_product26]
+                demo_product21, demo_product22, demo_product23, demo_product24, demo_product25, demo_product26, demo_product27, demo_product28, demo_product29, demo_product30, \
+                demo_product31, demo_product32,    ]
 
     for product in productArr:
         db.session.add(product)

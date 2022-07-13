@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-function SortDropDown({setAgeSortAsc, setPriceSortHighLow, setPriceSortLowHigh, setRatingSortHighLow, setSortLabel, sortLabel}){
+function SortDropDown({setAgeSortAsc,
+                      setPriceSortHighLow,
+                      setPriceSortLowHigh,
+                      setRatingSortHighLow,
+                      setSortLabel,
+                      sortLabel}
+                      ){
   const [sortMenu, setSortMenu] = useState(false)
-  const [variable, setVariable] = useState("Recently")
+  // const [variable, setVariable] = useState("Recently")
   const openDropDown = () => {
     if(sortMenu) return
     setSortMenu(true);
@@ -17,7 +23,7 @@ function SortDropDown({setAgeSortAsc, setPriceSortHighLow, setPriceSortLowHigh, 
         setPriceSortHighLow(false)
         setPriceSortLowHigh(false)
         setRatingSortHighLow(false)
-        setVariable("Recently")
+        // setVariable("Recently")
         setSortLabel("Recently")
     }
 
@@ -26,7 +32,7 @@ function SortDropDown({setAgeSortAsc, setPriceSortHighLow, setPriceSortLowHigh, 
         setPriceSortLowHigh(false)
         setAgeSortAsc(false)
         setRatingSortHighLow(false)
-        setVariable("$ High to Low")
+        // setVariable("$ High to Low")
         setSortLabel("$ Low to High")
 
 
@@ -37,7 +43,7 @@ function SortDropDown({setAgeSortAsc, setPriceSortHighLow, setPriceSortLowHigh, 
         setPriceSortHighLow(false)
         setAgeSortAsc(false)
         setRatingSortHighLow(false)
-        setVariable("$ Low to High")
+        // setVariable("$ Low to High")
         setSortLabel("$ High to Low")
 
     }
@@ -47,7 +53,7 @@ function SortDropDown({setAgeSortAsc, setPriceSortHighLow, setPriceSortLowHigh, 
         setPriceSortLowHigh(false)
         setPriceSortHighLow(false)
         setAgeSortAsc(false)
-        setVariable("Top Rated")
+        // setVariable("Top Rated")
         setSortLabel("Top Rated")
     }
 

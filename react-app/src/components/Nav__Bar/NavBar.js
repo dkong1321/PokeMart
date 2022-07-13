@@ -36,7 +36,7 @@ const NavBar = () => {
             </div>
 
             <div className='nav__link__container__right'>
-              <NavLink to='/products' exact={true} activeClassName='active' className="nav__link">Shop Products</NavLink>
+              {/* <NavLink to='/products' exact={true} activeClassName='active' className="nav__link">Shop Products</NavLink> */}
               {!sessionUser ? <LoginFormModal /> :<></>}
               {!sessionUser ? <SignUpFormModal /> :<></>}
               { sessionUser ? <AddProductFormModal />:<></>}

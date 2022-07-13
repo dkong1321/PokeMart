@@ -23,6 +23,12 @@
 
 .product__form__input{
     margin-bottom: 10px;
+    width: 220px;
+}
+
+.product__form__input__select{
+    width: 400px;
+    margin-bottom: 10px;
 }
 
 .submit__product__button {
