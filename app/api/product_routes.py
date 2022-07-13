@@ -21,7 +21,16 @@ def cat_products(id):
     products = Product.query.filter(Product.category_id==id).all()
     return {"products" : [ product.to_dict() for product in products]}
 
+# search for products
 
+@product_routes.route('/search/<string:search_term>')
+def search_products(search_term):
+    products = Product.query.filter(Product.product_name.ilike('%' +search_term + '%'))
+    print("===============")
+    print(products)
+    print("===============")
+
+    return {"products" : [ product.to_dict() for product in products]}
 #  get a single product
 @product_routes.route('/<int:id>/')
 def single_product(id):

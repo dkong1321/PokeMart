@@ -21,7 +21,6 @@ const ProductsDisplay = () => {
     useEffect(()=>{
         dispatch(getAllProducts())
         .then(()=>setIsLoaded(true))
-        console.log("hello producs")
     }, [dispatch, priceFilter]);
 
     const avgRating = (product) => {

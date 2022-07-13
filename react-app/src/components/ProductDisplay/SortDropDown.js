@@ -24,7 +24,7 @@ function SortDropDown({setAgeSortAsc,
         setPriceSortLowHigh(false)
         setRatingSortHighLow(false)
         // setVariable("Recently")
-        setSortLabel("Recently")
+        setSortLabel("Most Recent")
     }
 
     const sortByPriceHighLow = () => {
