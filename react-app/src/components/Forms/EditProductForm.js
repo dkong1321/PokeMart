@@ -7,6 +7,7 @@ const EditProductForm = ({setShowModal,product}) => {
     const dispatch = useDispatch()
     const [ isLoaded, setIsLoaded ] = useState(false)
     const [image, setImage] = useState(null);
+    const [category, setCategory] = useState(product.category_id);
     const [name, setName] = useState(product.product_name);
     const [price, setPrice] = useState(product.price);
     const [description, setDescription] = useState(product.description);
@@ -15,6 +16,8 @@ const EditProductForm = ({setShowModal,product}) => {
     const [errorDescription, setErrorDescription] = useState([])
     const [errorPrice, setErrorPrice] = useState([])
     const [errorImage, setErrorImage] = useState([])
+    const [errorCategory, setErrorCategory] = useState([])
+
     const uploadHiddenInput = useRef()
 
     const user =useSelector((state)=> state.session.user)
@@ -29,6 +32,7 @@ const EditProductForm = ({setShowModal,product}) => {
         const errorDescriptionValidation =[]
         const errorPriceValidation = []
         const errorImageValidation = []
+        const errorCategoryValidation = []
 
         if(!name.length || name.trim().length===0){
             errorNameValidation.push("Product name cannot be empty")
@@ -62,11 +66,16 @@ const EditProductForm = ({setShowModal,product}) => {
                 errorImageValidation.push("Invalid file type")
         }
 
+        if(category === "none"){
+            errorCategoryValidation.push("Please select a Category")
+        }
+
         if (errorNameValidation.length || errorDescriptionValidation.length || errorPriceValidation.length){
             setErrorName(errorNameValidation)
             setErrorDescription(errorDescriptionValidation)
             setErrorPrice(errorPriceValidation)
             setErrorImage(errorImageValidation)
+            setErrorCategory(errorCategoryValidation)
             return
         }
 
@@ -78,6 +87,7 @@ const EditProductForm = ({setShowModal,product}) => {
             image,
             product_id,
             user_id:user.id,
+            category
         }
         dispatch(updateProduct(data))
         setShowModal(false)
@@ -120,6 +130,16 @@ const EditProductForm = ({setShowModal,product}) => {
                         {image ? <>{image.type}</>: null}
                         <button className="edit__product__image__button" onClick={chooseImage}>Choose Image</button>
                         <input className="product__form__input" type ="file" accept="image/*" onChange={updateImage} hidden ref={uploadHiddenInput}/>
+                    </div>
+                    <div>
+                        <label className="input__label">Category</label>
+                        {errorCategory ? <div className="input__error">{errorCategory}</div> : <></>}
+                        <select id="category" value={category} className="product__form__input__select" onChange={e=>setCategory(e.target.value)}>
+                            <option value="1">Plush</option>
+                            <option value="2">Card</option>
+                            <option value="3">Figure</option>
+                            <option value="4">Game</option>
+                        </select>
                     </div>
                     <button className="submit__edit__product__button" type="submit">Submit</button>
                 </form>

@@ -54,7 +54,6 @@ export const getCategory = (id) => async (dispatch) => {
     const response = await fetch(`/api/products/category/${id}`);
     if(response.ok) {
         const products = await response.json()
-        console.log("hello")
         dispatch(loadCategory(products))
     }
 }
@@ -68,6 +67,7 @@ export const createProduct = (data) => async (dispatch) => {
     formData.append("price", data.price);
     formData.append("user_id", data.user_id);
     formData.append("description", data.description);
+    formData.append("category", data.category)
 
     const response = await fetch("/api/products/", {
         method: "POST",
@@ -81,12 +81,14 @@ export const createProduct = (data) => async (dispatch) => {
 }
 
 export const updateProduct = (data) => async (dispatch) => {
+    console.log(data)
     const formData = new FormData()
     formData.append("image", data.image);
     formData.append("product_name", data.name);
     formData.append("price", data.price);
     formData.append("description", data.description);
     formData.append("user_id", data.user_id )
+    formData.append("category", data.category)
 
     const response = await fetch(`/api/products/${data.product_id}`, {
         method: "PUT",
@@ -95,6 +97,7 @@ export const updateProduct = (data) => async (dispatch) => {
 
     if (response.ok) {
         const editedProduct = await response.json()
+        console.log(editProduct)
         dispatch(editProduct(editedProduct))
     }
 }

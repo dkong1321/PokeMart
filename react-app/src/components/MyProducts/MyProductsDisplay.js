@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllProducts, deleteProduct } from "../../store/product";
+import { getAllProducts } from "../../store/product";
 import {Link} from "react-router-dom"
 import EditProductFormModal from "../Modals/EditProductFormModal";
 import DeleteProductFormModal from "../Modals/DeleteProductModal";
@@ -17,17 +17,12 @@ const MyProducts = () => {
 
     }, [dispatch]);
 
-    const eraseProduct = async (product) => {
-        const product_id = product.id
-        dispatch(deleteProduct(product_id))
-    }
-
     return(
         isLoaded && (
             <div>
                 <div className="my__products__display__container">
                     {Object.values(allProducts[0]).filter((product)=> product.user_id === user.id).length ?
-                        Object.values(Object.values(allProducts[0]).filter((product)=> product.user_id === user.id)).map((product)=>{
+                        Object.values(Object.values(allProducts[0]).reverse().filter((product)=> product.user_id === user.id)).map((product)=>{
                         return (
                             <div key={product.id} className="my__product__card">
                                 <Link to={`/products/${product.id}`} key={product.id} className="my__product__details">

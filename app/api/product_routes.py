@@ -1,3 +1,4 @@
+from unicodedata import category
 from flask import Blueprint, request
 from app.forms.product_form import ProductCreateForm, ProductEditForm
 from app.models.product import Product
@@ -32,6 +33,7 @@ def single_product(id):
 def post_product():
     form = ProductCreateForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("we are in the post route")
     if form.validate_on_submit():
         # image upload <-------------------------->
         if request.files:
@@ -50,12 +52,20 @@ def post_product():
         else:
             url =None
         # image upload <-------------------------->
+        print("============")
+        print("form", form)
+        print(form.category.data)
+        print(type(form.category.data))
+
+        print("============")
+
         new_product = Product(
             product_name = form.product_name.data,
             description = form.description.data,
             price = form.price.data,
             product_image_url = url,
-            user_id = form.user_id.data
+            user_id = form.user_id.data,
+            category_id=form.category.data
         )
 
         db.session.add(new_product)
@@ -69,7 +79,9 @@ def edit_product(id):
     form = ProductEditForm()
     product = Product.query.get(id)
     form['csrf_token'].data = request.cookies['csrf_token']
-
+    print("===========")
+    print(form.category.data)
+    print("in the put route hello!")
     if form.validate_on_submit():
         # image upload <-------------------------->
         if request.files:
@@ -88,11 +100,16 @@ def edit_product(id):
         else:
             url =product.product_image_url
         # image upload <-------------------------->
+        print("===========")
+        print(form)
+        print(form.category.data)
+        print("===========")
 
         product.product_name = form.product_name.data
         product.description = form.description.data
         product.price = form.price.data
         product.product_image_url = url
+        product.category_id = form.category.data
 
         db.session.add(product)
         db.session.commit()

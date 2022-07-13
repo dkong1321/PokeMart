@@ -10,6 +10,7 @@ const ProductForm = ({setShowModal}) => {
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
+    const [category, setCategory] = useState("none");
     const [productLoading, setProductLoading] = useState(false)
     const history = useHistory()
     const user =useSelector((state)=> state.session.user)
@@ -18,11 +19,12 @@ const ProductForm = ({setShowModal}) => {
     const [errorDescription, setErrorDescription] = useState([])
     const [errorPrice, setErrorPrice] = useState([])
     const [errorImage, setErrorImage] = useState([])
+    const [errorCategory, setErrorCategory] = useState([])
 
 
 
     useEffect(()=>{
-        dispatch(getAllProducts())
+        // dispatch(getAllProducts())
     }, [dispatch]);
 
     const makeNewProduct = async(e) => {
@@ -32,6 +34,8 @@ const ProductForm = ({setShowModal}) => {
         const errorDescriptionValidation =[]
         const errorPriceValidation = []
         const errorImageValidation = []
+        const errorCategoryValidation = []
+
 
         if(!productName.length || productName.trim().length===0){
             errorNameValidation.push("Product name cannot be empty")
@@ -64,11 +68,16 @@ const ProductForm = ({setShowModal}) => {
                 errorImageValidation.push("Invalid file type")
         }
 
+        if(category === "none"){
+            errorCategoryValidation.push("Please select a Category")
+        }
+
         if (errorNameValidation.length || errorDescriptionValidation.length || errorPriceValidation.length || errorImageValidation.length ){
             setErrorName(errorNameValidation)
             setErrorDescription(errorDescriptionValidation)
             setErrorPrice(errorPriceValidation)
             setErrorImage(errorImageValidation)
+            setErrorCategory(errorCategoryValidation)
             return
         }
 
@@ -77,14 +86,14 @@ const ProductForm = ({setShowModal}) => {
             user_id:user.id,
             price,
             description,
-            image
+            image,
+            category
         }
-
         await setProductLoading(true)
         await dispatch(createProduct(data))
         await setProductLoading(false)
         setShowModal(false)
-        history.push('/products')
+        history.push(`/users/${user.id}`)
 
     }
 
@@ -125,6 +134,18 @@ const ProductForm = ({setShowModal}) => {
                         <label className="input__label">Price</label>
                         {errorPrice ? <div className="input__error">{errorPrice}</div> : <></>}
                         <input className="product__form__input" type='number' value={price} onChange={e => setPrice(e.target.value)} pattern='[0-9]+(\\.[0-9][0-9]?)?' placeholder="0.00" min="0.00" step="0.01"/>
+                    </div>
+
+                    <div>
+                        <label className="input__label">Category</label>
+                        {errorCategory ? <div className="input__error">{errorCategory}</div> : <></>}
+                        <select id="category" value={category} className="product__form__input__select" onChange={e=>setCategory(e.target.value)}>
+                            <option value="none">-----</option>
+                            <option value="1">Plush</option>
+                            <option value="2">Card</option>
+                            <option value="3">Figure</option>
+                            <option value="4">Game</option>
+                        </select>
                     </div>
 
                     <div className="image__input__container">
