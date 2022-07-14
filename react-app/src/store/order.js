@@ -64,16 +64,17 @@ export const postOrder = (data) => async (dispatch) => {
 
 export const editOrder = (data) => async (dispatch) => {
     const {shipping_address, city, first_name, last_name,state, order_id} = data;
-    const response = await fetch(`/api/orders/${order_id}`,{
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ shipping_address,city, first_name, last_name,state })
-    })
+    console.log(data)
+    // const response = await fetch(`/api/orders/${order_id}`,{
+    //     method: "PUT",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ shipping_address,city, first_name, last_name,state })
+    // })
 
-    if(response.ok) {
-        const order = await response.json()
-        dispatch(updateOrder(order))
-    }
+    // if(response.ok) {
+    //     const order = await response.json()
+    //     dispatch(updateOrder(order))
+    // }
 }
 
 export const deleteOrder = (data) => async (dispatch) => {
@@ -93,7 +94,6 @@ const orderReducer = (state = initialState, action) =>{
     let newState = clone(state);
     switch (action.type) {
         case LOAD_ORDERS:
-
             const newObj ={}
             action.orders.orders.forEach((order)=>{
                 newObj[order.id] = order

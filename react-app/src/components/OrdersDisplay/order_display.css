@@ -7,6 +7,11 @@
 
 }
 
+.order__disclaimer{
+    color: #b04646;
+    font-weight: 600;
+}
+
 .my__order__container{
     margin-top: 10px;
 }

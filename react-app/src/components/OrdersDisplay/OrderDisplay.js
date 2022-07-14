@@ -5,6 +5,8 @@ import SingleOrder from "./SingleOrderDisplay";
 import moment from "moment";
 import "./order_display.css"
 import EditOrderFormModal from "../Modals/OrderFormModal";
+import DeleteOrderFormModal from "../Modals/DeleteOrderModal"
+
 const OrderDisplay = () => {
     const dispatch = useDispatch()
     const [ isLoaded, setIsLoaded ] = useState(false)
@@ -32,15 +34,14 @@ const OrderDisplay = () => {
         const orderDate = new Date(date)
         const currentTime = new Date()
         const diffTime = currentTime - orderDate
-        return diffTime/360000 > 1
+        return diffTime/(3600000 * 4) > 1
     }
-
-
 
     return (
         isLoaded && (
             <div className="main__order__container">
                 <div className="listing__title">Your Orders</div>
+                <div className="order__disclaimer">*Note orders can only be canceled with 4 hours of being placed*</div>
                 <div className="my__order__container">
 
                 {!Object.values(orders).length? <div>Make a Purchase to View Orders Here</div>:
@@ -66,7 +67,7 @@ const OrderDisplay = () => {
                                         <div>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(order.total_price)}</div>
                                     </div>
                                         <div className="order__buttons">
-                                            {checkDelivered(order.timestamp) ? (<div className="completed__order__tag"><i className="fa-solid fa-circle-check check__circle"></i> Order Completed</div>):(<button className="cancel__order__button" onClick={()=> cancelOrder(order)}><i className="fa-solid fa-trash-can"></i></button>)}
+                                            {checkDelivered(order.timestamp) ? (<div className="completed__order__tag"><i className="fa-solid fa-circle-check check__circle"></i> Order Completed</div>):(<DeleteOrderFormModal order={order}/>)}
                                             {checkDelivered(order.timestamp) ? (<></>):(<EditOrderFormModal order={order}/>)}
                                         </div>
                                 </div>

@@ -35,21 +35,24 @@
     position: fixed;
     top: 58px;
     background-color: white;
-    width: 899px;
+    width: 890px;
     border: 1px solid ;
     border-radius: 3px;
+    padding: 5px;
     box-shadow: 4px 4px 10px 1px rgba(47, 47, 62, 0.2), -4px 0px 10px 1px rgba(47, 47, 62, 0.2);
 }
 
 .search__result__link{
     text-decoration: none;
-    width: 900px;
+    width: 100%;
     color: black;
-    padding: 3px;
-    border-radius: 10px;
+    padding: 5px 0px;
+    margin: 0px 0px;
+    border-radius: 7px;
     /* border: 3px blue solid; */
 }
 
 .search__result__link:hover{
     background-color: rgba(231, 231, 231, 0.799);
+    font-weight: 600;
 }

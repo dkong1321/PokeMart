@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Modal } from '../../../context/Modal';
-import DeleteProductForm from '../../Forms/DeleteProductForm';
-import DeleteOrderForm from "../../Forms/DeleteOrderForm";
+import DeleteOrderForm from '../../Forms/DeleteOrderForm';
 
-function DeleteOrderFormModal({order}) {
+function DeleteProductFormModal({order}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -18,4 +17,4 @@ function DeleteOrderFormModal({order}) {
   );
 }
 
-export default DeleteOrderFormModal;
+export default DeleteProductFormModal;

@@ -38,10 +38,10 @@ const NavBar = () => {
                 <img className="logo" src={logo} ></img>
               </NavLink>
             </div>
-            <a href="https://github.com/dkong1321/PokeMart">
+            <a href="https://github.com/dkong1321/PokeMart" target="blank">
                 <img className="svg__logo__git" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" />
             </a>
-            <a href="https://www.linkedin.com/in/darren-kong-06b47013b/">
+            <a href="https://www.linkedin.com/in/darren-kong-06b47013b/" target="blank">
                 <img className="svg__logo__linked" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" />
             </a>
             <SearchBar />
@@ -54,7 +54,7 @@ const NavBar = () => {
                   to='/mycart' exact={true} activeClassName='active' className="nav__link"><div>{cartSum()} <i className="fa-solid fa-cart-shopping"></i></div>
                 </NavLink>
               :<></>}
-              {sessionUser? <UserDropDown/> : <></>}
+              {sessionUser ? <UserDropDown/> : <></>}
             </div>
         </nav>
 

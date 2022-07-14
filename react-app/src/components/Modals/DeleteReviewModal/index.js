@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Modal } from '../../../context/Modal';
-import DeleteProductForm from '../../Forms/DeleteProductForm';
-import DeleteOrderForm from "../../Forms/DeleteOrderForm";
+import DeleteReviewForm from '../../Forms/DeleteReviewForm';
 
-function DeleteOrderFormModal({order}) {
+function DeleteReviewFormModal({review}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -11,11 +10,11 @@ function DeleteOrderFormModal({order}) {
       <button className="my__product__button" onClick={() => setShowModal(true)}><i className="fa-solid fa-trash-can extra"></i></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <DeleteOrderForm setShowModal={setShowModal} order={order}/>
+          <DeleteReviewForm setShowModal={setShowModal} review={review}/>
         </Modal>
       )}
     </>
   );
 }
 
-export default DeleteOrderFormModal;
+export default DeleteReviewFormModal;

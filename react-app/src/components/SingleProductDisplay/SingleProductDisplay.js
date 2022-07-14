@@ -9,6 +9,7 @@ import ReactStars from 'react-stars'
 import "./single_product.css"
 import EditReviewFormModal from "../Modals/EditReviewFormModal";
 import ProductImageModal from "../Modals/ProductImageModal";
+import DeleteReviewFormModal from "../Modals/DeleteReviewModal";
 
 const SingleProductDisplay = () => {
     const dispatch = useDispatch()
@@ -52,7 +53,7 @@ const SingleProductDisplay = () => {
         if(!description.length){
             errorDescriptionValidation.push("Review description cannot be empty")
         }
-        if(!description.length>255){
+        if(description.length>255){
             errorDescriptionValidation.push("Review description cannot be more than 255 characters")
         }
         if(!rating){
@@ -149,17 +150,17 @@ const SingleProductDisplay = () => {
                                                 {Object.values(product.reviews).reverse().map((review)=>{
                                                     return (
                                                         <div key={review.id} className="product__review__card">
-                                                            <span className="stars" style={{ "--ratingValue": `${review.rating}` }}></span>
-                                                            <div>Description: {review.description}</div>
                                                             {review?.user_id===user?.id ? (
                                                                 <div className="review__card__buttons">
-                                                                    <button className="my__product__button" onClick={() => eraseReview(review)}><i className="fa-solid fa-trash-can"></i></button>
+                                                                    <DeleteReviewFormModal review={review}/>
                                                                     <EditReviewFormModal review={review} />
                                                                 </div>
                                                             ): (<div></div>)}
-                                                            <div>
+                                                            <span className="stars" style={{ "--ratingValue": `${review.rating}` }}></span>
+                                                            <div><strong>Description:</strong> {review.description}</div>
+                                                            <div className="review__create__info">
                                                                 <div>{formatDate(review?.timestamp)}</div>
-                                                                <div>{users[review?.user_id]?.username}</div>
+                                                                <strong>{users[review?.user_id]?.username}</strong>
                                                             </div>
                                                         </div>
                                                     )
