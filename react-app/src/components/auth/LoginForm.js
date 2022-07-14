@@ -19,7 +19,7 @@ const LoginForm = () => {
       setErrors(data);
       return
     }
-    history.push('/products')
+    // history.push('/products')
 
   };
 
@@ -28,7 +28,7 @@ const LoginForm = () => {
     const demoEmail = "propaneprince@aa.io"
     const demoPassword = "password"
     dispatch(login(demoEmail, demoPassword));
-    history.push('/products')
+    // history.push('/products')
   };
 
   const updateEmail = (e) => {

@@ -89,7 +89,7 @@ const SignUpForm = ({setShowModal}) => {
     }
     dispatch(login(email,password))
     setShowModal(false)
-    history.push('/products')
+    // history.push('/products')
 
   };
 
