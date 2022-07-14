@@ -38,6 +38,7 @@
     width: 899px;
     border: 1px solid ;
     border-radius: 3px;
+    box-shadow: 4px 4px 10px 1px rgba(47, 47, 62, 0.2), -4px 0px 10px 1px rgba(47, 47, 62, 0.2);
 }
 
 .search__result__link{

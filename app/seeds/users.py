@@ -9,11 +9,14 @@ def seed_users():
         username='ChrisCharming', email='christtv@aa.io', password='password', avatar_url='http://kanto-prime.s3.amazonaws.com/accce75ebdb1455898d39784580a9f48.jpg' )
     demo_user3 = User(
         username='DukeSilver', email='pmelhus@aa.io', password='password', avatar_url='http://kanto-prime.s3.amazonaws.com/accce75ebdb1455898d39784580a9f48.jpg' )
-
+    demo_user4 = User(
+        username='Red', email='red@kanto.io', password='password', avatar_url='http://kanto-prime.s3.amazonaws.com/accce75ebdb1455898d39784580a9f48.jpg' )
+    demo_user5 = User(
+        username='Green', email='green@kanto.io', password='password', avatar_url='http://kanto-prime.s3.amazonaws.com/accce75ebdb1455898d39784580a9f48.jpg' )
 
     # demo_product1 = Product(
     #     product_name = '', price=00.00, product_image_url="", user_id=1)
-    userArr =[demo_user1, demo_user2, demo_user3 ]
+    userArr =[demo_user1, demo_user2, demo_user3, demo_user4, demo_user5 ]
 
     for user in userArr:
         db.session.add(user)

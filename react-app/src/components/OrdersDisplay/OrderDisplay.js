@@ -40,7 +40,7 @@ const OrderDisplay = () => {
     return (
         isLoaded && (
             <div className="main__order__container">
-                <div>Your Orders</div>
+                <div className="listing__title">Your Orders</div>
                 <div className="my__order__container">
 
                 {!Object.values(orders).length? <div>Make a Purchase to View Orders Here</div>:
@@ -50,9 +50,9 @@ const OrderDisplay = () => {
                             <div key={order.id} className="single__order__container">
                                 <div className="order__details__container">
                                     <div className="order__shipping__details__container">
-                                        <div className="order__heading">Shipping To:</div>
+                                        <div className="order__heading">Shipping To : </div>
                                         <div className="order__shipping__info" >
-                                            <div>{order.first_name} {order.last_name}</div>
+                                            <div> {order.first_name} {order.last_name}</div>
                                             <div>{order.shipping_address},</div>
                                             <div>{order.city}, {order.state}</div>
                                         </div>

@@ -7,6 +7,10 @@
 
 }
 
+.my__order__container{
+    margin-top: 10px;
+}
+
 .order__shipping__details__container{
     display: flex;
     width: 400px;
@@ -55,6 +59,7 @@
     width: 250px;
 }
 
+
 .order__heading{
     font-weight: 600;
 }
@@ -95,15 +100,18 @@
 
 }
 
+.order__product__container{
+    padding: 5px;
+}
 .order__details__container {
     display: flex;
     flex-direction: row;
-    /* justify-content: ; */
-    /* border: red 2px solid; */
+    padding: 5px;
 }
 .order__product__image {
     width: 80px;
     height: 120px;
+    object-fit: contain;
 }
 
 .main__order__container {

@@ -2,25 +2,25 @@ from app.models import db, Product, Order, OrderProduct
 
 def seed_products():
     demo_product1 = Product(
-        product_name = 'Vaporeon Vmax (SWSH182)', price=5.00, user_id=1,
+        product_name = 'Vaporeon Vmax (SWSH182)', price=5.00, user_id=4,
         description = "Full art Vaporeon card",
         product_image_url="http://kanto-prime.s3.amazonaws.com/6d0752143a1a4acead81c85704865ad7.jpg",
         category_id=2,)
 
     demo_product2 = Product(
-        product_name = 'Charizard Celebrations (4/102)', price=12.00, user_id=1,
+        product_name = 'Charizard Celebrations (4/102)', price=12.00, user_id=5,
         description = "Near mint Charizard from then 25th Celebrations pack",
         product_image_url="http://kanto-prime.s3.amazonaws.com/91b51c646ac644d3821b2077c02ce01c.jpg",
         category_id=2,)
 
     demo_product3 = Product(
-        product_name = 'Venusaur Celebrations (15/102)', price=8.00,  user_id=1,
+        product_name = 'Venusaur Celebrations (15/102)', price=8.00,  user_id=5,
         description = "Venusaur ungraded from then 25th Celebrations pack",
         product_image_url="http://kanto-prime.s3.amazonaws.com/94b2c56fa0fc46cfbafbffe0c41ab471.jpg",
         category_id=2,)
 
     demo_product4 = Product(
-        product_name = 'Blastoise Celebrations (2/102)', price=5.00,  user_id=1,
+        product_name = 'Blastoise Celebrations (2/102)', price=5.00,  user_id=5,
         description = "Blastoise from then 25th Celebrations pack",
         product_image_url="http://kanto-prime.s3.amazonaws.com/e679b71fe7a44ca38e2c6493fa9e2cac.jpg",
         category_id=2,)
@@ -32,13 +32,13 @@ def seed_products():
         category_id=2,)
     demo_product6 = Product(
         product_name = 'Mega Charizard X Statue',
-                        price=139.99,  user_id=2,
+                        price=139.99,  user_id=5,
         description = "DS Studios, estimated height od 20cm. Includes LED light. Limited production of only 380 pieces. Produced by DS Studios",
         product_image_url="http://kanto-prime.s3.amazonaws.com/289fc69b14dc454e874574cc6a7b6b81.png",
         category_id=3,)
     demo_product7 = Product(
         product_name = 'Slowpoke Poke Plush 59in',
-                        price=450.00,  user_id=2,
+                        price=450.00,  user_id=5,
         description = "We may never know what Slowpoke is thinking—or if it's even thinking at all—but its willingness to happily laze the day away is worthy of admiration. With this jumbo Slowpoke plush by your side at home, school, or work, you'll always have a reminder of the importance of taking it a little slow from time to time",
         product_image_url="http://kanto-prime.s3.amazonaws.com/7e6ac033999244a3b14d5f70efb3ec5c.png",
         category_id=1,)
@@ -50,7 +50,7 @@ def seed_products():
         category_id=3,)
     demo_product9 = Product(
         product_name = 'M Rayquaza EX - 105/108',
-                        price=100.00,  user_id=1,
+                        price=100.00,  user_id=5,
         description = "Ride the winds of battle! Witness the debut of Mega Rayquaza-EX as it prepares to battle Mega Latios-EX and many other Dragon type Pokémon. Rayquaza from XY: Roaring Skies set, released in May 2015",
         product_image_url="http://kanto-prime.s3.amazonaws.com/e77261f456fd4b94b3fd11d93d3efc84.png",
         category_id=2,)
@@ -62,7 +62,7 @@ def seed_products():
         category_id=2,)
     demo_product11 = Product(
         product_name = 'Machamp V - 172/189',
-                        price=139.98,  user_id=1,
+                        price=139.98,  user_id=5,
         description = """Machamp aleternate art card, ultra rare. From Sword and Shield Astral Radiance set. Dimensions are 3.5" H x 2.5" W x 0.012" D """,
         product_image_url="http://kanto-prime.s3.amazonaws.com/63bf68329b4248a3a277ecf2882941fa.png",
         category_id=2,)
@@ -80,7 +80,7 @@ def seed_products():
         category_id=2,)
     demo_product14 = Product(
         product_name = 'Charizard Rising Flames',
-                        price=249.99,  user_id=1,
+                        price=249.99,  user_id=5,
         description = "Rising out of the smoke and flames, Charizard unleashes a tremendous Flamethrower attack! Pokémon Center has paired with First 4 Figures to create this stunning figure featuring premium-quality sculpted details and a dazzling LED feature that lights up the raging flames with a warm, beautiful glow. ",
         product_image_url="http://kanto-prime.s3.amazonaws.com/cdd46ae7bb884af0873253a4c083ae74.png",
         category_id=3,)
@@ -92,7 +92,7 @@ def seed_products():
         category_id=3,)
 
     demo_product16 = Product(
-        product_name = 'Lapras Plushie Large', price=450.00,  user_id=1,
+        product_name = 'Lapras Plushie Large', price=450.00,  user_id=5,
         description = "Extremely large Lapras plushie 59in. Perfect for any room to look at or sleep on. Lapras is a ice and water type pokemon based on the lochness monster",
         product_image_url="http://kanto-prime.s3.amazonaws.com/1d181c1768de426ca10b126bd8f358b7.png",
         category_id=1,)
@@ -104,13 +104,13 @@ def seed_products():
         category_id=3,)
 
     demo_product18 = Product(
-        product_name = 'Pokemon Legends:Arceus', price=59.99,  user_id=1,
+        product_name = 'Pokemon Legends:Arceus', price=59.99,  user_id=4,
         description = "Pokémon Legends: Arceus, a brand-new game from Game Freak that blends action and exploration with the RPG roots of the Pokémon series. Embark on survey missions in the ancient Hisui region.",
         product_image_url="http://kanto-prime.s3.amazonaws.com/05c24115599549bea1a092be42d89929.jpg",
         category_id=4,)
 
     demo_product19 = Product(
-        product_name = 'Pokemon Snap', price=49.99,  user_id=1,
+        product_name = 'Pokemon Snap', price=49.99,  user_id=4,
         description = "1999 release of first person photography game with rail shooter style gameplay mechanics. Snap a shot of your favorite pokemon",
         product_image_url="http://kanto-prime.s3.amazonaws.com/2db92e60d2814ee187131b1039fc0841.jpg",
         category_id=4,)
@@ -122,7 +122,7 @@ def seed_products():
         category_id=4,)
 
     demo_product21 = Product(
-        product_name = 'Pokemon Emerald Version', price=39.99,  user_id=1,
+        product_name = 'Pokemon Emerald Version', price=39.99,  user_id=4,
         description = "Rayquaza has awakened! Your skills as a Trainer will be challenged like they've never been before as you try to maintain balance between Kyogre and Groudon.",
         product_image_url="http://kanto-prime.s3.amazonaws.com/f21894d3e1914fc392a8b4b308850c53.jpg",
         category_id=4,)
@@ -134,7 +134,7 @@ def seed_products():
         category_id=1,)
 
     demo_product23 = Product(
-        product_name = 'Mimikyu Plushie', price=19.99,  user_id=1,
+        product_name = 'Mimikyu Plushie', price=19.99,  user_id=5,
         description = "Mimikyu Plushie 10 inches in height",
         product_image_url="http://kanto-prime.s3.amazonaws.com/8498fbf73a8b497083eb8d2aab01ceaf.png",
         category_id=1,)
@@ -170,25 +170,25 @@ def seed_products():
         category_id=4,)
 
     demo_product29 = Product(
-        product_name = 'Pokemon Silver Version', price=25.99,  user_id=1,
+        product_name = 'Pokemon Silver Version', price=25.99,  user_id=5,
         description = "Pokemon Silver allows you to catch Lugia!. The game features brand new additions from the previous three games. These two games take place in the Johto region and the Kanto region.",
         product_image_url="http://kanto-prime.s3.amazonaws.com/a3cf80f74f8f4eeb82a763b454fe73f4.jpg",
         category_id=4,)
 
     demo_product30 = Product(
-        product_name = 'Pokemon Gold Version', price=25.99,  user_id=1,
+        product_name = 'Pokemon Gold Version', price=25.99,  user_id=5,
         description = "Pokemon Gold allows you to catch Ho-Oh. The game features brand new additions from the previous three games. These two games take place in the Johto region and the Kanto region.",
         product_image_url="http://kanto-prime.s3.amazonaws.com/a72efdb097314bbf820aea9d37d08972.png",
         category_id=4,)
 
     demo_product31 = Product(
-        product_name = 'Swampert Sitting Cuties Plush', price=10.99,  user_id=1,
+        product_name = 'Swampert Sitting Cuties Plush', price=10.99,  user_id=5,
         description = "The Swampert Sitting Cuties Plush is weighted with microbeads, so it sits up when you put it on a flat surface. This palm-sized plush is a fun, charming way to show off a favorite Water- and Ground-type Pokémon",
         product_image_url="http://kanto-prime.s3.amazonaws.com/dda61c73609b428c9454e5b31e27dbad.jpg",
         category_id=1,)
 
     demo_product32 = Product(
-        product_name = 'Gible Sitting Cuties Plush', price=10.99,  user_id=1,
+        product_name = 'Gible Sitting Cuties Plush', price=10.99,  user_id=4,
         description = "The Gible Sitting Cuties Plush is weighted with microbeads, so it sits up when you put it on a flat surface. This palm-sized plush is a fun, charming way to show off a favorite Dragon- and Ground-type",
         product_image_url="https://kanto-prime.s3.amazonaws.com/0d58174f53b64baabf2e96ed8947c331.jpg",
         category_id=1,)
@@ -230,13 +230,13 @@ def seed_products():
 
     # ===============================================================================================================
     demo_order_product1 = OrderProduct(
-        order_id=1, product_id=1, quantity=3, product_name='Vaporeon Vmax (SWSH182)',
+        order_id=1, product_id=1, quantity=2, product_name='Vaporeon Vmax (SWSH182)',
         product_image= "http://kanto-prime.s3.amazonaws.com/6d0752143a1a4acead81c85704865ad7.jpg"
     )
 
     demo_order_product2 = OrderProduct(
-        order_id=2, product_id=1, quantity=3, product_name='Vaporeon Vmax (SWSH182)',
-        product_image= "http://kanto-prime.s3.amazonaws.com/6d0752143a1a4acead81c85704865ad7.jpg"
+        order_id=2, product_id=6, quantity=1, product_name='Mega Charizard X Statue',
+        product_image= "http://kanto-prime.s3.amazonaws.com/289fc69b14dc454e874574cc6a7b6b81.png"
     )
 
     demo_order_product3 = OrderProduct(
@@ -245,11 +245,26 @@ def seed_products():
     )
 
     demo_order_product4 = OrderProduct(
-        order_id=3, product_id=4, quantity=3, product_name='Blastoise Celebrations (2/102)',
+        order_id=3, product_id=4, quantity=1, product_name='Blastoise Celebrations (2/102)',
         product_image= "http://kanto-prime.s3.amazonaws.com/e679b71fe7a44ca38e2c6493fa9e2cac.jpg"
     )
 
-    orderProductArr = [demo_order_product1, demo_order_product2, demo_order_product3, demo_order_product4]
+    demo_order_product5 = OrderProduct(
+        order_id=2, product_id=16, quantity=1, product_name='Lapras Plushie Large',
+        product_image= "http://kanto-prime.s3.amazonaws.com/1d181c1768de426ca10b126bd8f358b7.png"
+    )
+
+    demo_order_product6 = OrderProduct(
+        order_id=3, product_id=23, quantity=1, product_name='Mimikyu Plushie',
+        product_image= "http://kanto-prime.s3.amazonaws.com/8498fbf73a8b497083eb8d2aab01ceaf.png"
+    )
+
+    demo_order_product7 = OrderProduct(
+        order_id=3, product_id=4, quantity=1, product_name='Pokemon Yellow',
+        product_image= "http://kanto-prime.s3.amazonaws.com/fb7d3d3eb28e4980a2157fd8a7eb816b.jpg"
+    )
+
+    orderProductArr = [demo_order_product1, demo_order_product2, demo_order_product3, demo_order_product4, demo_order_product5, demo_order_product6, demo_order_product7]
 
     for orderProduct in orderProductArr:
         db.session.add(orderProduct)

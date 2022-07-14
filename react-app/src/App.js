@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/Nav__Bar/NavBar';
+import NavBarCat from './components/Nav__Bar/NavBarCat';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import UserProfile from './components/UserProfile/UserProfile';
@@ -41,49 +42,45 @@ function App() {
         <Route path='/' exact={true} >
           <SplashPage/>
         </Route>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <Route path='/products' exact={true}>
-          <ProductsDisplay />
-        </Route>
         <Route path="/category/:category">
+          <NavBarCat />
           <CatProductsDisplay />
         </Route>
-
         <Route path='/products/:productId' exact={true}>
+          <NavBarCat />
           <SingleProductDisplay />
         </Route>
         <Route path='/mycart' exact={true}>
+          <NavBarCat />
           <CartDisplay />
         </Route>
         <Route path='/checkout' exact={true}>
+          <NavBarCat />
           <Checkout/>
         </Route>
         <Route path='/myorders' exact={true}>
+          <NavBarCat />
           <OrderDisplay />
         </Route>
         <Route path='/my-products' exact={true}>
+          <NavBarCat />
           <MyProducts></MyProducts>
         </Route>
-        <Route path='/edit-orders' exact={true}>
+        {/* <Route path='/edit-orders' exact={true}>
           <EditOrderForm />
         </Route>
         <Route path='/edit-product' exact={true}>
           <EditProductForm />
-        </Route>
+        </Route> */}
         <ProtectedRoute path='/users' exact={true} >
+          <NavBarCat />
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
+          <NavBarCat />
           <UserProfile />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <SplashPage/>
-        </ProtectedRoute>
+
       </Switch>
       {/* footer here later */}
     </BrowserRouter>

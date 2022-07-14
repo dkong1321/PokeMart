@@ -17,7 +17,7 @@ const SingleOrder = ({order}) => {
         <div>
             {Object.values(order.products).length ?
                 <div>
-                    <div className="order__see__more" onClick={()=>setProductShow(!productShow)}><i className="fa-solid fa-circle-chevron-down"></i></div>
+                    <div className="order__see__more" onClick={()=>setProductShow(!productShow)}>{`Details  `} <i className="fa-solid fa-circle-chevron-down"></i></div>
                 </div>
             :<div>Listing has been removed</div>}
             {/* <div className="order__see__more" onClick={()=>setProductShow(!productShow)}><i className="fa-solid fa-circle-chevron-down"></i></div> */}
@@ -27,7 +27,7 @@ const SingleOrder = ({order}) => {
                 return (
                 <div key={product.id}>
                     {productShow && (
-                    <div className="product__">
+                    <div className="order__product__container">
                         <div>{product.product_name}</div>
                         <div>qty: {product.quantity}</div>
                         <img className="order__product__image" alt="" src={product.product_image}></img>

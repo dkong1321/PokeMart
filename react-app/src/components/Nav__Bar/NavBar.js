@@ -34,8 +34,16 @@ const NavBar = () => {
       <>
         <nav className='nav__bar__container'>
             <div className='nav__link__container__left'>
-              <img className="logo" src={logo} ></img>
+              <NavLink to="/">
+                <img className="logo" src={logo} ></img>
+              </NavLink>
             </div>
+            <a href="https://github.com/dkong1321/PokeMart">
+                <img className="svg__logo__git" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" />
+            </a>
+            <a href="https://www.linkedin.com/in/darren-kong-06b47013b/">
+                <img className="svg__logo__linked" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" />
+            </a>
             <SearchBar />
             <div className='nav__link__container__right'>
               {!sessionUser ? <LoginFormModal /> :<></>}
@@ -49,14 +57,15 @@ const NavBar = () => {
               {sessionUser? <UserDropDown/> : <></>}
             </div>
         </nav>
-        <div className='cat__main__container'>
+
+        {/* <div className='cat__main__container'>
           <nav className="cat__container">
               <NavLink to='/category/plush' exact={true} activeClassName='active' className="cat__link">Plush</NavLink>
               <NavLink to='/category/tradingcards' exact={true} activeClassName='active' className="cat__link">Trading Card Game</NavLink>
               <NavLink to='/category/figures' exact={true} activeClassName='active' className="cat__link">Figures</NavLink>
               <NavLink to='/category/games' exact={true} activeClassName='active' className="cat__link">Game</NavLink>
           </nav>
-        </div>
+        </div> */}
       </>
 
   );
