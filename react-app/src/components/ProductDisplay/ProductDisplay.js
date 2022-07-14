@@ -36,12 +36,6 @@ const ProductsDisplay = () => {
         return Math.round(totalRating/length*2)/2
     }
 
-    const updatePriceFilter = (e) => {
-        // console.log(e.target.value, "target value")
-        setPriceFilter(e.target.value)
-        filterPrice(e.target.value)
-    }
-
     const filterPrice = (x) => {
 
         switch(x){
@@ -91,6 +85,7 @@ const ProductsDisplay = () => {
                         filterPrice={filterPrice}
                     >
                     </FilterDropDown>
+                    <div>reset filter</div>
                 </div>
 
                 <div className="products__display__container">

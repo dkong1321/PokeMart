@@ -74,7 +74,7 @@
 
 .product__price {
     display: flex;
-        justify-content: center;
+    justify-content: center;
     text-decoration: none;
     font-family: sans-serif;
     font-size: 15px;
@@ -88,7 +88,6 @@
 .product__link__to__single{
     text-decoration: none;
     margin-bottom: 0;
-    border-radius: 1px red solid;
 }
 
 .products__display__reviews{
@@ -119,7 +118,6 @@
 }
 
 .sort__filter__container{
-    /* border: #38488c 1px solid; */
     display: flex;
     justify-content: flex-end;
     width: 1320px;
@@ -132,12 +130,10 @@
     border: #919191 solid 1px;
     border-radius: 25px;
     padding: 5px 10px;
-    /* right: -600px; */
     width: 180px;
     cursor: pointer;
     background-color: #f7f7f7;
-    margin-right: 40px;
-    /* z-index: 1000; */
+    margin-right: 20px;
 }
 
 .sort__dropdown__open {
@@ -211,10 +207,6 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    /* display: grid; */
-    /* row-gap: 7px; */
-    /* top: 220px; */
-    /* right: 280px; */
     transition: .5s;
     border-radius: 15px;
     padding: 3px;
@@ -237,4 +229,12 @@
 .filter__dropdown__option:hover {
     background-color: #c8c8c8;
     font-weight: 600;
+}
+
+.reset__sort__filter{
+    border-radius: 25px;
+    padding: 5px 10px;
+    border: #919191 solid 1px;
+    background-color: #f7f7f7;
+    margin-right: 20px;
 }

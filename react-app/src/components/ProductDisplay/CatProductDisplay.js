@@ -5,7 +5,7 @@ import SortDropDown from "./SortDropDown";
 import AllProductsCard from "./AllProductCard";
 import FilterDropDown from "./FilterDropDown";
 import { getCategory } from "../../store/product";
-import { useParams} from "react-router-dom";
+import { useParams, useHistory} from "react-router-dom";
 
 const CatProductsDisplay = () => {
     const dispatch = useDispatch()
@@ -27,21 +27,15 @@ const CatProductsDisplay = () => {
                                 "http://kanto-prime.s3.amazonaws.com/13ed417e8cc445d3b4ddb0f7da971b5c.jpg",
                             ]
     const catId = category_types.indexOf(useParams().category)
-    console.log(useParams().category)
-
+    const history = useHistory()
     useEffect(()=>{
-        setAgeSortAsc(true)
-        // setFilterUpper(Infinity)
-        // setFilterLower(0)
-        setPriceSortHighLow(false)
-        setPriceSortLowHigh(false)
-        setRatingSortHighLow(false)
-        // setPriceFilter("")
-        setSortLabel("Recently")
+        history.listen(()=>resetSortFilter())
+        // resetSortFilter()
+
         dispatch(getCategory(catId+1))
         .then(()=>setIsLoaded(true))
 
-    }, [dispatch, priceFilter, catId]);
+    }, [dispatch, priceFilter, catId, history]);
 
     const avgRating = (product) => {
         const reviews = Object.values(product.reviews)
@@ -56,49 +50,25 @@ const CatProductsDisplay = () => {
         return Math.round(totalRating/length*2)/2
     }
 
-    const updatePriceFilter = (e) => {
-        setPriceFilter(e.target.value)
-        filterPrice(e.target.value)
-    }
 
-    const filterPrice = (x) => {
-        console.log(x)
-        switch(x){
-            case "Any":
-                setFilterUpper(Infinity)
-                setFilterLower(0)
-                return
-            case "<$25":
-                setFilterUpper(25)
-                setFilterLower(0)
-                return
-            case "$25-$50":
-                setFilterUpper(50)
-                setFilterLower(25)
-                return
-            case "$50-$100":
-                setFilterUpper(100)
-                setFilterLower(50)
-                return
-            case ">$100":
-                setFilterUpper(Infinity)
-                setFilterLower(100)
-                return
-            default:
-                setFilterUpper(Infinity)
-                setFilterLower(0)
-                return
-        }
+    const resetSortFilter = () => {
+        setAgeSortAsc(true)
+        setFilterUpper(Infinity)
+        setFilterLower(0)
+        setPriceSortHighLow(false)
+        setPriceSortLowHigh(false)
+        setRatingSortHighLow(false)
+        setPriceFilter("")
+        setSortLabel("Recently")
+        setFilterLabel("Any")
     }
 
     return(
         isLoaded && (
             <div className="products__main__container">
-                {console.log(filterLower)}
-                {console.log(filterUpper)}
-                {console.log(ageSortAsc)}
                 <img className="cat__banner" src={category_banner[catId]}></img>
                 <div className="sort__filter__container">
+                    <div className="reset__sort__filter" onClick={()=>resetSortFilter()}>Reset</div>
                     <SortDropDown
                         ageSortAsc={ageSortAsc} setAgeSortAsc={setAgeSortAsc}
                         priceSortHighLow={priceSortHighLow} setPriceSortHighLow={setPriceSortHighLow}
@@ -108,7 +78,9 @@ const CatProductsDisplay = () => {
                     ></SortDropDown>
                     <FilterDropDown
                         setPriceFilter={setPriceFilter} priceFilter={priceFilter}
-                        filterPrice={filterPrice} filterLabel={filterLabel} setFilterLabel={setFilterLabel}
+                        filterLabel={filterLabel} setFilterLabel={setFilterLabel}
+                        setFilterLower={setFilterLower} filterLower={filterLower}
+                        setFilterUpper={setFilterUpper} filterUpper={filterUpper}
                     >
                     </FilterDropDown>
                 </div>
@@ -120,7 +92,7 @@ const CatProductsDisplay = () => {
                             <AllProductsCard product={product}></AllProductsCard>
                         )
                     }
-                    }): <></>}
+                    }): <>no products</>}
 
                     {priceSortHighLow ? Object.values(products[0]).sort((a,b)=>{return a.price - b.price}).map((product)=>{ if (product.price <= filterUpper && product.price >= filterLower){
 
