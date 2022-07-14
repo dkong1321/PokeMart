@@ -67,7 +67,7 @@ function SortDropDown({setAgeSortAsc,
         <div>
               {
                 <div className='sort__dropdown' onClick={openDropDown}>
-                    Sort By: {sortLabel}<i className="fa-solid fa-caret-down"></i>
+                    Sort By: {sortLabel} <i className="fa-solid fa-caret-down"></i>
                 </div>
               }
 
