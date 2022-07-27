@@ -92,7 +92,7 @@ const CatProductsDisplay = () => {
                             <AllProductsCard product={product}></AllProductsCard>
                         )
                     }
-                    }): <>no products</>}
+                    }): <></>}
 
                     {priceSortHighLow ? Object.values(products[0]).sort((a,b)=>{return a.price - b.price}).map((product)=>{ if (product.price <= filterUpper && product.price >= filterLower){
 

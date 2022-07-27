@@ -19,10 +19,7 @@ def all_orders(userId):
 def add_order():
 
     req = request.json['data']
-    print("\n\n")
     print(request.json)
-    # print(req)
-    print("\n\n")
 
     new_order = Order(
         total_price = req['total_price'],
@@ -51,7 +48,6 @@ def add_order():
 @order_routes.route('/<int:order_id>', methods=["PUT"])
 def edit_order(order_id):
     order = Order.query.get(order_id)
-    print("\n\n",request.json)
     req = request.json
 
     order.shipping_address = req['shipping_address']

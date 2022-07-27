@@ -2,7 +2,7 @@
     width: 900px;
     display: flex;
     height: 30px;
-    margin-left: 200px;
+    margin-left: 10px;
 }
 
 .search__bar__container:focus{
@@ -11,7 +11,8 @@
 }
 
 .search__bar__input{
-    width: 900px;
+    max-width: 900px;
+    min-width: 90%;
     font-size: 15px;
     outline: none;
     border-radius: 5px;
