@@ -15,6 +15,13 @@
     padding: 10px;
 }
 
+@media screen and (max-width: 1200px) {
+    .products__display__container {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto;
+    }
+}
+
 .all__products__image__container{
     display: flex;
     justify-content: center;

@@ -24,3 +24,25 @@ body{
     height: 15px;
     margin: 5px 0px;
 }
+
+@media screen and (max-width: 1200px) {
+    .test__image {
+        /* border: 4px blue solid; */
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .svg__logo__git {
+        display: none;
+    }
+
+    .svg__logo__linked {
+        display: none;
+    }
+
+    .products__display__container{
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto;
+    }
+}

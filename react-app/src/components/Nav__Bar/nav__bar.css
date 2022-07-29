@@ -130,8 +130,8 @@
 .cat__container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    column-gap: 110px;
-    width: 1000px;
+    column-gap: 40px;
+    width: 800px;
 }
 
 .cat__link{
@@ -154,8 +154,9 @@
 }
 
 .cat__banner {
-    /* width: 1000px; */
-    height: 200px;
+    width: 70%;
+    max-width: 1200px;
+    height: auto;
     margin-bottom: 40px;
     border: rgb(255, 255, 255) 3px solid;
     outline: 3px solid rgb(255, 255, 255) ;
