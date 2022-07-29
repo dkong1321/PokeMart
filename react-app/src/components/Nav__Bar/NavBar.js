@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import "./nav__bar.css"
@@ -8,7 +8,6 @@ import AddProductFormModal from '../Modals/PostProductModal';
 import { getCart } from '../../store/cart';
 import UserDropDown from './UserDropDown';
 import logo from "./Kanto_Prime_Logo.svg"
-import { searchProduct } from '../../store/search';
 import SearchBar from './SearchBar';
 
 const NavBar = () => {

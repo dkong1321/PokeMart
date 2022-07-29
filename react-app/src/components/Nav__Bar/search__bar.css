@@ -28,7 +28,7 @@
     justify-content: center;
     align-items: center;
     background-color: gold;
-    width: 30px;
+    min-width: 30px;
     border-radius: 5px;
 }
 
