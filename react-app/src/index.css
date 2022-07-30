@@ -32,7 +32,7 @@ body{
     }
 }
 
-@media screen and (max-width: 1200px) {
+@media (max-width: 1300px) {
     .svg__logo__git {
         display: none;
     }
@@ -41,8 +41,15 @@ body{
         display: none;
     }
 
-    .products__display__container{
+    /* .products__display__container{
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: auto;
+    } */
+
+    .sort__filter__container{
+        display: flex;
+        justify-content: flex-end;
+        width: 800px;
+        /* border: red 2px solid; */
     }
 }

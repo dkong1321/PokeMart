@@ -15,7 +15,7 @@
     padding: 10px;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1300px) {
     .products__display__container {
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: auto;
@@ -127,7 +127,18 @@
 .sort__filter__container{
     display: flex;
     justify-content: flex-end;
+    /* border: blue 2px solid; */
     width: 1320px;
+}
+
+@media (max-width: 1300px) {
+
+
+    .sort__filter__container {
+        display: flex;
+        justify-content: flex-end;
+        width: 800px;
+    }
 }
 
 .sort__dropdown{
