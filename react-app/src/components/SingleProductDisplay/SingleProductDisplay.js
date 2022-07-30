@@ -193,7 +193,6 @@ const SingleProductDisplay = () => {
                         </div>
                         <div className="review__form__container">
                                 <div className="review__post__title">Post a Review for this Product</div>
-                                {/* <div className="product__name__divider"></div> */}
                                 <form classeName="review__form" onSubmit={addNewReview}>
                                     {errorDescription ? <div className="review__input__error">{errorDescription}</div> : <></>}
                                     {errorRating ? <div className="review__input__error">{errorRating}</div>: <></>}

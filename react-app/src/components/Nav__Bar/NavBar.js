@@ -6,9 +6,12 @@ import LoginFormModal from '../Modals/LoginFormModal';
 import SignUpFormModal from '../Modals/SignUpFormModal';
 import AddProductFormModal from '../Modals/PostProductModal';
 import { getCart } from '../../store/cart';
+import { getAllProducts } from "../../store/product";
+
 import UserDropDown from './UserDropDown';
 import logo from "./Kanto_Prime_Logo.svg"
 import SearchBar from './SearchBar';
+
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
@@ -18,6 +21,7 @@ const NavBar = () => {
 
   useEffect(()=>{
     dispatch(getCart(user?.id))
+    dispatch(getAllProducts())
   },[dispatch, user])
 
   const cartSum = ()=>{

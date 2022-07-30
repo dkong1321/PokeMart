@@ -24,7 +24,6 @@ const ProductForm = ({setShowModal}) => {
 
 
     useEffect(()=>{
-        // dispatch(getAllProducts())
     }, [dispatch]);
 
     const makeNewProduct = async(e) => {
@@ -59,7 +58,6 @@ const ProductForm = ({setShowModal}) => {
         }
         if(price > 999999999){
             errorPriceValidation.push("Price seems too large please check and submit")
-
         }
 
         if(!image){
@@ -99,6 +97,7 @@ const ProductForm = ({setShowModal}) => {
 
     const updateImage = (e) => {
         const file = e.target.files[0];
+        console.log(file)
         setImage(file);
     }
 
