@@ -14,8 +14,9 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    padding-right: 100px;
+    /* padding-right: 100px; */
     height: 100%;
+    margin-left: auto;
 }
 
 .logo {
@@ -41,8 +42,8 @@
     display: flex;
     justify-content: flex-start;
     text-decoration: none;
-    margin-left: 30px;
-    padding: none;
+    margin-right: auto;
+    padding-left: 20px;
 }
 
 .nav__link {
@@ -111,13 +112,14 @@
     border-left: 2px rgb(0, 0, 0) solid;
     border-bottom: 2px rgb(0, 0, 0) solid;
     border-right: 2px rgb(0, 0, 0) solid;
-    width: 130px;
+    width: 125px;
     display: flex;
     flex-direction: column;
     position: absolute;
     background-color: #dbdce1;
     top: 85px;
-    right: 80px;
+    right: 1px;
+    /* right: 80px; */
 
 }
 

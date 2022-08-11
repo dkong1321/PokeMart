@@ -33,7 +33,7 @@ def seed_products():
     demo_product6 = Product(
         product_name = 'Mega Charizard X Statue',
                         price=139.99,  user_id=5,
-        description = "DS Studios, estimated height od 20cm. Includes LED light. Limited production of only 380 pieces. Produced by DS Studios",
+        description = "DS Studios, estimated height is 20cm. Includes LED light. Limited production of only 380 pieces. Produced by DS Studios",
         product_image_url="http://kanto-prime.s3.amazonaws.com/289fc69b14dc454e874574cc6a7b6b81.png",
         category_id=3,)
     demo_product7 = Product(
